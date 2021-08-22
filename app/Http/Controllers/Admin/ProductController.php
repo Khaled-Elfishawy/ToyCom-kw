@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\CentralLogics\Helpers;
 use App\Http\Controllers\Controller;
+use App\Model\Age;
+use App\Model\Brand;
 use App\Model\Category;
 use App\Model\PriceGroup;
 use App\Model\Product;
@@ -66,7 +68,9 @@ class ProductController extends Controller
     {
         $categories = Category::where(['position' => 0])->get();
         $prices=PriceGroup::all();
-        return view('admin-views.product.index', compact('categories','prices'));
+        $ages = Age::all();
+        $brands = Brand::all();
+        return view('admin-views.product.index', compact('categories','prices','ages','brands'));
     }
 
     function list() {
@@ -96,11 +100,11 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        //dd($request->all());
-
         $validator = Validator::make($request->all(), [
             'name'        => 'required|unique:products',
             'category_id' => 'required',
+            'brand_id' => 'required',
+            'age_id' => 'required',
             'images'      => 'required',
             'total_stock' => 'required|numeric|min:1',
             'price'       => 'required|numeric|min:1',
@@ -232,6 +236,8 @@ class ProductController extends Controller
         $p->discount_type = $request->discount_type;
         $p->total_stock = $request->total_stock;
         $p->price_group = $request->pricegroup;
+        $p->age_id = $request->age_id;
+        $p->brand_id = $request->brand_id;
         $p->attributes = $request->has('attribute_id') ? json_encode($request->attribute_id) : json_encode([]);
         $p->save();
 

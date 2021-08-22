@@ -100,6 +100,38 @@
                                            placeholder="Ex : 100">
                                 </div>
                             </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label class="input-label"
+                                           for="exampleFormControlInput1">{{trans('messages.age')}}</label>
+                                    <select name="age_id" required class="form-control js-select2-custom">
+                                        @foreach($ages as $age)
+                                        <option value="{{$age->id}}">@if(app()->getLocale() == 'ar')
+                                                {{$age->name_ar}}
+                                        @else
+                                                {{$age->name_en}}
+                                        @endif
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label class="input-label"
+                                           for="exampleFormControlInput1">{{trans('messages.brands')}}</label>
+                                    <select name="brand_id" required class="form-control js-select2-custom">
+                                        @foreach($brands as $brand)
+                                            <option value="{{$brand->id}}">@if(app()->getLocale() == 'ar')
+                                                    {{$brand->name_ar}}
+                                                @else
+                                                    {{$brand->name_en}}
+                                                @endif
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
                         </div>
 
 

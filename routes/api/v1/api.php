@@ -107,6 +107,18 @@ Route::group(['namespace' => 'Api\V1'], function () {
     Route::group(['prefix' => 'banners'], function () {
         Route::get('/', 'BannerController@get_banners');
     });
+    Route::group(['prefix' => 'brands'], function () {
+        Route::get('/', 'BannerController@get_brands');
+        Route::get('/products/{id}', 'BannerController@get_products_by_brand');
+    });
+
+    Route::group(['prefix' => 'ages'], function () {
+        Route::get('/', 'BannerController@get_ages');
+        Route::get('/products/{id}', 'BannerController@get_products_by_age');
+    });
+    Route::group(['prefix' => 'gift'], function () {
+        Route::get('/warping', 'BannerController@get_gift_warping');
+    });
 
     Route::group(['prefix' => 'coupon', 'middleware' => 'auth:api'], function () {
         Route::get('list', 'CouponController@list');

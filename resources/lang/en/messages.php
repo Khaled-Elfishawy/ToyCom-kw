@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'brands'=> 'brands',
+    'age'=> 'age',
     'admins'=> 'Admins',
     'seller'=> 'Sales men',
     'price-group'=> 'Price Groups',

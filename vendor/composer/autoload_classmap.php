@@ -107,6 +107,7 @@ return array(
     'App\\Model\\DeliveryHistory' => $baseDir . '/app/Model/DeliveryHistory.php',
     'App\\Model\\DeliveryMan' => $baseDir . '/app/Model/DeliveryMan.php',
     'App\\Model\\EmailVerifications' => $baseDir . '/app/Model/EmailVerifications.php',
+    'App\\Model\\Gift_warping' => $baseDir . '/app/Model/Gift_warping.php',
     'App\\Model\\Notification' => $baseDir . '/app/Model/Notification.php',
     'App\\Model\\Order' => $baseDir . '/app/Model/Order.php',
     'App\\Model\\OrderDeliveryHistory' => $baseDir . '/app/Model/OrderDeliveryHistory.php',

@@ -885,6 +885,7 @@ class ComposerStaticInit9da9f5473fd3b4e318e0a2e33b103ee6
         'App\\Model\\DeliveryHistory' => __DIR__ . '/../..' . '/app/Model/DeliveryHistory.php',
         'App\\Model\\DeliveryMan' => __DIR__ . '/../..' . '/app/Model/DeliveryMan.php',
         'App\\Model\\EmailVerifications' => __DIR__ . '/../..' . '/app/Model/EmailVerifications.php',
+        'App\\Model\\Gift_warping' => __DIR__ . '/../..' . '/app/Model/Gift_warping.php',
         'App\\Model\\Notification' => __DIR__ . '/../..' . '/app/Model/Notification.php',
         'App\\Model\\Order' => __DIR__ . '/../..' . '/app/Model/Order.php',
         'App\\Model\\OrderDeliveryHistory' => __DIR__ . '/../..' . '/app/Model/OrderDeliveryHistory.php',
