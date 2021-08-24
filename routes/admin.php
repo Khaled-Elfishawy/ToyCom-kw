@@ -47,6 +47,7 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.'], function () {
         });
 
         Route::group(['prefix' => 'banner', 'as' => 'banner.'], function () {
+
             Route::get('add-new', 'BannerController@index')->name('add-new')->middleware('permission:view_banner');
             Route::post('store', 'BannerController@store')->name('store')->middleware('permission:add_banner');
             Route::get('edit/{id}', 'BannerController@edit')->name('edit')->middleware('permission:edit_banner');
@@ -55,6 +56,23 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.'], function () {
             Route::get('status/{id}/{status}', 'BannerController@status')->name('status')->middleware('permission:view_banner');
             Route::delete('delete/{id}', 'BannerController@delete')->name('delete')->middleware('permission:delete_banner');
         });
+
+        Route::group(['prefix' => 'brand', 'as' => 'brand.'], function () {
+
+            Route::get('list', 'brandController@index')->name('list');
+            Route::get('add-new', 'brandController@create')->name('add-new');
+            Route::post('store', 'brandController@store')->name('store');
+            Route::get('edit/{id}', 'brandController@edit')->name('edit');
+            Route::put('update/{id}', 'brandController@update')->name('update');
+            Route::delete('delete/{id}', 'brandController@destroy')->name('delete');
+
+
+        });
+
+
+
+
+
 
 //        Route::group(['prefix' => 'attribute', 'as' => 'attribute.'], function () {
 //            Route::get('add-new', 'AttributeController@index')->name('add-new')->middleware('permission:view_attribute');

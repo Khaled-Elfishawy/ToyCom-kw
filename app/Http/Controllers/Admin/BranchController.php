@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Model\Branch;
+use App\Model\Brand;
+
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 
@@ -14,6 +16,7 @@ class BranchController extends Controller
         $branches = Branch::orderBy('created_at')->paginate(10);
         return view('admin-views.branch.index', compact('branches'));
     }
+   
 
     public function store(Request $request)
     {

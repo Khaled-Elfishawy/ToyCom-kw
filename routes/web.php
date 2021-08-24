@@ -237,3 +237,8 @@ Route::get('/test', function () {
         }
 
 });
+
+// routes for brand
+
+
+

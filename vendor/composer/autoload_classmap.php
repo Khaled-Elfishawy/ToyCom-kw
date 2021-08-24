@@ -36,6 +36,7 @@ return array(
     'App\\Http\\Controllers\\Admin\\SellerController' => $baseDir . '/app/Http/Controllers/Admin/SellerController.php',
     'App\\Http\\Controllers\\Admin\\SystemController' => $baseDir . '/app/Http/Controllers/Admin/SystemController.php',
     'App\\Http\\Controllers\\Admin\\TimeSlotController' => $baseDir . '/app/Http/Controllers/Admin/TimeSlotController.php',
+    'App\\Http\\Controllers\\Admin\\brandController' => $baseDir . '/app/Http/Controllers/Admin/brandController.php',
     'App\\Http\\Controllers\\Api\\V1\\Auth\\CustomerAuthController' => $baseDir . '/app/Http/Controllers/Api/V1/Auth/CustomerAuthController.php',
     'App\\Http\\Controllers\\Api\\V1\\Auth\\DeliveryManLoginController' => $baseDir . '/app/Http/Controllers/Api/V1/Auth/DeliveryManLoginController.php',
     'App\\Http\\Controllers\\Api\\V1\\Auth\\PasswordResetController' => $baseDir . '/app/Http/Controllers/Api/V1/Auth/PasswordResetController.php',

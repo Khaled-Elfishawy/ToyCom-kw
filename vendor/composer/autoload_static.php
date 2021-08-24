@@ -814,6 +814,7 @@ class ComposerStaticInit9da9f5473fd3b4e318e0a2e33b103ee6
         'App\\Http\\Controllers\\Admin\\SellerController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/SellerController.php',
         'App\\Http\\Controllers\\Admin\\SystemController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/SystemController.php',
         'App\\Http\\Controllers\\Admin\\TimeSlotController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/TimeSlotController.php',
+        'App\\Http\\Controllers\\Admin\\brandController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/brandController.php',
         'App\\Http\\Controllers\\Api\\V1\\Auth\\CustomerAuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/V1/Auth/CustomerAuthController.php',
         'App\\Http\\Controllers\\Api\\V1\\Auth\\DeliveryManLoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/V1/Auth/DeliveryManLoginController.php',
         'App\\Http\\Controllers\\Api\\V1\\Auth\\PasswordResetController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/V1/Auth/PasswordResetController.php',

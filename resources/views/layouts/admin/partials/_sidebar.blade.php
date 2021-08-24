@@ -301,8 +301,7 @@
                         <!-- Pages -->
                         @if(UserCan('view_banner','admin'))
                         <li class="navbar-vertical-aside-has-menu {{Request::is('admin/banner*')?'active':''}}">
-                            <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:"
-                            >
+                            <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:>
                                 <i class="tio-image nav-icon"></i>
                                 <span
                                     class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{trans('messages.banner')}}</span>
@@ -318,6 +317,35 @@
                                 </li>
                                 <li class="nav-item {{Request::is('admin/banner/list')?'active':''}}">
                                     <a class="nav-link " href="{{route('admin.banner.list')}}">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="text-truncate">{{trans('messages.list')}}</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    @endif
+                        <!-- End Pages -->
+
+                        <!-- Pages brand -->
+                        {{-- atdd({{Request::is('admin/brand*')?'active':''}}); --}}
+                        @if(UserCan('view_banner','admin'))
+                        <li class="navbar-vertical-aside-has-menu {{Request::is('admin/brand*')?'active':''}}">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:>
+                                <i class="tio-image nav-icon"></i>
+                                <span
+                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Brand</span>
+                            </a>
+                            <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
+                                style="display: {{Request::is('admin/brand*')?'block':'none'}}">
+                                <li class="nav-item {{Request::is('admin/brand/add-new')?'active':''}}">
+                                    <a class="nav-link " href="{{route('admin.brand.add-new')}}">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span
+                                            class="text-truncate">{{trans('messages.add')}} {{trans('messages.new')}}</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item {{Request::is('admin/brand/list')?'active':''}}">
+                                    <a class="nav-link " href="{{route('admin.brand.list')}}">
                                         <span class="tio-circle nav-indicator-icon"></span>
                                         <span class="text-truncate">{{trans('messages.list')}}</span>
                                     </a>
