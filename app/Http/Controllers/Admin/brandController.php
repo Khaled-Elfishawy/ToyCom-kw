@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\CentralLogics\Helpers;
 use Illuminate\Http\Request;
 use App\Model\Brand;
+use App\Model\Product;
 use App\Traits\OfferTrait;
 
 class brandController extends Controller
@@ -89,8 +91,13 @@ class brandController extends Controller
 
     public function destroy($id)
     {
-        $brand = Brand::find($id);
-        $brand->delete();
-        return \redirect()->route('admin.brand.list');
+        $products = Product::where('brand_id',$id)->get();
+        if($products->count() > 0){
+            // there are some products use this brand .... !
+
+        }else{
+            $brand->delete();
+            return \redirect()->route('admin.brand.list');
+        }
     }
 }

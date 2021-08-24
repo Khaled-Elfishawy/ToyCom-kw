@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Brand extends Model
 {
 
-<<<<<<< Updated upstream
+
     public function getImageAttribute($image)
     {
         if (!empty($image)){
@@ -15,13 +15,11 @@ class Brand extends Model
         }
         return 'default_brand_img.png';
     }
-=======
-
 
     protected $fillable = [
         'name_ar' ,
         'name_en',
         'image'
     ];
->>>>>>> Stashed changes
+
 }
