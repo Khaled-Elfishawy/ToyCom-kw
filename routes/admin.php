@@ -69,6 +69,18 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.'], function () {
 
         });
 
+        Route::group(['prefix' => 'Age', 'as' => 'Age.'], function () {
+
+            Route::get('list', 'AgeController@index')->name('list');
+            Route::get('add-new', 'AgeController@create')->name('add-new');
+            Route::post('store', 'AgeController@store')->name('store');
+            Route::get('edit/{id}', 'AgeController@edit')->name('edit');
+            Route::put('update/{id}', 'AgeController@update')->name('update');
+            Route::delete('delete/{id}', 'AgeController@destroy')->name('delete');
+
+
+        });
+
 
 
 
