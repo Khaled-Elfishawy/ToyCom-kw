@@ -7,12 +7,14 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'AdminTableSeeder' => $baseDir . '/database/seeds/AdminTableSeeder.php',
+    'App\\Age' => $baseDir . '/app/Age.php',
     'App\\Console\\Commands\\DatabaseRefresh' => $baseDir . '/app/Console/Commands/DatabaseRefresh.php',
     'App\\Console\\Commands\\DemoPackage' => $baseDir . '/app/Console/Commands/DemoPackage.php',
     'App\\Console\\Commands\\InstallablePackage' => $baseDir . '/app/Console/Commands/InstallablePackage.php',
     'App\\Console\\Commands\\UpdatePackage' => $baseDir . '/app/Console/Commands/UpdatePackage.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
+    'App\\Http\\Controllers\\Admin\\AgeController' => $baseDir . '/app/Http/Controllers/Admin/AgeController.php',
     'App\\Http\\Controllers\\Admin\\AttributeController' => $baseDir . '/app/Http/Controllers/Admin/AttributeController.php',
     'App\\Http\\Controllers\\Admin\\Auth\\LoginController' => $baseDir . '/app/Http/Controllers/Admin/Auth/LoginController.php',
     'App\\Http\\Controllers\\Admin\\BannerController' => $baseDir . '/app/Http/Controllers/Admin/BannerController.php',

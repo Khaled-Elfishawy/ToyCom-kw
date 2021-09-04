@@ -67,6 +67,7 @@ class ComposerStaticInit9da9f5473fd3b4e318e0a2e33b103ee6
         'b946f268ae2344fb7880b0b70722c519' => __DIR__ . '/../..' . '/app/CentralLogics/product.php',
         '9f2cd20ae7d3a19ee18a7312a25650d1' => __DIR__ . '/../..' . '/app/CentralLogics/helpers.php',
         '23ec3d0ac23a92860b4bd43289ee8720' => __DIR__ . '/../..' . '/app/CentralLogics/order.php',
+        'e59aadf66470fcf6c18663fc9e0fefe6' => __DIR__ . '/../..' . '/app/CentralLogics/age.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -785,12 +786,14 @@ class ComposerStaticInit9da9f5473fd3b4e318e0a2e33b103ee6
 
     public static $classMap = array (
         'AdminTableSeeder' => __DIR__ . '/../..' . '/database/seeds/AdminTableSeeder.php',
+        'App\\Age' => __DIR__ . '/../..' . '/app/Age.php',
         'App\\Console\\Commands\\DatabaseRefresh' => __DIR__ . '/../..' . '/app/Console/Commands/DatabaseRefresh.php',
         'App\\Console\\Commands\\DemoPackage' => __DIR__ . '/../..' . '/app/Console/Commands/DemoPackage.php',
         'App\\Console\\Commands\\InstallablePackage' => __DIR__ . '/../..' . '/app/Console/Commands/InstallablePackage.php',
         'App\\Console\\Commands\\UpdatePackage' => __DIR__ . '/../..' . '/app/Console/Commands/UpdatePackage.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Http\\Controllers\\Admin\\AgeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AgeController.php',
         'App\\Http\\Controllers\\Admin\\AttributeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AttributeController.php',
         'App\\Http\\Controllers\\Admin\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/Auth/LoginController.php',
         'App\\Http\\Controllers\\Admin\\BannerController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/BannerController.php',
