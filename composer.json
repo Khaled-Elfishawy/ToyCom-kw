@@ -59,7 +59,8 @@
             "app/CentralLogics/category.php",
             "app/CentralLogics/product.php",
             "app/CentralLogics/helpers.php",
-            "app/CentralLogics/order.php"
+            "app/CentralLogics/order.php",
+            "app/CentralLogics/age.php"
         ],
         "psr-4": {
             "App\\": "app/"
