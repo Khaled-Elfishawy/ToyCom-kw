@@ -106,6 +106,7 @@ class ProductController extends Controller
             'brand_id' => 'required',
             'age_id' => 'required',
             'images'      => 'required',
+            'gender'      => 'required',
             'total_stock' => 'required|numeric|min:1',
             'price'       => 'required|numeric|min:1',
         ], [
@@ -238,6 +239,7 @@ class ProductController extends Controller
         $p->price_group = $request->pricegroup;
         $p->age_id = $request->age_id;
         $p->brand_id = $request->brand_id;
+        $p->gender = $request->gender;
         $p->attributes = $request->has('attribute_id') ? json_encode($request->attribute_id) : json_encode([]);
         $p->save();
 

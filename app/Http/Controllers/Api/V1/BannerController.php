@@ -52,9 +52,9 @@ class BannerController extends Controller
         }
     }
 
-    public function get_products_by_age($id){
+    public function get_products_by_age($id,$gender){
         try {
-            return response()->json(Product::where('age_id',$id)->get(), 200);
+            return response()->json(Product::where('age_id',$id)->where('gender',$gender)->get(), 200);
         } catch (\Exception $e) {
             return response()->json([], 200);
         }

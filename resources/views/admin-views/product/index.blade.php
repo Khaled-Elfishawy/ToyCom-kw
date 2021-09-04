@@ -132,6 +132,16 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label class="input-label"
+                                           for="exampleFormControlInput1">{{trans('messages.gender')}}</label>
+                                    <select name="gender" required class="form-control js-select2-custom">
+                                            <option value="male" selected>{{trans('messages.male')}}</option>
+                                            <option value="female">{{trans('messages.female')}}</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
 
 

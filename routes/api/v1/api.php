@@ -114,7 +114,7 @@ Route::group(['namespace' => 'Api\V1'], function () {
 
     Route::group(['prefix' => 'ages'], function () {
         Route::get('/', 'BannerController@get_ages');
-        Route::get('/products/{id}', 'BannerController@get_products_by_age');
+        Route::get('/products/{id}/{gender}', 'BannerController@get_products_by_age');
     });
     Route::group(['prefix' => 'gift'], function () {
         Route::get('/warping', 'BannerController@get_gift_warping');

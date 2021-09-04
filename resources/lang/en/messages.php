@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'male'=> 'male',
+    'female'=> 'female',
+    'gender'=> 'gender',
     'brands'=> 'brands',
     'age'=> 'age',
     'admins'=> 'Admins',
