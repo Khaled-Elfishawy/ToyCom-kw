@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\CentralLogics\CategoryLogic;
+use App\CentralLogics\AgeLogic;
 use App\Http\Controllers\Controller;
 use App\Model\Age;
 use App\Model\Banner;
 use App\Model\Brand;
 use App\Model\Gift_warping;
 use App\Model\Product;
+use App\CentralLogics\Helpers;
 
 class BannerController extends Controller
 {
@@ -52,9 +54,9 @@ class BannerController extends Controller
         }
     }
 
-    public function get_products_by_age($id,$gender){
+    public function get_products_by_age($id){
         try {
-            return response()->json(Product::where('age_id',$id)->where('gender',$gender)->get(), 200);
+            return response()->json(Helpers::product_data_formatting(AgeLogic::products($id), true), 200);
         } catch (\Exception $e) {
             return response()->json([], 200);
         }
