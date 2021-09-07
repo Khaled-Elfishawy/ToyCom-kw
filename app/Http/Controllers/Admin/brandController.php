@@ -34,7 +34,6 @@ class brandController extends Controller
     public function create()
     {
         return view('admin-views.brand.create');
-
     }
 
     public function store(Request $request)
@@ -45,46 +44,33 @@ class brandController extends Controller
         } else {
             $image_data = '';
         }
-        dd($image_data);
-        $file_name = $this->saveImage($request->file('image'), 'brand/img' );
-        $input['image'] = $file_name;
+        $input['image'] = $image_data;
         Brand::Create($input);
         return redirect()->route('admin.brand.list');
     }
-
-
     public function show($id)
     {
         //
     }
-
-
     public function edit($id)
     {
         $brand = Brand::find($id);
         return view('admin-views.brand.edit', compact('brand'));
     }
-
-
     public function update(Request $request, $id)
     {
         $brand = Brand::find($id);
         if ($request->hasFile('image')) {
-
             $request->validate([
                 'image' => 'required|image'
             ]);
-
-            $file_name = $this->saveImage($request->file('image'), 'brand/img' );
-
-            $brand->image = $file_name;
+            $image_data =  Helpers::upload('brands/', 'png', $request->image);
+            $brand->image = $image_data;
         }
-
         $brand->name_ar = $request->name_ar;
         $brand->name_en = $request->name_en;
         $brand->save();
-
-            return redirect()->route('admin.brand.list');
+        return redirect()->route('admin.brand.list');
     }
 
 
@@ -93,7 +79,6 @@ class brandController extends Controller
         $products = Product::where('brand_id',$id)->get();
         if($products->count() > 0){
             // there are some products use this brand .... !
-
         }else{
             $brand->delete();
             return \redirect()->route('admin.brand.list');
