@@ -78,7 +78,12 @@ class brandController extends Controller
     {
         $products = Product::where('brand_id',$id)->get();
         if($products->count() > 0){
-            // there are some products use this brand .... !
+            foreach ($products as $product) {
+                $product->brand_id = 0;
+                $product->save();
+            }
+            $brand->delete();
+            return \redirect()->route('admin.brand.list');
         }else{
             $brand->delete();
             return \redirect()->route('admin.brand.list');
