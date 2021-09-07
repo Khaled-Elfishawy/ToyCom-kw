@@ -39,7 +39,6 @@ class brandController extends Controller
 
     public function store(Request $request)
     {
-        dd('dd');
         $input = $request->all();
 
         if (!empty($request->file('images'))) {
