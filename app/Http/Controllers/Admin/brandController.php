@@ -41,7 +41,7 @@ class brandController extends Controller
     {
         $input = $request->all();
         if (!empty($request->file('image'))) {
-            $image_data =  Helpers::upload('brands/', 'png', $img);
+            $image_data =  Helpers::upload('brands/', 'png', $request->image);
         } else {
             $image_data = '';
         }
