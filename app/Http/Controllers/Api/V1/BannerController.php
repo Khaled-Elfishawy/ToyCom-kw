@@ -32,7 +32,17 @@ class BannerController extends Controller
 
     public function get_brands(){
         try {
-            return response()->json(Brand::all(), 200);
+            $defualt = [
+                "id" => 0,
+                "name_ar" => "الكل",
+                "name_en" => "All",
+                "image" => "1630923495.png",
+                "created_at" => "2021-08-22 15:50:38",
+                "updated_at" => "2021-09-06 10:18:15",
+            ];
+            $barnds = Brand::all();
+            $barnds->prepend($defualt);
+            return response()->json($barnds->sortBy('id'), 200);
         } catch (\Exception $e) {
             return response()->json([], 200);
         }
@@ -40,7 +50,7 @@ class BannerController extends Controller
 
     public function get_products_by_brand($id){
         try {
-            return response()->json(Product::where('brand_id',$id)->get(), 200);
+            return response()->json(Helpers::product_data_formatting(AgeLogic::barnds($id), true), 200);
         } catch (\Exception $e) {
             return response()->json([], 200);
         }
