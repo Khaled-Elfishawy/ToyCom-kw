@@ -40,7 +40,7 @@ class brandController extends Controller
     {
         $input = $request->all();
         if (!empty($request->file('image'))) {
-            $image_data =  Helpers::upload('brands/', 'png', $request->image);
+            $image_data =  Helpers::upload('product/', 'png', $request->image);
         } else {
             $image_data = '';
         }
@@ -64,7 +64,7 @@ class brandController extends Controller
             $request->validate([
                 'image' => 'required|image'
             ]);
-            $image_data =  Helpers::upload('brands/', 'png', $request->image);
+            $image_data =  Helpers::upload('product/', 'png', $request->image);
             $brand->image = $image_data;
         }
         $brand->name_ar = $request->name_ar;
