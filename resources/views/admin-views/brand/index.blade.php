@@ -62,7 +62,7 @@
                                     </span>
                                     </td>
                                     <td>{{$brand->name_en}}</td>
-                                    <td><img src="{{asset('storage/app/public/product')}}/{{$brand->image }}" alt="iamge"  width="70px" height="70px" style="border-radius: 50%"></td>
+                                    <td><img src="{{asset('storage/app/public/brand')}}/{{$brand->image }}" alt="iamge"  width="70px" height="70px" style="border-radius: 50%"></td>
                                     <td>
                                         <!-- Dropdown -->
                                         <div class="dropdown">
