@@ -40,6 +40,7 @@ class brandController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
+        dd($input);
 
         if (!empty($request->file('images'))) {
             $image_data =  Helpers::upload('brands/', 'png', $img);
