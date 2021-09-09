@@ -18,16 +18,12 @@ class AgeLogic
         }
         return Product::active()->withCount(['wishlist'])->with('rating')->whereIn('id', $product_ids)->get();
     }
-    public static function products_brands($brand_id )
+    public static function barnds($id)
     {
-        $products = Product::active()->get();
-        $product_ids = [];
-        foreach ($products as $product) {
-            if ($product['brand_id'] == $brand_id) {
-                array_push($product_ids, $product['id']);
-            }
+        if ($id == 0) {
+            return Product::all();
+        }else{
+            return Product::where('brand_id',$id)->get();
         }
-        return Product::active()->withCount(['wishlist'])->with('rating')->whereIn('id', $product_ids)->get();
-
     }
 }

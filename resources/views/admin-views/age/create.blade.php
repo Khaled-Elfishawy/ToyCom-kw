@@ -26,20 +26,25 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
-                                <label class="input-label" for="exampleFormControlInput1">name_ar</label>
+                                <label class="input-label" for="exampleFormControlInput1">name ar</label>
                                 <input type="text" name="name_ar" value="{{old('name_ar')}}" class="form-control" required>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <label class="input-label" for="exampleFormControlInput1">name_en</label>
+                                <label class="input-label" for="exampleFormControlInput1">name en</label>
                                 <input type="text" name="name_en" value="{{old('name_en')}}" class="form-control"
                                         required>
                             </div>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label>{{trans('messages.age')}} {{trans('messages.image')}}</label>
+                        <div>
+                            <div class="row" id="coba"></div>
+                        </div>
+                    </div>
 
-                  
 
                     @push('script_2')
     <script src="{{asset('public/assets/admin/js/spartan-multi-image-picker.js')}}"></script>

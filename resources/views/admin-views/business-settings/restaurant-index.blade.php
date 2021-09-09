@@ -162,6 +162,24 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-6 col-12">
+                            @php($dinar_points=\App\Model\BusinessSetting::where('key','dinar_points')->first()->value)
+                            <div class="form-group">
+                                <label class="input-label" for="exampleFormControlInput1">{{trans('messages.dinar_points')}}</label>
+                                <input type="number" min="1"  name="dinar_points" value="{{$dinar_points}}"
+                                       class="form-control" placeholder="100" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            @php($points_dinar=\App\Model\BusinessSetting::where('key','points_dinar')->first()->value)
+                            <div class="form-group">
+                                <label class="input-label" for="exampleFormControlInput1">{{trans('messages.points_dinar')}}</label>
+                                <input type="number"  name="points_dinar" value="{{$points_dinar}}"
+                                       class="form-control" placeholder="100" required>
+                            </div>
+                        </div>
+                    </div>
 
                     @php($logo=\App\Model\BusinessSetting::where('key','logo')->first()->value)
                     <div class="form-group">

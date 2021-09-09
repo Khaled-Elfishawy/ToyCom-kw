@@ -40,14 +40,15 @@ class  AgeController extends Controller
     public function store(Request $request)
     {
 
-     $input=$request->all();
-
-
-
-
-
-     Age::Create($input);
-     return redirect()->route('admin.Age.list');
+        $input = $request->all();
+        if (!empty($request->file('image'))) {
+            $image_data = Helpers::upload('ages/', 'png', $request->image);
+        } else {
+            $image_data = '';
+        }
+        $input['image'] = $image_data;
+        Age::Create($input);
+        return redirect()->route('admin.Age.list');
     }
 
 
@@ -67,26 +68,27 @@ class  AgeController extends Controller
     public function update(Request $request, $id)
     {
         $age = Age::find($id);
-      
 
-
-       
 
         $age->name_ar = $request->name_ar;
         $age->name_en = $request->name_en;
+        if (!empty($request->file('image'))) {
+            $image_data = Helpers::upload('ages/', 'png', $request->image);
+            $age->image = $image_data;
+        }
         $age->save();
 
-            return redirect()->route('admin.Age.list');
+        return redirect()->route('admin.Age.list');
     }
 
 
     public function destroy($id)
     {
-        $products = Product::where('age_id',$id)->get();
-        if($products->count() > 0){
+        $products = Product::where('age_id', $id)->get();
+        if ($products->count() > 0) {
             // there are some products use this brand .... !
 
-        }else{
+        } else {
             $age->delete();
             return \redirect()->route('admin.Age.list');
         }

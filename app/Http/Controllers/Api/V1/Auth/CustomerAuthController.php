@@ -42,7 +42,7 @@ class CustomerAuthController extends Controller
         }
 
 
-        if (BusinessSetting::where(['key'=>'email_verification'])->first()->value){
+        if (BusinessSetting::where(['key' => 'email_verification'])->first()->value) {
             $token = rand(1000, 9999);
             DB::table('email_verifications')->insert([
                 'email' => $request['email'],
@@ -56,7 +56,7 @@ class CustomerAuthController extends Controller
                 'message' => 'Email is ready to register',
                 'token' => 'active'
             ], 200);
-        }else{
+        } else {
             return response()->json([
                 'message' => 'Email is ready to register',
                 'token' => 'inactive'
@@ -90,13 +90,13 @@ class CustomerAuthController extends Controller
 
     public function register(Request $request)
     {
-        if ($request->is_company == "true"){
+        if ($request->is_company == "true") {
             $validate = Validator::make($request->all(), [
                 'tax_number' => 'required',
                 'tax_doc' => 'required',
                 'sales_code' => 'required|exists:sellers,code',
             ]);
-        }else{
+        } else {
             $validator = Validator::make($request->all(), [
                 'f_name' => 'required',
                 'l_name' => 'required',
@@ -105,19 +105,16 @@ class CustomerAuthController extends Controller
                 'password' => 'required|min:6',
             ]);
         }
-        if ($request->is_company == "true"){
-            if ( $validate->fails()) {
+        if ($request->is_company == "true") {
+            if ($validate->fails()) {
                 return response()->json(['errors' => Helpers::error_processor($validate)], 403);
             }
-        }else{
+        } else {
             if ($validator->fails()) {
                 return response()->json(['errors' => Helpers::error_processor($validator)], 403);
             }
         }
 
-
-
-        
 
         $user = User::create([
             'f_name' => $request->f_name,
@@ -127,16 +124,16 @@ class CustomerAuthController extends Controller
             'password' => bcrypt($request->password),
         ]);
 
-        if ($request->is_company == "true"){
+        if ($request->is_company == "true") {
             $user->update([
-                'sales_code'=>$request->sales_code,
-                'tax_doc'=>'0000',
-                'tax_number'=>$request->tax_number,
+                'sales_code' => $request->sales_code,
+                'tax_doc' => '0000',
+                'tax_number' => $request->tax_number,
             ]);
         }
         $token = $user->createToken('RestaurantCustomerAuth')->accessToken;
 
-        return response()->json(['token' => $token ], 200);
+        return response()->json(['token' => $token], 200);
     }
 
     public function login(Request $request)
@@ -165,4 +162,5 @@ class CustomerAuthController extends Controller
             ], 401);
         }
     }
+
 }

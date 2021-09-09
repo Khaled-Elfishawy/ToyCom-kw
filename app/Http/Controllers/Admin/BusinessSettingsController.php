@@ -15,11 +15,12 @@ class BusinessSettingsController extends Controller
     public function restaurant_index()
     {
         if (BusinessSetting::where(['key' => 'minimum_order_value'])->first() == false) {
-            DB::table('business_settings')->updateOrInsert(['key' => 'minimum_order_value'], [
-                'value' => 1,
-            ]);
+            DB::table('business_settings')
+                ->updateOrInsert(
+                ['key' => 'minimum_order_value'],
+                ['value' => 1,]
+            );
         }
-
         return view('admin-views.business-settings.restaurant-index');
     }
 
@@ -28,7 +29,7 @@ class BusinessSettingsController extends Controller
         DB::table('business_settings')->updateOrInsert(['key' => 'restaurant_name'], [
             'value' => $request->restaurant_name
         ]);
-        
+
         DB::table('business_settings')->updateOrInsert(['key' => 'self_pickup'], [
             'value' => $request['self_pickup'],
         ]);
@@ -73,6 +74,14 @@ class BusinessSettingsController extends Controller
 
         DB::table('business_settings')->updateOrInsert(['key' => 'minimum_order_value'], [
             'value' => $request['minimum_order_value'],
+        ]);
+
+        DB::table('business_settings')->updateOrInsert(['key' => 'dinar_points'], [
+            'value' => $request['dinar_points'],
+        ]);
+
+        DB::table('business_settings')->updateOrInsert(['key' => 'points_dinar'], [
+            'value' => $request['points_dinar'],
         ]);
 
         Toastr::success('Settings updated!');

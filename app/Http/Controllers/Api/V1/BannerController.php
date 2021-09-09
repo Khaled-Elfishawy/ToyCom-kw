@@ -50,7 +50,7 @@ class BannerController extends Controller
 
     public function get_products_by_brand($id){
         try {
-            return response()->json(Helpers::product_data_formatting(AgeLogic::products_brands($id), true), 200);
+            return response()->json(Helpers::product_data_formatting(AgeLogic::barnds($id), true), 200);
 
         } catch (\Exception $e) {
             return response()->json([], 200);
