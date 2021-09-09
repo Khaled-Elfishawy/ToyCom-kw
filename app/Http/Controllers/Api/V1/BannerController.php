@@ -59,7 +59,17 @@ class BannerController extends Controller
 
     public function get_ages(){
         try {
-            return response()->json(Age::all(), 200);
+            $defualt = [
+                "id" => 0,
+                "name_ar" => "الكل",
+                "name_en" => "All",
+                "image" => "1630923495.png",
+                "created_at" => "2021-08-22 15:50:38",
+                "updated_at" => "2021-09-06 10:18:15",
+            ];
+            $ages = Age::all();
+            $ages->prepend($defualt);
+            return response()->json($ages->sortBy('id'), 200);
         } catch (\Exception $e) {
             return response()->json([], 200);
         }
