@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class CustomerAuthController extends Controller
 {
@@ -88,6 +89,27 @@ class CustomerAuthController extends Controller
         ]], 404);
     }
 
+    public function guest_register(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'username' => 'required',
+            'phone' => 'required|unique:users',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['errors' => Helpers::error_processor($validator)], 403);
+        }
+        $name = explode(' ',$request->username);
+
+        $user = User::create([
+            'f_name' => $name[0],
+            'l_name' => end($name),
+            'email' => str_slug($name[0]).'@TempEmail.com',
+            'phone' => $request->phone,
+            'password' => bcrypt(Str::random(8)),
+        ]);
+        $token = $user->createToken('RestaurantCustomerAuth')->accessToken;
+        return response()->json(['token' => $token], 200);
+    }
     public function register(Request $request)
     {
         if ($request->is_company == "true") {

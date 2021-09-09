@@ -6,16 +6,14 @@ Route::group(['namespace' => 'Api\V1'], function () {
 
     Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
         Route::post('register', 'CustomerAuthController@register');
+        Route::post('guest-register', 'CustomerAuthController@guest_register');
         Route::post('login', 'CustomerAuthController@login');
         Route::post('verify-phone', 'CustomerAuthController@verify_phone');
-
         Route::post('check-email', 'CustomerAuthController@check_email');
         Route::post('verify-email', 'CustomerAuthController@verify_email');
-
         Route::post('forgot-password', 'PasswordResetController@reset_password_request');
         Route::post('verify-token', 'PasswordResetController@verify_token');
         Route::put('reset-password', 'PasswordResetController@reset_password_submit');
-
         Route::group(['prefix' => 'delivery-man'], function () {
             Route::post('login', 'DeliveryManLoginController@login');
         });
