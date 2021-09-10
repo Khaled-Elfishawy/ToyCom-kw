@@ -82,6 +82,7 @@
                             <tr>
                                 <th>{{trans('messages.#')}}</th>
                                 <th style="width: 50%">{{trans('messages.name')}}</th>
+                                <th style="width: 50%">{{trans('messages.image')}}</th>
                                 <th style="width: 20%">{{trans('messages.status')}}</th>
                                 <th style="width: 10%">{{trans('messages.action')}}</th>
                             </tr>
@@ -119,6 +120,14 @@
                                     <span class="d-block font-size-sm text-body">
                                         {{$category['name']}}
                                     </span>
+                                    </td>
+                                    <td>
+                                        <div style="height: 100px; width: 100px; overflow-x: hidden;overflow-y: hidden">
+                                            <img
+                                                src="{{asset('storage/app/public/category')}}/{{$category['image']}}"
+                                                style="width: 100px" onerror="this.src='{{asset('public/assets/admin/img/160x160/img2.jpg')}}'"
+                                            >
+                                        </div>
                                     </td>
                                     <td>
                                         @if(UserCan('edit_category','admin'))
