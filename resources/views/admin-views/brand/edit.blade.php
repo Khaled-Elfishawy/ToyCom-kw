@@ -54,7 +54,7 @@
                                 <hr>
                                 <center>
                                     <img style="width: 80%;border: 1px solid; border-radius: 10px;" id="viewer"
-                                         src="{{asset('brand/img')}}/{{$brand['image']}}" alt="brand image"/>
+                                         src="{{asset('storage/app/public/brand')}}/{{$brand->image }}" alt="brand image"/>
                                 </center>
                             </div>
                         </div>

@@ -34,6 +34,7 @@
                                 <th>{{trans('messages.#')}}</th>
                                 <th style="width: 50%">name ar</th>
                                 <th style="width: 50%">name en</th>
+                                <th style="width: 50%">image</th>
                                 <th style="width: 10%">{{trans('messages.action')}}</th>
                             </tr>
                             <tr>
@@ -61,6 +62,7 @@
                                     </span>
                                     </td>
                                     <td>{{$age->name_en}}</td>
+                                    <td><img src="{{asset('storage/app/public/ages')}}/{{$age->image }}" alt="iamge"  width="70px" height="70px" style="border-radius: 50%"></td>
                                     <td>
                                         <!-- Dropdown -->
                                         <div class="dropdown">

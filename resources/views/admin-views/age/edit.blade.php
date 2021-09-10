@@ -27,23 +27,36 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
-                                <label class="input-label" for="exampleFormControlInput1">name_ar</label>
+                                <label class="input-label" for="exampleFormControlInput1">name ar</label>
                                 <input type="text" name="name_ar" value="{{$age->name_ar}}" class="form-control"
                                        placeholder="New age" required>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <label class="input-label" for="exampleFormControlInput1">name_en</label>
+                                <label class="input-label" for="exampleFormControlInput1">name en</label>
                                 <input type="text" name="name_en" value="{{$age->name_en}}" class="form-control"
                                        placeholder="New age" required>
                             </div>
                         </div>
-
                     </div>
-
-                
-
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>{{trans('messages.age')}} {{trans('messages.image')}}</label><small style="color: red">* ( {{trans('messages.ratio')}} 3:1 )</small>
+                                <div class="custom-file">
+                                    <input type="file" name="image" id="customFileEg1" class="custom-file-input"
+                                           accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*">
+                                    <label class="custom-file-label" for="customFileEg1">{{trans('messages.choose')}} {{trans('messages.file')}}</label>
+                                </div>
+                                <hr>
+                                <center>
+                                    <img style="width: 80%;border: 1px solid; border-radius: 10px;" id="viewer"
+                                         src="{{asset('storage/app/public/ages')}}/{{$age->image }}" alt="brand image"/>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
                     <hr>
                     <button type="submit" class="btn btn-primary">{{trans('messages.update')}}</button>
                 </form>
