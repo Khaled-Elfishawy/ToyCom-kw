@@ -1,6 +1,6 @@
 @extends('layouts.admin.app')
 
-@section('title','Brand list')
+@section('title','wraping list')
 
 @push('css_or_js')
 
@@ -14,7 +14,7 @@
             <div class="col-sm-12 col-lg-12 mb-3 mb-lg-2">
 
                 <div class="col-sm mb-2 mb-sm-0">
-                    <h1 class="page-header-title"><i class="tio-filter-list"></i> Brand list</h1>
+                    <h1 class="page-header-title"><i class="tio-filter-list"></i> wraping list</h1>
                 </div>
 
                 <div class="card">
@@ -34,6 +34,7 @@
                                 <th>{{trans('messages.#')}}</th>
                                 <th style="width: 50%">name ar</th>
                                 <th style="width: 50%">name en</th>
+                                <th style="width: 50%">price</th>
                                 <th style="width: 50%">image</th>
                                 <th style="width: 10%">{{trans('messages.action')}}</th>
                             </tr>
@@ -52,17 +53,18 @@
                                 @php
                                     $i = 1;
                                 @endphp
-                            @foreach($brands as $brand)
+                            @foreach($data as $row)
                                 <tr>
                                     <td>{{$i++}}</td>
                                     <td>
                                     <span class="d-block font-size-sm text-body">
-                                        {{$brand->name_ar}}
+                                        {{$row->name_ar}}
 
                                     </span>
                                     </td>
-                                    <td>{{$brand->name_en}}</td>
-                                    <td><img src="{{asset('storage/app/public/brand')}}/{{$brand->image }}" alt="iamge"  width="70px" height="70px" style="border-radius: 50%"></td>
+                                    <td>{{$row->name_en}}</td>
+                                    <td>{{$row->price}}</td>
+                                    <td><img src="{{asset('storage/app/public/wraping')}}/{{$row->image }}" alt="iamge"  width="70px" height="70px" style="border-radius: 50%"></td>
                                     <td>
                                         <!-- Dropdown -->
                                         <div class="dropdown">
@@ -73,17 +75,17 @@
                                                 <i class="tio-settings"></i>
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                @if(UserCan('edit_branch','admin'))
+{{--                                                @if(UserCan('edit_branch','admin'))--}}
                                                 <a class="dropdown-item"
-                                                   href="{{route('admin.brand.edit', $brand->id)}}">{{trans('messages.edit')}}</a>
+                                                   href="{{route('admin.wraping.edit', $row->id)}}">{{trans('messages.edit')}}</a>
                                                 @if(1)
-                                                    @endif
-                                                        @if(UserCan('delete_branch','admin'))
+{{--                                                    @endif--}}
+{{--                                                        @if(UserCan('delete_branch','admin'))--}}
                                                         <a class="dropdown-item" href="javascript:"
-                                                       onclick="form_alert('brand-{{$brand['id']}}','Want to delete this branch ?')">{{trans('messages.delete')}}</a>
-                                                    @endif
-                                                        <form action="{{route('admin.brand.delete', $brand->id)}}"
-                                                          method="post" id="brand-{{$brand['id']}}">
+                                                       onclick="form_alert('brand-{{$row['id']}}','Want to delete this branch ?')">{{trans('messages.delete')}}</a>
+{{--                                                    @endif--}}
+                                                        <form action="{{route('admin.wraping.delete', $row->id)}}"
+                                                          method="post" id="brand-{{$row['id']}}">
                                                         @csrf
                                                         @method('delete')
                                                     </form>

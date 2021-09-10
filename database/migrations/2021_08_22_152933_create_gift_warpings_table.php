@@ -17,7 +17,8 @@ class CreateGiftWarpingsTable extends Migration
             $table->id();
             $table->string('image')->default('default_wraping_img.jpg');
             $table->double('price')->default(0);
-            $table->string('name');
+            $table->string('name_ar');
+            $table->string('name_en');
             $table->timestamps();
         });
     }

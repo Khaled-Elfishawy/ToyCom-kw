@@ -24,7 +24,17 @@ class BannerController extends Controller
 
     public function get_gift_warping(){
         try {
-            return response()->json(Gift_warping::all(), 200);
+            $defualt = [
+                "id" => 0,
+                "name_ar" => "بدون",
+                "name_en" => "none",
+                "image" => "2021-09-10-613b21a519e7b.png",
+                "created_at" => "2021-08-22 15:50:38",
+                "updated_at" => "2021-09-06 10:18:15",
+            ];
+            $wraping = Gift_warping::all();
+            $wraping->prepend($defualt);
+            return response()->json($wraping->sortBy('id'), 200);
         } catch (\Exception $e) {
             return response()->json([], 200);
         }

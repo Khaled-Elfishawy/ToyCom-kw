@@ -58,15 +58,20 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.'], function () {
         });
 
         Route::group(['prefix' => 'brand', 'as' => 'brand.'], function () {
-
             Route::get('list', 'brandController@index')->name('list');
             Route::get('add-new', 'brandController@create')->name('add-new');
             Route::post('store', 'brandController@store')->name('store');
             Route::get('edit/{id}', 'brandController@edit')->name('edit');
             Route::put('update/{id}', 'brandController@update')->name('update');
             Route::delete('delete/{id}', 'brandController@destroy')->name('delete');
-
-
+        });
+        Route::group(['prefix' => 'wraping', 'as' => 'wraping.'], function () {
+            Route::get('list', 'WrapingController@index')->name('list');
+            Route::get('add-new', 'WrapingController@create')->name('add-new');
+            Route::post('store', 'WrapingController@store')->name('store');
+            Route::get('edit/{id}', 'WrapingController@edit')->name('edit');
+            Route::put('update/{id}', 'WrapingController@update')->name('update');
+            Route::delete('delete/{id}', 'WrapingController@destroy')->name('delete');
         });
 
         Route::group(['prefix' => 'Age', 'as' => 'Age.'], function () {

@@ -1,48 +1,57 @@
 @extends('layouts.admin.app')
 
-@section('title','Update Brand')
+@section('title','Update wraping')
 
 @push('css_or_js')
 
 @endpush
 
 @section('content')
-    @if(UserCan('edit_banner','admin'))
     <div class="content container-fluid">
         <!-- Page Header -->
         <div class="page-header">
             <div class="row align-items-center">
                 <div class="col-sm mb-2 mb-sm-0">
-                    <h1 class="page-header-title"><i class="tio-edit"></i> update brand</h1>
+                    <h1 class="page-header-title"><i class="tio-edit"></i> update wraping</h1>
                 </div>
             </div>
         </div>
         <!-- End Page Header -->
         <div class="row gx-2 gx-lg-3">
             <div class="col-sm-12 col-lg-12 mb-3 mb-lg-2">
-                <form action="{{route('admin.brand.update', $brand->id)}}" method="post" enctype="multipart/form-data">
+                <form action="{{route('admin.wraping.update', $data->id)}}" method="post" enctype="multipart/form-data">
                     @csrf @method('put')
-
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
                                 <label class="input-label" for="exampleFormControlInput1">name ar</label>
-                                <input type="text" name="name_ar" value="{{$brand->name_ar}}" class="form-control" required>
+                                <input type="text" name="name_ar" value="{{$data->name_ar}}" class="form-control"  required>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
                                 <label class="input-label" for="exampleFormControlInput1">name en</label>
-                                <input type="text" name="name_en" value="{{$brand->name_en}}" class="form-control" required>
+                                <input type="text" name="name_en" value="{{$data->name_en}}" class="form-control" required>
                             </div>
                         </div>
 
                     </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="input-label" for="exampleFormControlInput1">price</label>
+                            <input type="text" name="price" value="{{$data->price}}"  value="{{old('price')}}" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-6">
+
+                    </div>
+                </div>
 
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
-                                <label>{{trans('messages.barnd')}} {{trans('messages.image')}}</label><small style="color: red">* ( {{trans('messages.ratio')}} 3:1 )</small>
+                                <label>{{trans('messages.Wraping')}} {{trans('messages.image')}}</label><small style="color: red">* ( {{trans('messages.ratio')}} 3:1 )</small>
                                 <div class="custom-file">
                                     <input type="file" name="image" id="customFileEg1" class="custom-file-input"
                                            accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*">
@@ -51,20 +60,19 @@
                                 <hr>
                                 <center>
                                     <img style="width: 80%;border: 1px solid; border-radius: 10px;" id="viewer"
-                                         src="{{asset('storage/app/public/brand')}}/{{$brand->image }}" alt="brand image"/>
+                                         src="{{asset('storage/app/public/wraping')}}/{{$data->image }}" alt="brand image"/>
                                 </center>
                             </div>
                         </div>
 
                     </div>
-
                     <hr>
                     <button type="submit" class="btn btn-primary">{{trans('messages.update')}}</button>
                 </form>
             </div>
         </div>
     </div>
-    @endif
+
 
 @endsection
 

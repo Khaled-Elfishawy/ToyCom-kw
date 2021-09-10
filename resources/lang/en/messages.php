@@ -3,12 +3,12 @@
 return [
     'dinar_points'=> 'Convert 1 Dinar To Points',
     'points_dinar'=> 'Convert Points To 1 Dinar',
+    'Wraping'=> 'Wraping',
     'age'=> 'age',
     'male'=> 'male',
     'female'=> 'female',
     'gender'=> 'gender',
     'brands'=> 'brands',
-    'age'=> 'age',
     'admins'=> 'Admins',
     'seller'=> 'Sales men',
     'price-group'=> 'Price Groups',
