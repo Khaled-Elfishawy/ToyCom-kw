@@ -54,7 +54,20 @@
                                        >
                             </div>
                         </div>
-
+                        <div class="col-md-4 col-12">
+                            <div class="form-group">
+                                <label class="input-label" for="exampleFormControlInput1">{{trans('messages.my_points')}}</label>
+                                <input type="text" name="my_points" value="{{$customer['my_points']}}" class="form-control"
+                                       required>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-12">
+                            <div class="form-group">
+                                <label class="input-label" for="exampleFormControlInput1">{{trans('messages.my_money')}}</label>
+                                <input type="text" name="my_money" value="{{$customer['my_money']}}" class="form-control"
+                                       required>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="row">
@@ -72,7 +85,7 @@
                         </div>
                     </div>
                     <hr>
-                    <button type="submit" class="btn btn-primary">{{trans('messages.add')}}</button>
+                    <button type="submit" class="btn btn-primary">{{trans('messages.edit')}}</button>
                 </form>
             </div>
         </div>

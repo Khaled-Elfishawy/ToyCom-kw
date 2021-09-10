@@ -26,13 +26,13 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
-                                <label class="input-label" for="exampleFormControlInput1">name ar</label>
+                                <label class="input-label" for="exampleFormControlInput1">{{trans('messages.name_ar')}}</label>
                                 <input type="text" name="name_ar" value="{{$brand->name_ar}}" class="form-control" required>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <label class="input-label" for="exampleFormControlInput1">name en</label>
+                                <label class="input-label" for="exampleFormControlInput1">{{trans('messages.name_en')}}</label>
                                 <input type="text" name="name_en" value="{{$brand->name_en}}" class="form-control" required>
                             </div>
                         </div>

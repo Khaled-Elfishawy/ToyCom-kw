@@ -25,18 +25,19 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
-                                <label class="input-label" for="exampleFormControlInput1">{{trans('messages.name')}}</label>
-                                <input type="text" name="name" value="{{$category['name']}}" class="form-control" placeholder="">
+                                <label class="input-label" for="exampleFormControlInput1">name ar</label>
+                                <input type="text" name="name_ar" value="{{$category['name_ar']}}" class="form-control" placeholder="">
                             </div>
                             <input name="position" value="0" style="display: none">
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <label class="input-label" for="exampleFormControlInput1">{{trans('messages.name_ar')}}</label>
-                                <input type="text" name="name_ar" value="{{$category['name_ar']}}" class="form-control" placeholder="">
+                                <label class="input-label" for="exampleFormControlInput1">name en</label>
+                                <input type="text" name="name" value="{{$category['name']}}" class="form-control" placeholder="">
                             </div>
                             <input name="position" value="0" style="display: none">
                         </div>
+
                         <div class="col-6">
                             <div class="form-group">
                                 <label>{{trans('messages.image')}}</label><small style="color: red">* ( {{trans('messages.ratio')}} 3:1 )</small>

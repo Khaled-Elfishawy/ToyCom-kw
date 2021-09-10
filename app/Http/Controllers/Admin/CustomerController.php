@@ -51,11 +51,21 @@ class CustomerController extends Controller
         Toastr::error('Customer not found!');
         return back();
     }
+    public function edit($id)
+    {
+        $customer = User::find($id);
+        $price_groups=PriceGroup::all();
+        $orders = Order::latest()->where(['user_id' => $id])->paginate(10);
+        return view('admin-views.customer.edit', compact('customer','orders','price_groups'));
+
+    }
 
     public function update(Request $request ,$id){
         $customer = User::find($id);
         $customer->email=$request->email;
         $customer->phone=$request->phone;
+        $customer->my_points=$request->my_points;
+        $customer->my_money=$request->my_money;
         $customer->first_approve = 1;
         $customer->password=($request->password)? Hash::make($request['password']) : $customer->password;
         $customer->save();

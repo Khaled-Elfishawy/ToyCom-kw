@@ -259,29 +259,26 @@
                         <th class="table-column-pl-0">{{trans('messages.name')}}</th>
                         <th>{{trans('messages.email')}}</th>
                         <th>{{trans('messages.phone')}}</th>
+                        <th>{{trans('messages.my_money')}}</th>
+                        <th>{{trans('messages.my_points')}}</th>
                         <th>{{trans('messages.approve')}}</th>
 {{--                        <th>{{trans('messages.total')}} {{trans('messages.order')}}</th>--}}
                         <th>{{trans('messages.actions')}}</th>
                     </tr>
                     </thead>
-
                     <tbody id="set-rows">
                     @foreach($customers as $key=>$customer)
                         <tr class="">
-                            <td class="">
-                                {{$key+1}}
-                            </td>
+                            <td class="">{{$key+1}} </td>
                             <td class="table-column-pl-0">
                                 <a href="{{route('admin.customer.view',[$customer['id']])}}">
                                     {{$customer['f_name']." ".$customer['l_name']}}
                                 </a>
                             </td>
-                            <td>
-                                {{$customer['email']}}
-                            </td>
-                            <td>
-                               {{$customer['phone']}}
-                            </td>
+                            <td> {{$customer['email']}}</td>
+                            <td> {{$customer['phone']}}</td>
+                            <td>{{$customer['my_money']}}</td>
+                            <td> {{$customer['my_points']}}</td>
                             <td>
                                 @if(UserCan('second_approve','admin'))
                                 @if($customer['second_approve']==1)
@@ -310,9 +307,11 @@
                                         <i class="tio-settings"></i>
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item"
+                                           href="{{route('admin.customer.edit', [$customer['id']])}}">{{trans('messages.edit')}}</a>
                                         @if(UserCan('edit_customer','admin'))
                                         <a class="dropdown-item" href="{{route('admin.customer.view',[$customer['id']])}}">
-                                            <i class="tio-visible"></i> {{trans('messages.add price_group')}}
+                                            <i class="tio-visible"></i> {{trans('messages.add_price_group')}}
                                         </a>
                                         @endif
                                         {{--<a class="dropdown-item" target="" href="">

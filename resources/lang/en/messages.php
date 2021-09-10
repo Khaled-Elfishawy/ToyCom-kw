@@ -1,6 +1,12 @@
 <?php
 
 return [
+    'wraping'=> 'wraping',
+    'create'=> 'create',
+    'my_points'=> 'customer points',
+    'my_money'=> 'customer money',
+    'price_group'=> 'price group',
+    'add_price_group'=> 'add price group',
     'dinar_points'=> 'Convert 1 Dinar To Points',
     'points_dinar'=> 'Convert Points To 1 Dinar',
     'Wraping'=> 'Wraping',
@@ -8,6 +14,7 @@ return [
     'male'=> 'male',
     'female'=> 'female',
     'gender'=> 'gender',
+    'brand'=> 'brand',
     'brands'=> 'brands',
     'admins'=> 'Admins',
     'seller'=> 'Sales men',

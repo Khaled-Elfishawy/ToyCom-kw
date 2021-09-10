@@ -14,7 +14,7 @@
             <div class="col-sm-12 col-lg-12 mb-3 mb-lg-2">
 
                 <div class="col-sm mb-2 mb-sm-0">
-                    <h1 class="page-header-title"><i class="tio-filter-list"></i> Brand list</h1>
+                    <h1 class="page-header-title"><i class="tio-filter-list"></i> {{trans('messages.brand')}} {{trans('messages.list')}}</h1>
                 </div>
 
                 <div class="card">
@@ -32,9 +32,9 @@
                             <thead class="thead-light">
                             <tr>
                                 <th>{{trans('messages.#')}}</th>
-                                <th style="width: 50%">name ar</th>
-                                <th style="width: 50%">name en</th>
-                                <th style="width: 50%">image</th>
+                                <th style="width: 50%">{{trans('messages.name_ar')}}</th>
+                                <th style="width: 50%">{{trans('messages.name_en')}}</th>
+                                <th style="width: 50%">{{trans('messages.image')}}</th>
                                 <th style="width: 10%">{{trans('messages.action')}}</th>
                             </tr>
                             <tr>

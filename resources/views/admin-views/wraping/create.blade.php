@@ -11,7 +11,7 @@
         <div class="page-header">
             <div class="row align-items-center">
                 <div class="col-sm mb-2 mb-sm-0">
-                    <h1 class="page-header-title text-capitalize"><i class="tio-edit"></i> Create Wraping</h1>
+                    <h1 class="page-header-title text-capitalize"><i class="tio-edit"></i> {{trans('messages.create')}} {{trans('messages.wraping')}}</h1>
                 </div>
             </div>
         </div>
@@ -22,13 +22,13 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
-                                <label class="input-label" for="exampleFormControlInput1">name ar</label>
+                                <label class="input-label" for="exampleFormControlInput1">{{trans('messages.name_ar')}}</label>
                                 <input type="text" name="name_ar" value="{{old('name_ar')}}" class="form-control" required>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <label class="input-label" for="exampleFormControlInput1">name en</label>
+                                <label class="input-label" for="exampleFormControlInput1">{{trans('messages.name_en')}}</label>
                                 <input type="text" name="name_en" value="{{old('name_en')}}" class="form-control"
                                         required>
                             </div>
@@ -37,7 +37,7 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
-                                <label class="input-label" for="exampleFormControlInput1">price</label>
+                                <label class="input-label" for="exampleFormControlInput1">{{trans('messages.price')}}</label>
                                 <input type="text" name="price" value="{{old('price')}}" class="form-control" required>
                             </div>
                         </div>
