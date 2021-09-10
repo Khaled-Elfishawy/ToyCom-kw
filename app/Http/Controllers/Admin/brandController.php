@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\CentralLogics\Helpers;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use App\Model\Brand;
 use App\Model\Product;
@@ -78,14 +79,12 @@ class brandController extends Controller
     {
         $products = Product::where('brand_id',$id)->get();
         if($products->count() > 0){
-            foreach ($products as $product) {
-                $product->brand_id = 0;
-                $product->save();
-            }
-            $brand->delete();
-            return \redirect()->route('admin.brand.list');
+            Toastr::success('Brand used in products ... cant delete!');
+            return back();
         }else{
+            $brand = Brand::find($id);
             $brand->delete();
+            Toastr::success('Brand deleted successfully!');
             return \redirect()->route('admin.brand.list');
         }
     }

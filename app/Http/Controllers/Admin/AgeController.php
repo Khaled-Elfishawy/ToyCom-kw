@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\CentralLogics\Helpers;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use App\Model\Age;
 use App\Model\Product;
@@ -86,10 +87,12 @@ class  AgeController extends Controller
     {
         $products = Product::where('age_id', $id)->get();
         if ($products->count() > 0) {
-            // there are some products use this brand .... !
-
+            Toastr::success('Age used in products ... cant delete!');
+            return back();
         } else {
+            $age = Age::find($id);
             $age->delete();
+            Toastr::success('Age deleted successfully!');
             return \redirect()->route('admin.Age.list');
         }
     }
