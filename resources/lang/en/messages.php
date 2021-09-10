@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'from'=> 'from',
+    'to' => 'to',
+    'body'=> 'body',
+    'gift_card'=> 'Gift Card',
     'wraping'=> 'wraping',
     'create'=> 'create',
     'my_points'=> 'customer points',
@@ -30,7 +34,7 @@ return [
     'admin' => 'Admin',
     'sign_in' => 'Sign in',
     'want' => 'Want',
-    'to' => 'to',
+
     'login' => 'login',
     'your' => 'your',
     'branches' => 'branches',

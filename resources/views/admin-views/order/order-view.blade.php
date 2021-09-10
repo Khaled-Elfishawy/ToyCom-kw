@@ -65,7 +65,7 @@
                         <span class="ml-2 ml-sm-3">
                         <i class="tio-date-range"></i> {{date('d M Y H:i',strtotime($order['created_at']))}}
                 </span>
-              
+
                     </div>
 
                     <div class="mt-2">
@@ -126,7 +126,7 @@
                                     class="badge badge-secondary">{{$order->branch?$order->branch->name:'Branch deleted!'}}</label>
                             </h5>
                         </div>
-                     
+
 
                         <div class="hs-unfold float-right">
                             <div class="dropdown">
@@ -190,20 +190,20 @@
 
                            <input type="date" value="{{ $order['delivery_date'] }}"  name="from" id="from_date" data-id="{{ $order['id'] }}"
                                 class="form-control" required>
-                             
+
                         </div>
                         <div class="hs-unfold ml-2">
                             <select class="custom-select custom-select time_slote" name="timeSlot" data-id="{{$order['id']}}">
                         <option disabled>--- {{trans('messages.select')}} {{trans('messages.Time Slot')}} ---</option>
-                       
+
                         @foreach(\App\Model\TimeSlot::all() as $timeSlot)
-                       
-           
+
+
                            <option value="{{$timeSlot['id']}}" {{$timeSlot->id == $order->time_slot_id ?'selected':''}}>{{$timeSlot['start_time']}} - {{$timeSlot['end_time']}}</option>
-                          
-                           
+
+
                         @endforeach
-                        
+
                     </select>
                     </div>
                     </div>
@@ -291,30 +291,70 @@
                                             <div class="col-md-3 mb-3 mb-md-0">
                                                 <strong> {{$detail->product['name']}}</strong><br>
 
-                                             
+
                                             </div>
 
                                             <div class="col col-md-2 align-self-center">
-                                              
+
                                                 <h6>{{$detail['price']-$detail['discount_on_product'] ." ".\App\CentralLogics\Helpers::currency_symbol()}}</h6>
                                             </div>
                                             <div class="col col-md-2 align-self-center">
                                                 <h5>{{$detail['quantity']}} </h5>
                                             </div>
-                                            
+
                                             <div class="col col-md-2 align-self-center">
                                                 <h5>{{$detail->product['capacity']}} {{$detail['unit']}}</h5>
                                             </div>
-                                            
-                                          
+
+
 
                                             <div class="col col-md-3 align-self-center text-right">
                                                 @php($amount=($detail['price']-$detail['discount_on_product'])*$detail['quantity'])
                                                 <h5>{{$amount." ".\App\CentralLogics\Helpers::currency_symbol()}}</h5>
                                             </div>
+                                            @if($detail['message_from'] != null)
+                                            <div class="col col-md-2 align-self-center">
+                                                <a data-message-from="{{$detail['message_from']}}" data-message-to="{{$detail['message_to']}}"
+                                                   data-message-body="{{$detail['message_body']}}" data-toggle="modal" id="btn_card"
+                                                   data-target="#message_modal"
+                                                   class="btn btn-primary">{{trans('messages.gift_card')}}</a>
+                                            </div>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
+                                <div id="message_modal" class="modal fade" tabindex="-1" role="dialog"
+                                     aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">{{trans('messages.gift_card')}}</h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label for="recipient-name" class="control-label">{{trans('messages.from')}}</label>
+                                                    {{ Form::text('message_from',null,["class"=>"form-control" ,"readonly" ,'id'=>'txt_message_from']) }}
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="recipient-name" class="control-label">{{trans('messages.to')}}</label>
+                                                    {{ Form::text('message_to',null,["class"=>"form-control" ,"readonly",'id'=>'txt_message_to']) }}
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="recipient-name" class="control-label">{{trans('messages.body')}}</label>
+                                                    {{ Form::textArea('message_body',null,["class"=>"form-control","row"=>4 ,"readonly", "min" => "1",'id'=>'txt_message_body']) }}
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">
+                                                    إغلاق
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             @php($sub_total+=$amount)
                             @php($total_tax+=$detail['tax_amount']*$detail['quantity'])
                             <!-- End Media -->
@@ -585,9 +625,9 @@
             </div>
         </div>
     </div>
-  
-   
-  
+
+
+
 </div>
     <!-- End Modal -->
 @endsection
@@ -639,15 +679,15 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-      
+
                     $.post({
                         url: "{{route('admin.order.update-deliveryDate')}}",
-                        
+
                         data: {
                             "id": id,
                             "deliveryDate": value
                         },
-                        
+
                         success: function (data) {
                             console.log(data);
                             toastr.success('Delivery Date Change successfully');
@@ -674,15 +714,15 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-      
+
                     $.post({
                         url: "{{route('admin.order.update-timeSlot')}}",
-                        
+
                         data: {
                             "id": id,
                             "timeSlot": value
                         },
-                        
+
                         success: function (data) {
                             console.log(data);
                             toastr.success('Time Slot Change successfully');
@@ -692,5 +732,11 @@
                 }
             })
         });
+          $(document).on('click', '#btn_card', function () {
+              $("#txt_message_from").val($(this).data('message-from'));
+              $("#txt_message_to").val($(this).data('message-to'));
+              $("#txt_message_body").val($(this).data('message-body'));
+
+          });
     </script>
 @endpush
