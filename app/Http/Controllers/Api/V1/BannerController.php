@@ -28,6 +28,7 @@ class BannerController extends Controller
                 "id" => 0,
                 "name_ar" => "بدون",
                 "name_en" => "none",
+                "price" => 0,
                 "image" => "2021-09-10-613b21a519e7b.png",
                 "created_at" => "2021-08-22 15:50:38",
                 "updated_at" => "2021-09-06 10:18:15",
