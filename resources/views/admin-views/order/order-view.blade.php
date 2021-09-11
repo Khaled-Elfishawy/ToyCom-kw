@@ -20,7 +20,8 @@
                                     Orders
                                 </a>
                             </li>
-                            <li class="breadcrumb-item active" aria-current="page">{{trans('messages.order')}} {{trans('messages.details')}}</li>
+                            <li class="breadcrumb-item active"
+                                aria-current="page">{{trans('messages.order')}} {{trans('messages.details')}}</li>
                         </ol>
                     </nav>
 
@@ -79,7 +80,8 @@
                             <div class="hs-unfold">
                                 <select class="form-control" name="delivery_man_id"
                                         onchange="addDeliveryMan(this.value)">
-                                    <option value="0">{{trans('messages.select')}} {{trans('messages.deliveryman')}}</option>
+                                    <option
+                                        value="0">{{trans('messages.select')}} {{trans('messages.deliveryman')}}</option>
                                     @foreach(\App\Model\DeliveryMan::all() as $deliveryMan)
                                         <option
                                             value="{{$deliveryMan['id']}}" {{$order['delivery_man_id']==$deliveryMan['id']?'selected':''}}>
@@ -188,24 +190,29 @@
                         </div>
                         <div class="hs-unfold ml-4">
 
-                           <input type="date" value="{{ $order['delivery_date'] }}"  name="from" id="from_date" data-id="{{ $order['id'] }}"
-                                class="form-control" required>
+                            <input type="date" value="{{ $order['delivery_date'] }}" name="from" id="from_date"
+                                   data-id="{{ $order['id'] }}"
+                                   class="form-control" required>
 
                         </div>
                         <div class="hs-unfold ml-2">
-                            <select class="custom-select custom-select time_slote" name="timeSlot" data-id="{{$order['id']}}">
-                        <option disabled>--- {{trans('messages.select')}} {{trans('messages.Time Slot')}} ---</option>
+                            <select class="custom-select custom-select time_slote" name="timeSlot"
+                                    data-id="{{$order['id']}}">
+                                <option disabled>--- {{trans('messages.select')}} {{trans('messages.Time Slot')}}---
+                                </option>
 
-                        @foreach(\App\Model\TimeSlot::all() as $timeSlot)
+                                @foreach(\App\Model\TimeSlot::all() as $timeSlot)
 
 
-                           <option value="{{$timeSlot['id']}}" {{$timeSlot->id == $order->time_slot_id ?'selected':''}}>{{$timeSlot['start_time']}} - {{$timeSlot['end_time']}}</option>
+                                    <option
+                                        value="{{$timeSlot['id']}}" {{$timeSlot->id == $order->time_slot_id ?'selected':''}}>{{$timeSlot['start_time']}}
+                                        - {{$timeSlot['end_time']}}</option>
 
 
-                        @endforeach
+                                @endforeach
 
-                    </select>
-                    </div>
+                            </select>
+                        </div>
                     </div>
                 </div>
 
@@ -247,7 +254,8 @@
                             <div class="col-6 pt-2">
                                 <div class="text-right">
                                     <h6 class="text-capitalize" style="color: #8a8a8a;">
-                                        {{trans('messages.payment')}} {{trans('messages.method')}} : {{str_replace('_',' ',$order['payment_method'])}}
+                                        {{trans('messages.payment')}} {{trans('messages.method')}}
+                                        : {{str_replace('_',' ',$order['payment_method'])}}
                                     </h6>
                                     <h6 class="" style="color: #8a8a8a;">
                                         @if($order['transaction_reference']==null)
@@ -257,10 +265,12 @@
                                                 {{trans('messages.add')}}
                                             </button>
                                         @else
-                                            {{trans('messages.reference')}} {{trans('messages.code')}} : {{$order['transaction_reference']}}
+                                            {{trans('messages.reference')}} {{trans('messages.code')}}
+                                            : {{$order['transaction_reference']}}
                                         @endif
                                     </h6>
-                                    <h6 class="text-capitalize" style="color: #8a8a8a;">{{trans('messages.order')}} {{trans('messages.type')}}
+                                    <h6 class="text-capitalize"
+                                        style="color: #8a8a8a;">{{trans('messages.order')}} {{trans('messages.type')}}
                                         : <label style="font-size: 10px"
                                                  class="badge badge-soft-primary">{{str_replace('_',' ',$order['order_type'])}}</label>
                                     </h6>
@@ -307,18 +317,40 @@
                                             </div>
 
 
-
                                             <div class="col col-md-3 align-self-center text-right">
                                                 @php($amount=($detail['price']-$detail['discount_on_product'])*$detail['quantity'])
                                                 <h5>{{$amount." ".\App\CentralLogics\Helpers::currency_symbol()}}</h5>
                                             </div>
                                             @if($detail['message_from'] != null)
-                                            <div class="col col-md-2 align-self-center">
-                                                <a data-message-from="{{$detail['message_from']}}" data-message-to="{{$detail['message_to']}}"
-                                                   data-message-body="{{$detail['message_body']}}" data-toggle="modal" id="btn_card"
-                                                   data-target="#message_modal"
-                                                   class="btn btn-primary">{{trans('messages.gift_card')}}</a>
-                                            </div>
+                                                <div class="col col-md-2 align-self-center">
+                                                    <a data-message-from="{{$detail['message_from']}}"
+                                                       data-message-to="{{$detail['message_to']}}"
+                                                       data-message-body="{{$detail['message_body']}}"
+                                                       data-toggle="modal" id="btn_card"
+                                                       data-target="#message_modal"
+                                                       class="btn btn-primary">{{trans('messages.gift_card')}}</a>
+                                                </div>
+                                            @else
+                                                <div class="col col-md-2 align-self-center">
+                                                    <a class="btn btn-danger">{{trans('messages.no_gift_card')}}</a>
+                                                </div>
+                                            @endif
+                                            @if($detail['wraping_id'] != 0)
+                                                <div class="col col-md-2 align-self-center">
+                                                    <a data-price="{{$detail->Warpping->price}}"
+                                                       @if(app()->getLocale() == 'ar')
+                                                        data-name="{{$detail->Warpping->name_ar}}"
+                                                       @else
+                                                        data-name="{{$detail->Warpping->name_en}}"
+                                                       @endif
+                                                       data-toggle="modal" id="btn_warpping"
+                                                       data-target="#warpping_modal"
+                                                       class="btn btn-primary">{{trans('messages.wraping')}}</a>
+                                                </div>
+                                            @else
+                                                <div class="col col-md-2 align-self-center">
+                                                    <a class="btn btn-danger">{{trans('messages.no_wrapping')}}</a>
+                                                </div>
                                             @endif
                                         </div>
                                     </div>
@@ -329,25 +361,61 @@
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h4 class="modal-title">{{trans('messages.gift_card')}}</h4>
-                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-hidden="true">×
                                                 </button>
                                             </div>
                                             <div class="modal-body">
                                                 <div class="form-group">
-                                                    <label for="recipient-name" class="control-label">{{trans('messages.from')}}</label>
+                                                    <label for="recipient-name"
+                                                           class="control-label">{{trans('messages.from')}}</label>
                                                     {{ Form::text('message_from',null,["class"=>"form-control" ,"readonly" ,'id'=>'txt_message_from']) }}
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="recipient-name" class="control-label">{{trans('messages.to')}}</label>
+                                                    <label for="recipient-name"
+                                                           class="control-label">{{trans('messages.to')}}</label>
                                                     {{ Form::text('message_to',null,["class"=>"form-control" ,"readonly",'id'=>'txt_message_to']) }}
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="recipient-name" class="control-label">{{trans('messages.body')}}</label>
+                                                    <label for="recipient-name"
+                                                           class="control-label">{{trans('messages.body')}}</label>
                                                     {{ Form::textArea('message_body',null,["class"=>"form-control","row"=>4 ,"readonly", "min" => "1",'id'=>'txt_message_body']) }}
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">
+                                                <button type="button" class="btn btn-default waves-effect"
+                                                        data-dismiss="modal">
+                                                    إغلاق
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="warpping_modal" class="modal fade" tabindex="-1" role="dialog"
+                                     aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">{{trans('messages.wraping')}}</h4>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-hidden="true">×
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label for="recipient-name"
+                                                           class="control-label">{{trans('messages.wraping')}} {{trans('messages.name')}}</label>
+                                                    {{ Form::text('name',null,["class"=>"form-control" ,"readonly" ,'id'=>'txt_name']) }}
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="recipient-name"
+                                                           class="control-label">{{trans('messages.wraping')}} {{trans('messages.price')}}</label>
+                                                    {{ Form::text('price',null,["class"=>"form-control" ,"readonly",'id'=>'txt_price']) }}
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default waves-effect"
+                                                        data-dismiss="modal">
                                                     إغلاق
                                                 </button>
                                             </div>
@@ -373,7 +441,8 @@
                                     <dt class="col-sm-6">{{trans('messages.subtotal')}}:</dt>
                                     <dd class="col-sm-6">
                                         {{$sub_total+$total_tax." ".\App\CentralLogics\Helpers::currency_symbol()}}</dd>
-                                    <dt class="col-sm-6">{{trans('messages.coupon')}} {{trans('messages.discount')}}:</dt>
+                                    <dt class="col-sm-6">{{trans('messages.coupon')}} {{trans('messages.discount')}}:
+                                    </dt>
                                     <dd class="col-sm-6">
                                         - {{$order['coupon_discount_amount']." ".\App\CentralLogics\Helpers::currency_symbol()}}</dd>
                                     <dt class="col-sm-6">{{trans('messages.delivery')}} {{trans('messages.fee')}}:</dt>
@@ -498,7 +567,8 @@
         <div class="modal-dialog modal-sm" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title h4" id="mySmallModalLabel">{{trans('messages.reference')}} {{trans('messages.code')}} {{trans('messages.add')}}</h5>
+                    <h5 class="modal-title h4"
+                        id="mySmallModalLabel">{{trans('messages.reference')}} {{trans('messages.code')}} {{trans('messages.add')}}</h5>
                     <button type="button" class="btn btn-xs btn-icon btn-ghost-secondary" data-dismiss="modal"
                             aria-label="Close">
                         <i class="tio-clear tio-lg"></i>
@@ -617,8 +687,10 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-white" data-dismiss="modal">{{trans('messages.close')}}</button>
-                            <button type="submit" class="btn btn-primary">{{trans('messages.save')}} {{trans('messages.changes')}}</button>
+                            <button type="button" class="btn btn-white"
+                                    data-dismiss="modal">{{trans('messages.close')}}</button>
+                            <button type="submit"
+                                    class="btn btn-primary">{{trans('messages.save')}} {{trans('messages.changes')}}</button>
                         </div>
                     </form>
                 @endif
@@ -628,7 +700,7 @@
 
 
 
-</div>
+    </div>
     <!-- End Modal -->
 @endsection
 
@@ -662,7 +734,7 @@
         }
     </script>
     <script>
-          $(document).on('change', '#from_date', function () {
+        $(document).on('change', '#from_date', function () {
             var id = $(this).attr("data-id");
             var value = $(this).val();
             Swal.fire({
@@ -675,10 +747,10 @@
             }).then((result) => {
                 if (result.value) {
                     $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
 
                     $.post({
                         url: "{{route('admin.order.update-deliveryDate')}}",
@@ -710,10 +782,10 @@
             }).then((result) => {
                 if (result.value) {
                     $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
 
                     $.post({
                         url: "{{route('admin.order.update-timeSlot')}}",
@@ -732,11 +804,15 @@
                 }
             })
         });
-          $(document).on('click', '#btn_card', function () {
-              $("#txt_message_from").val($(this).data('message-from'));
-              $("#txt_message_to").val($(this).data('message-to'));
-              $("#txt_message_body").val($(this).data('message-body'));
+        $(document).on('click', '#btn_card', function () {
+            $("#txt_message_from").val($(this).data('message-from'));
+            $("#txt_message_to").val($(this).data('message-to'));
+            $("#txt_message_body").val($(this).data('message-body'));
 
-          });
+        });
+        $(document).on('click', '#btn_warpping', function () {
+            $("#txt_price").val($(this).data('price'));
+            $("#txt_name").val($(this).data('name'));
+        });
     </script>
 @endpush

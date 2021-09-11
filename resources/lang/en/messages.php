@@ -1,11 +1,13 @@
 <?php
 
 return [
+    'no_wrapping'=> 'no wrapping',
+    'no_gift_card'=> 'No Gift card',
     'from'=> 'from',
     'to' => 'to',
     'body'=> 'body',
     'gift_card'=> 'Gift Card',
-    'wraping'=> 'wraping',
+    'wraping'=> 'wrapping',
     'create'=> 'create',
     'my_points'=> 'customer points',
     'my_money'=> 'customer money',

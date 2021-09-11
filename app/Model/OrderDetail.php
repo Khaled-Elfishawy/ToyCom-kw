@@ -26,4 +26,9 @@ class OrderDetail extends Model
     {
         return $this->belongsTo(Order::class, 'order_id');
     }
+
+    public function Warpping()
+    {
+        return $this->belongsTo(Gift_warping::class, 'wraping_id');
+    }
 }
