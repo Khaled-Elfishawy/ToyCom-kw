@@ -45,6 +45,7 @@ Route::group(['namespace' => 'Api\V1'], function () {
     Route::group(['prefix' => 'products'], function () {
         Route::get('latest', 'ProductController@get_latest_products');
         Route::get('discounted', 'ProductController@get_discounted_products');
+        Route::get('old_search', 'ProductController@get_old_searched_products');
         Route::get('search', 'ProductController@get_searched_products');
         Route::get('details/{id}', 'ProductController@get_product');
         Route::get('related-products/{product_id}', 'ProductController@get_related_products');
