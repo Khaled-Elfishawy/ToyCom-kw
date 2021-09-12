@@ -34,10 +34,10 @@ class ProductController extends Controller
                 if ($request->price_from != null && $request->price_to) {
                     $e->whereBetween('price', [$request->price_from , $request->price_to]);
                 }
-            })->get();
+            })->orderBy($request->sort_type , $request->sort)->get();
         }
         else if ($request->cat_id !== null){
-            $result = CategoryLogic::products($request->cat_id);
+            $result = CategoryLogic::products($request->cat_id)->orderBy($request->sort_type , $request->sort)->get();
         } else {
             $proNames = ProductLogic::search_products($request['name'], $request['limit'], $request['offset']);
             $result = $proNames['products'];
