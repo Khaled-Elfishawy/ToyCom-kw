@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Age;
+use App\CentralLogics\AgeLogic;
 use App\CentralLogics\Helpers;
 use App\CentralLogics\ProductLogic;
 use App\Http\Controllers\Controller;
+use App\Model\Category;
 use App\Model\Product;
 use App\Model\Review;
 use Illuminate\Http\Request;
@@ -22,17 +25,25 @@ class ProductController extends Controller
 
     public function get_searched_products(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required',
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json(['errors' => Helpers::error_processor($validator)], 403);
+        $result = [];
+        if($request->cat_id == null || $request->name == null){
+            $result = Product::where(function($e)use($request){
+                if ($request->age_id != null) {
+                    $e->where('age_id', $request->age_id);
+                }
+                if ($request->price_from != null && $request->price_to) {
+                    $e->whereBetween('price', [$request->price_from , $request->price_to]);
+                }
+            })->get();
         }
-
-        $products = ProductLogic::search_products($request['name'], $request['limit'], $request['offset']);
-        $products['products'] = Helpers::product_data_formatting($products['products'], true);
-        return response()->json($products, 200);
+        else if ($request->cat_id !== null){
+            $result = CategoryLogic::products($request->cat_id);
+        } else {
+            $proNames = ProductLogic::search_products($request['name'], $request['limit'], $request['offset']);
+            $result = $proNames['products'];
+        }
+        $result = Helpers::product_data_formatting($result, true);
+        return response()->json($result, 200);
     }
 
     public function get_product($id)
@@ -143,4 +154,20 @@ class ProductController extends Controller
             ], 404);
         }
     }
+
+    public function getFilterData() {
+        try {
+            $data['categories'] = Category::select('id','name','name_ar')->get();
+            $data['ages'] = Age::select('id','name_en','name_ar')->get();
+            $data['max_product'] = Product::get()->max('price');
+            return response()->json($data, 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'errors' => ['code' => 'data-001', 'message' => 'Data not found!'],
+            ], 404);
+        }
+    }
+
+
 }
+

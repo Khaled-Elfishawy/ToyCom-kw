@@ -51,6 +51,7 @@ Route::group(['namespace' => 'Api\V1'], function () {
         Route::get('reviews/{product_id}', 'ProductController@get_product_reviews');
         Route::get('rating/{product_id}', 'ProductController@get_product_rating');
         Route::post('reviews/submit', 'ProductController@submit_product_review')->middleware('auth:api');
+        Route::get('get-filter-data','ProductController@getFilterData');
     });
 
     Route::group(['prefix' => 'banners'], function () {
