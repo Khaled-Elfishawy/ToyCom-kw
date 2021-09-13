@@ -43,8 +43,8 @@ class CustomerAuthController extends Controller
         $array = [
             'user_point'     => $user->my_points,
             'user_wallet'    => $user->my_money,
-            'dinar_points'   => $user->dinar_points,
-            'points_dinar'   => $user->points_dinar
+            'dinar_points'   => $dinar_points,
+            'points_dinar'   => $points_dinar
         ];
         return response()->json($array, 200);
     }
