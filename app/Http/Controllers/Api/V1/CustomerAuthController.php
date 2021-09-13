@@ -33,4 +33,19 @@ class CustomerAuthController extends Controller
         $user->save();
         return response()->json(true, 200);
     }
+    public function points_info(Request $request)
+    {
+        $dinar_points = BusinessSetting::where('key', 'dinar_points')->first()->value;
+        $points_dinar = BusinessSetting::where('key', 'points_dinar')->first()->value;
+        $user = User::find($request->user()->id);
+        $user->my_points;
+        $user->my_money;
+        $array = [
+            'user_point'     => $user->my_points,
+            'user_wallet'    => $user->my_money,
+            'dinar_points'   => $user->dinar_points,
+            'points_dinar'   => $user->points_dinar
+        ];
+        return response()->json($array, 200);
+    }
 }

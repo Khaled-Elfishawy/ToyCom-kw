@@ -74,6 +74,7 @@ Route::group(['namespace' => 'Api\V1'], function () {
         Route::get('info', 'CustomerController@info');
         Route::put('update-profile', 'CustomerController@update_profile');
         Route::put('cm-firebase-token', 'CustomerController@update_cm_firebase_token');
+        Route::post('points_info', 'CustomerAuthController@points_info');
         Route::post('change/points/to/dinar', 'CustomerAuthController@change_points_to_dinar');
         Route::group(['prefix' => 'address'], function () {
             Route::get('list', 'CustomerController@address_list');
