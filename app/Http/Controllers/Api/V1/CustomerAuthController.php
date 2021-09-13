@@ -43,7 +43,7 @@ class CustomerAuthController extends Controller
         $array = [
             'user_point'     => $user->my_points,
             'user_wallet'    => $user->my_money,
-            'dinar_to_points'=> floatval($dinar_points),
+            'points_dinar'   => floatval($points_dinar)
         ];
         return response()->json($array, 200);
     }
