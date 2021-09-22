@@ -48,8 +48,7 @@ html {
 }
 
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
-    display: block;
-    direction:rtl
+    display: block
 }
 
 body {
@@ -59,7 +58,7 @@ body {
     font-weight: 400;
     line-height: 1.6;
     color: #677788;
-    text-align: right;
+    text-align: left;
     background-color: #fff
 }
 
@@ -2388,8 +2387,7 @@ pre code {
     background-clip: padding-box;
     border: .0625rem solid #e7eaf3;
     border-radius: .3125rem;
-    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-    text-align:right
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -4521,7 +4519,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
     display: flex;
     -ms-flex-direction: column;
     flex-direction: column;
-    padding-right: 0;
+    padding-left: 0;
     margin-bottom: 0;
     list-style: none
 }
@@ -15499,8 +15497,7 @@ input[type=number] {
 
 .navbar.navbar-container {
     padding-right: 2rem;
-    padding-left: 2rem;
-    direction:rtl
+    padding-left: 2rem
 }
 
 @media (max-width: 575.98px) {
@@ -15527,7 +15524,7 @@ input[type=number] {
 }
 
 .navbar-nav-wrap-content-right {
-    margin-right: auto
+    margin-left: auto
 }
 
 .navbar-expand .navbar-nav-wrap-content-left {
@@ -15750,8 +15747,7 @@ input[type=number] {
 
 .navbar-vertical.navbar {
     display: block;
-    padding: 0;
-    text-align:right
+    padding: 0
 }
 
 .navbar-vertical.navbar.collapse:not(.show) {
@@ -15784,8 +15780,7 @@ input[type=number] {
 }
 
 .navbar-vertical-fixed .navbar-vertical-container {
-    max-height: 100%;
-    direction:rtl;
+    max-height: 100%
 }
 
 .navbar-vertical-content {
@@ -15907,7 +15902,7 @@ input[type=number] {
 .navbar-vertical-fixed {
     position: fixed;
     top: 0;
-    right: 0;
+    left: 0;
     bottom: 0;
     z-index: 100;
     width: 16.25rem;
@@ -16068,7 +16063,7 @@ input[type=number] {
     -ms-flex-align: center;
     align-items: center;
     height: 3.75rem;
-    /*padding-right: 1.75rem;*/
+    padding-right: 1.75rem;
     padding-left: 1.75rem
 }
 
@@ -17097,7 +17092,7 @@ input[type=number] {
     }
 
     .navbar-vertical-aside-show-xl .main {
-        padding-right: 16.25rem
+        padding-left: 16.25rem
     }
 
     .navbar-vertical-aside-show-xl .footer {
@@ -17105,7 +17100,7 @@ input[type=number] {
     }
 
     .navbar-vertical-aside-show-xl .navbar:not(.navbar-vertical) {
-        margin-right: 16.25rem
+        margin-left: 16.25rem
     }
 
     .navbar-vertical-aside-show-xl .splitted-content-navbar {
@@ -17149,11 +17144,11 @@ input[type=number] {
     }
 
     .navbar-vertical-aside-show-xl.navbar-vertical-aside-mini-mode .navbar:not(.navbar-vertical) {
-        margin-right: 5.25rem !important
+        margin-left: 5.25rem
     }
 
     .navbar-vertical-aside-show-xl.navbar-vertical-aside-mini-mode .main {
-        padding-right: 5.25rem
+        padding-left: 5.25rem
     }
 
     .navbar-vertical-aside-show-xl.navbar-vertical-aside-mini-mode .footer {
@@ -19367,9 +19362,7 @@ label.btn {
 
 .main .content {
     padding-top: 1.75rem;
-    padding-bottom: 1.75rem;
-    text-align:right;
-    direction:rtl
+    padding-bottom: 1.75rem
 }
 
 .container-fluid, .container-xxl {
@@ -20973,7 +20966,7 @@ label.btn {
 }
 
 .input-group-merge .input-group-prepend {
-    right: 0
+    left: 0
 }
 
 .input-group-merge .input-group-prepend .input-group-text {
