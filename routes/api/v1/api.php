@@ -120,6 +120,7 @@ Route::group(['namespace' => 'Api\V1'], function () {
     Route::group(['prefix' => 'gift'], function () {
         Route::get('/warping', 'BannerController@get_gift_warping');
     });
+    Route::get('/get_cities', 'CitiesController@get_cities');
 
     Route::group(['prefix' => 'coupon', 'middleware' => 'auth:api'], function () {
         Route::get('list', 'CouponController@list');
