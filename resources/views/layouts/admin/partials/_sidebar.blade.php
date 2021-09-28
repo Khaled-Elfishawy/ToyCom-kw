@@ -157,7 +157,7 @@
                                    href="javascript:">
                                     <i class="tio-shopping-cart nav-icon"></i>
                                     <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
-                                    {{trans('messages.order')}}
+                                    {{trans('messages.orders')}}
                                 </span>
                                 </a>
                                 <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
@@ -334,7 +334,7 @@
                             <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:">
                                 <i class="tio-image nav-icon"></i>
                                 <span
-                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Brand</span>
+                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{trans('messages.brands')}}</span>
                             </a>
                             <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
                                 style="display: {{Request::is('admin/brand*')?'block':'none'}}">
@@ -357,7 +357,7 @@
                             <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:">
                                 <i class="tio-image nav-icon"></i>
                                 <span
-                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Age</span>
+                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{trans('messages.ages')}}</span>
                             </a>
                             <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
                                 style="display: {{Request::is('admin/age*')?'block':'none'}}">
@@ -380,7 +380,7 @@
                             <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:">
                                 <i class="tio-image nav-icon"></i>
                                 <span
-                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">wraping</span>
+                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{trans('messages.wrapping')}}</span>
                             </a>
                             <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
                                 style="display: {{Request::is('admin/wraping*')?'block':'none'}}">
@@ -414,7 +414,7 @@
                                 <a class="nav-link " href="{{route('admin.category.add')}}"
                                    title="add new category">
                                     <span class="tio-circle nav-indicator-icon"></span>
-                                    <span class="text-truncate">{{trans('messages.category')}}</span>
+                                    <span class="text-truncate">{{trans('messages.categories')}}</span>
                                 </a>
                             </li>
 
@@ -462,7 +462,7 @@
                                 >
                                     <i class="tio-premium-outlined nav-icon"></i>
                                     <span
-                                        class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{trans('messages.product')}}</span>
+                                        class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{trans('messages.products')}}</span>
                                 </a>
                                 <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
                                     style="display: {{Request::is('admin/product*')?'block':'none'}}">

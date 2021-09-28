@@ -13,7 +13,7 @@
             <div class="row align-items-center">
                 <div class="col-sm mb-2 mb-sm-0">
                     <h1 class="page-header-title"><i
-                            class="tio-filter-list"></i> {{trans('messages.product')}} {{trans('messages.list')}}</h1>
+                            class="tio-filter-list"></i>  {{trans('messages.list')}} {{trans('messages.products')}}</h1>
                 </div>
             </div>
         </div>
@@ -27,7 +27,7 @@
                         <h5 class="card-header-title"></h5>
                         @if(UserCan('add_product','admin'))
                         <a href="{{route('admin.product.add-new')}}" class="btn btn-primary pull-right"><i
-                                class="tio-add-circle"></i> {{trans('messages.add')}} {{trans('messages.new')}} {{trans('messages.product')}}
+                                class="tio-add-circle"></i> {{trans('messages.add')}} {{trans('messages.product')}} {{trans('messages.new')}}
                         </a>
                         @endif
                     </div>

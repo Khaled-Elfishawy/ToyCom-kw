@@ -68,7 +68,7 @@
                             <!-- Form Group -->
                             <div class="js-form-message form-group">
                                 <label class="input-label text-capitalize"
-                                       for="signinSrEmail">{{trans('messages.your')}} {{trans('messages.email')}}</label>
+                                       for="signinSrEmail">{{trans('messages.email')}}</label>
 
                                 <input type="email" class="form-control form-control-lg" name="email" id="signinSrEmail"
                                        tabindex="1" placeholder="email@address.com" aria-label="email@address.com"

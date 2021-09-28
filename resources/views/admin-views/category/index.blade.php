@@ -15,7 +15,7 @@
                 <div class="row align-items-center">
                     <div class="col-sm mb-2 mb-sm-0">
                         <h1 class="page-header-title"><i
-                                class="tio-add-circle-outlined"></i> {{trans('messages.add')}} {{trans('messages.new')}} {{trans('messages.category')}}
+                                class="tio-add-circle-outlined"></i> {{trans('messages.add_new_cat')}}
                         </h1>
                     </div>
                 </div>
@@ -52,7 +52,8 @@
                                     <input type="file" name="image" id="customFileEg1" class="custom-file-input"
                                            accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*" required>
                                     <label class="custom-file-label"
-                                           for="customFileEg1">{{trans('messages.choose')}} {{trans('messages.file')}}</label>
+                                           for="customFileEg1"></label>
+{{--                                    {{trans('messages.choose')}} {{trans('messages.file')}}--}}
                                 </div>
                             </div>
                             <div class="col-12">

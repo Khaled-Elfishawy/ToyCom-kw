@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'add_new_cat' => 'add new category',
+    'categories' => 'categories',
+    'ages'=> 'ages',
+    'wrapping'=> 'wrapping',
     'no_wrapping'=> 'no wrapping',
     'no_gift_card'=> 'No Gift card',
     'from'=> 'from',
