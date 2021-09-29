@@ -62,7 +62,7 @@
                                         {{ csrf_field() }}
                                         <button class="btn btn-block" type="submit">
                                             <img width="100"
-                                                 src="{{asset('public/assets/admin/img/moyasar-logo.png')}}"/>
+                                                 src="{{asset('public/assets/admin/img/ATT00001.jpg')}}"/>
                                         </button>
                                     </form>
                                 </div>
