@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
-
+use IZaL\Knet\KnetBilling;
 
 class MoyasarController extends Controller
 {
@@ -31,9 +31,14 @@ class MoyasarController extends Controller
     public function paywithMoyasar(Request $request)
     {
         $order = Order::with(['details'])->where(['id' => session('order_id')])->first();
-        $tr_ref = Str::random(6) . '-' . rand(1, 1000); 
-     
-        return view('paywithMoyasar',compact('order'));
+        $tr_ref = Str::random(6) . '-' . rand(1, 1000);
+
+        $knetGateway = new KnetBilling([
+            'alias'        => 'modeaa',
+            'resourcePath' => 'C:\xampp\htdocs\ToyCom\public\\' //Absolute Path to where the resource.cgn file is located
+        ]);     
+        dd($knetGateway);
+        // return view('paywithMoyasar',compact('order'));
     }
     public function getPaymentStatus(Request $request)
     {

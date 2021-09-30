@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'AdminTableSeeder' => $baseDir . '/database/seeds/AdminTableSeeder.php',
+    'Alnazer\\KnetPayment\\Knet' => $vendorDir . '/alnazer/knet-payment/src/Knet.php',
     'App\\Age' => $baseDir . '/app/Age.php',
     'App\\Console\\Commands\\DatabaseRefresh' => $baseDir . '/app/Console/Commands/DatabaseRefresh.php',
     'App\\Console\\Commands\\DemoPackage' => $baseDir . '/app/Console/Commands/DemoPackage.php',
@@ -45,6 +46,7 @@ return array(
     'App\\Http\\Controllers\\Api\\V1\\Auth\\PasswordResetController' => $baseDir . '/app/Http/Controllers/Api/V1/Auth/PasswordResetController.php',
     'App\\Http\\Controllers\\Api\\V1\\BannerController' => $baseDir . '/app/Http/Controllers/Api/V1/BannerController.php',
     'App\\Http\\Controllers\\Api\\V1\\CategoryController' => $baseDir . '/app/Http/Controllers/Api/V1/CategoryController.php',
+    'App\\Http\\Controllers\\Api\\V1\\CitiesController' => $baseDir . '/app/Http/Controllers/Api/V1/CitiesController.php',
     'App\\Http\\Controllers\\Api\\V1\\ConfigController' => $baseDir . '/app/Http/Controllers/Api/V1/ConfigController.php',
     'App\\Http\\Controllers\\Api\\V1\\ConversationController' => $baseDir . '/app/Http/Controllers/Api/V1/ConversationController.php',
     'App\\Http\\Controllers\\Api\\V1\\CouponController' => $baseDir . '/app/Http/Controllers/Api/V1/CouponController.php',
@@ -1919,6 +1921,11 @@ return array(
     'Http\\Message\\ResponseFactory' => $vendorDir . '/php-http/message-factory/src/ResponseFactory.php',
     'Http\\Message\\StreamFactory' => $vendorDir . '/php-http/message-factory/src/StreamFactory.php',
     'Http\\Message\\UriFactory' => $vendorDir . '/php-http/message-factory/src/UriFactory.php',
+    'IZaL\\Knet\\Billing' => $vendorDir . '/izal/knet-payment-php/src/Billing.php',
+    'IZaL\\Knet\\Exceptions\\InvalidArgumentException' => $vendorDir . '/izal/knet-payment-php/src/Exceptions/InvalidArgumentException.php',
+    'IZaL\\Knet\\Exceptions\\InvalidResponseException' => $vendorDir . '/izal/knet-payment-php/src/Exceptions/InvalidResponseException.php',
+    'IZaL\\Knet\\Exceptions\\KeyMissingException' => $vendorDir . '/izal/knet-payment-php/src/Exceptions/KeyMissingException.php',
+    'IZaL\\Knet\\KnetBilling' => $vendorDir . '/izal/knet-payment-php/src/KnetBilling.php',
     'Illuminate\\Auth\\Access\\AuthorizationException' => $vendorDir . '/laravel/framework/src/Illuminate/Auth/Access/AuthorizationException.php',
     'Illuminate\\Auth\\Access\\Gate' => $vendorDir . '/laravel/framework/src/Illuminate/Auth/Access/Gate.php',
     'Illuminate\\Auth\\Access\\HandlesAuthorization' => $vendorDir . '/laravel/framework/src/Illuminate/Auth/Access/HandlesAuthorization.php',

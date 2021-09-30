@@ -196,6 +196,7 @@ class ComposerStaticInit9da9f5473fd3b4e318e0a2e33b103ee6
             'Intervention\\Image\\' => 19,
             'Illuminate\\Foundation\\Auth\\' => 27,
             'Illuminate\\' => 11,
+            'IZaL\\Knet\\' => 10,
         ),
         'H' => 
         array (
@@ -260,6 +261,7 @@ class ComposerStaticInit9da9f5473fd3b4e318e0a2e33b103ee6
         array (
             'Asm89\\Stack\\' => 12,
             'App\\' => 4,
+            'Alnazer\\KnetPayment\\' => 20,
         ),
     );
 
@@ -591,6 +593,10 @@ class ComposerStaticInit9da9f5473fd3b4e318e0a2e33b103ee6
         array (
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate',
         ),
+        'IZaL\\Knet\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/izal/knet-payment-php/src',
+        ),
         'Http\\Message\\' => 
         array (
             0 => __DIR__ . '/..' . '/php-http/message-factory/src',
@@ -751,6 +757,10 @@ class ComposerStaticInit9da9f5473fd3b4e318e0a2e33b103ee6
         array (
             0 => __DIR__ . '/../..' . '/app',
         ),
+        'Alnazer\\KnetPayment\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/alnazer/knet-payment/src',
+        ),
     );
 
     public static $prefixesPsr0 = array (
@@ -786,6 +796,7 @@ class ComposerStaticInit9da9f5473fd3b4e318e0a2e33b103ee6
 
     public static $classMap = array (
         'AdminTableSeeder' => __DIR__ . '/../..' . '/database/seeds/AdminTableSeeder.php',
+        'Alnazer\\KnetPayment\\Knet' => __DIR__ . '/..' . '/alnazer/knet-payment/src/Knet.php',
         'App\\Age' => __DIR__ . '/../..' . '/app/Age.php',
         'App\\Console\\Commands\\DatabaseRefresh' => __DIR__ . '/../..' . '/app/Console/Commands/DatabaseRefresh.php',
         'App\\Console\\Commands\\DemoPackage' => __DIR__ . '/../..' . '/app/Console/Commands/DemoPackage.php',
@@ -824,6 +835,7 @@ class ComposerStaticInit9da9f5473fd3b4e318e0a2e33b103ee6
         'App\\Http\\Controllers\\Api\\V1\\Auth\\PasswordResetController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/V1/Auth/PasswordResetController.php',
         'App\\Http\\Controllers\\Api\\V1\\BannerController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/V1/BannerController.php',
         'App\\Http\\Controllers\\Api\\V1\\CategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/V1/CategoryController.php',
+        'App\\Http\\Controllers\\Api\\V1\\CitiesController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/V1/CitiesController.php',
         'App\\Http\\Controllers\\Api\\V1\\ConfigController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/V1/ConfigController.php',
         'App\\Http\\Controllers\\Api\\V1\\ConversationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/V1/ConversationController.php',
         'App\\Http\\Controllers\\Api\\V1\\CouponController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/V1/CouponController.php',
@@ -2698,6 +2710,11 @@ class ComposerStaticInit9da9f5473fd3b4e318e0a2e33b103ee6
         'Http\\Message\\ResponseFactory' => __DIR__ . '/..' . '/php-http/message-factory/src/ResponseFactory.php',
         'Http\\Message\\StreamFactory' => __DIR__ . '/..' . '/php-http/message-factory/src/StreamFactory.php',
         'Http\\Message\\UriFactory' => __DIR__ . '/..' . '/php-http/message-factory/src/UriFactory.php',
+        'IZaL\\Knet\\Billing' => __DIR__ . '/..' . '/izal/knet-payment-php/src/Billing.php',
+        'IZaL\\Knet\\Exceptions\\InvalidArgumentException' => __DIR__ . '/..' . '/izal/knet-payment-php/src/Exceptions/InvalidArgumentException.php',
+        'IZaL\\Knet\\Exceptions\\InvalidResponseException' => __DIR__ . '/..' . '/izal/knet-payment-php/src/Exceptions/InvalidResponseException.php',
+        'IZaL\\Knet\\Exceptions\\KeyMissingException' => __DIR__ . '/..' . '/izal/knet-payment-php/src/Exceptions/KeyMissingException.php',
+        'IZaL\\Knet\\KnetBilling' => __DIR__ . '/..' . '/izal/knet-payment-php/src/KnetBilling.php',
         'Illuminate\\Auth\\Access\\AuthorizationException' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Access/AuthorizationException.php',
         'Illuminate\\Auth\\Access\\Gate' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Access/Gate.php',
         'Illuminate\\Auth\\Access\\HandlesAuthorization' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Access/HandlesAuthorization.php',

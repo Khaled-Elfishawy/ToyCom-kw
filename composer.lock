@@ -4,8 +4,53 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dbf3ceb954121ca1c764c41861e2e5b1",
+    "content-hash": "4c913811dad0ea0047b06976cf9e8974",
     "packages": [
+        {
+            "name": "alnazer/knet-payment",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alnazer/knet-payment.git",
+                "reference": "017d68ce6ef6a8486f8e8a64b98f2b5c7fc1a32f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alnazer/knet-payment/zipball/017d68ce6ef6a8486f8e8a64b98f2b5c7fc1a32f",
+                "reference": "017d68ce6ef6a8486f8e8a64b98f2b5c7fc1a32f",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.6 || ^7.0 || ~8.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Alnazer\\KnetPayment\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "hassan",
+                    "email": "hassanaliksa@gmail.com"
+                }
+            ],
+            "description": "We help you to develop your business by introducing the new add-on For payment through the K-Net portal, after it has been updated Expand your customers' circle by making the payment available via Knet",
+            "keywords": [
+                "knet",
+                "kuwait",
+                "payment"
+            ],
+            "support": {
+                "issues": "https://github.com/alnazer/knet-payment/issues",
+                "source": "https://github.com/alnazer/knet-payment"
+            },
+            "time": "2021-06-28T08:10:13+00:00"
+        },
         {
             "name": "asm89/stack-cors",
             "version": "v2.0.3",
@@ -1895,6 +1940,57 @@
                 "source": "https://github.com/Intervention/image/tree/master"
             },
             "time": "2019-11-02T09:15:47+00:00"
+        },
+        {
+            "name": "izal/knet-payment-php",
+            "version": "3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/iZaL/knet-payment-php.git",
+                "reference": "2c088485ab6db2d1590719d00bad2b144f0ccbea"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/iZaL/knet-payment-php/zipball/2c088485ab6db2d1590719d00bad2b144f0ccbea",
+                "reference": "2c088485ab6db2d1590719d00bad2b144f0ccbea",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": ">=6.0",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "IZaL\\Knet\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Afzal Abbas",
+                    "email": "z4ls@live.com"
+                }
+            ],
+            "description": "Php SDK for Knet Payment Gateway",
+            "keywords": [
+                "knet",
+                "knet client",
+                "knet payment",
+                "knet php",
+                "knet sdk"
+            ],
+            "support": {
+                "issues": "https://github.com/iZaL/knet-payment-php/issues",
+                "source": "https://github.com/iZaL/knet-payment-php/tree/3.1"
+            },
+            "time": "2020-09-19T02:38:46+00:00"
         },
         {
             "name": "kreait/clock",
@@ -10454,5 +10550,5 @@
         "ext-json": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }
