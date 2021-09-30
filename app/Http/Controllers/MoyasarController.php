@@ -35,7 +35,7 @@ class MoyasarController extends Controller
 
         $knetGateway = new KnetBilling([
             'alias'        => 'modeaa',
-            'resourcePath' => public_path() //Absolute Path to where the resource.cgn file is located
+            'resourcePath' => public_path('/') //Absolute Path to where the resource.cgn file is located
         ]);     
         dd($knetGateway);
         // return view('paywithMoyasar',compact('order'));
