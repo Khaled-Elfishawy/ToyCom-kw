@@ -64,7 +64,7 @@
                                             </div>
                                             <input id="datatableSearch_" type="search" name="search"
                                                    class="form-control"
-                                                   placeholder="Search" aria-label="Search" required>
+                                                   placeholder="Search" aria-label="Search">
                                             <button type="submit"
                                                     class="btn btn-primary">{{trans('messages.search')}}</button>
 

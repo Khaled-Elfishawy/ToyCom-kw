@@ -7,7 +7,7 @@
 
     <style>
         .for-time{
-            
+
     border: none;
     margin: 0;
     padding: 0;
@@ -33,7 +33,7 @@
                 <div class="col-6">
                     <h1 class="page-header-title">{{trans('messages.orders')}}   <span
                             class="badge badge-soft-dark ml-2">{{\App\Model\Order::count()}}</span></h1>
-                           
+
                 </div>
 
                 <div class="col-3">
@@ -61,7 +61,7 @@
                     <!-- End Select -->
                 </div>
             </div>
-           
+
             <!-- End Row -->
 
             <!-- Nav Scroller -->
@@ -244,7 +244,7 @@
                                                 </label>
                                                 <!-- End Checkbox Switch -->
                                             </div>
-                                            
+
                                             <div class="d-flex justify-content-between align-items-center mb-3">
                                                 <span class="mr-2">{{trans('messages.Time Slot')}}</span>
 
@@ -358,9 +358,9 @@
                         <th class="table-column-pl-0">{{trans('messages.order')}}</th>
                         <th>{{trans('messages.Delivery')}} {{trans('messages.date')}}</th>
                         <th>{{trans('messages.Time Slot')}}</th>
+                        <th>{{trans('messages.created_at')}}</th>
                         <th>{{trans('messages.customer')}}</th>
                         <th>{{trans('messages.branch')}}</th>
-                       
 
                         {{-- <th>{{trans('messages.payment')}} {{trans('messages.status')}}</th> --}}
                         <th>{{trans('messages.total')}}</th>
@@ -382,7 +382,10 @@
                             <td>{{date('d M Y',strtotime($order['delivery_date']))}}</td>
                             <td>
                                <span>{{$order->time_slot?$order->time_slot['start_time'].' - ' .$order->time_slot['end_time'] :'No Time Slot'}}</span>
-                            
+
+                            </td>
+                            <td>
+                              {{$order['created_at']}}
                             </td>
                             <td>
                                 @if($order->customer)
@@ -395,7 +398,7 @@
                             <td>
                                 <label class="badge badge-soft-primary">{{$order->branch?$order->branch->name:'Branch deleted!'}}</label>
                             </td>
-                           
+
                             {{-- <td>
                                 @if($order->payment_status=='paid')
                                     <span class="badge badge-soft-success">
@@ -651,7 +654,7 @@
         function filter_Users_orders(id) {
             location.href = '{{url('/')}}/admin/orders/user-filter/' + id;
         }
-      
+
     </script>
 
     <script>
@@ -693,14 +696,14 @@
                 data:{
                     'dateData': dateData,
                 } ,
-                
+
                 beforeSend: function () {
                     $('#loading').show();
                 },
                 success: function (data) {
-                  
-        //                  console.log(data.timeSlot) 
-                        
+
+        //                  console.log(data.timeSlot)
+
         //                  $('#from_time').html("")
         //    $.each(data.timeSlot,function(index,value){
         //        console.log(value)
@@ -708,10 +711,10 @@
         //   });
 
 
-        
-                      
+
+
                     // $('#from_time').html(`<option value="${data.timeSlot['id']}">${datat.timeSlot['start_time']} - ${data.timeSlot['end_time']}</option>`)
-                  
+
                     $('#set-rows').html(data.view);
                     $('.card-footer').hide();
                 },
@@ -723,7 +726,7 @@
         $('#from_time').on('change', function () {
             let timeData = $('#from_time').val();
             let dateData = $('#from_date').val();
-            
+
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -736,7 +739,7 @@
                     'dateData': dateData,
 
                 } ,
-                
+
                 beforeSend: function () {
                     $('#loading').show();
                 },
@@ -750,5 +753,5 @@
             });
         });
     </script>
-    
+
 @endpush

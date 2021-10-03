@@ -78,12 +78,22 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label class="input-label"
-                                           for="exampleFormControlInput1">{{trans('messages.price')}}</label>
-                                    <input type="number" min="1" max="100000" step="0.01" value="{{ $product['price'] }}" name="price"
+                                           for="exampleFormControlInput1">{{trans('messages.price_seller')}}</label>
+                                    <input type="number" min="1" max="100000" step="0.01" value="{{$product->price}}" name="price"
                                            class="form-control"
                                            placeholder="Ex : 100" required>
                                 </div>
                             </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label class="input-label"
+                                           for="exampleFormControlInput1">{{trans('messages.gomla_price')}}</label>
+                                    <input type="number" min="1" max="100000" step="0.01" value="{{$product->gomla_price}}" name="gomla_price"
+                                           class="form-control"
+                                           placeholder="Ex : 50" required>
+                                </div>
+                            </div>
+                            {{--
                             @foreach($prices as $price)
                                 <div class="col-6">
                                     <div class="form-group">
@@ -96,7 +106,8 @@
                                 </div>
 
                             @endforeach
-                            <div class="col-6">
+                            --}}
+                            <div class="col-12">
                                 <div class="form-group">
                                     <label class="input-label"
                                            for="exampleFormControlInput1">{{trans('messages.stock')}}</label>
@@ -143,6 +154,21 @@
                                            placeholder="Ex : 100">
                                 </div>
                             </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label class="input-label"
+                                           for="">{{trans('messages.by_date')}}</label>
+                                    <input type="date" name="by_date" value="{{$product->by_date}}"  class="form-control" id="">
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label class="input-label"
+                                           for="">{{trans('messages.barcode')}}</label>
+                                    <input type="text" name="barcode" value="{{$product->barcode}}" class="form-control" id="">
+                                </div>
+                            </div>
                             <div class="col-md-6 col-6">
                                 <div class="form-group">
                                     <label class="input-label"
@@ -160,7 +186,8 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-6 col-6">
+
+                            <div class="col-md-12 col-12">
                                 <div class="form-group">
                                     <label class="input-label"
                                            for="exampleFormControlSelect1">{{trans('messages.category')}}<span
@@ -174,6 +201,7 @@
                                     </select>
                                 </div>
                             </div>
+                            {{--
                             <div class="col-md-6 col-6">
                                 <div class="form-group">
                                     <label class="input-label"
@@ -187,6 +215,7 @@
                                     </select>
                                 </div>
                             </div>
+                            --}}
                         </div>
 
                         <div class="row"

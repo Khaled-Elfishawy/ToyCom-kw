@@ -3,8 +3,11 @@
 <?php
 
 return [
-
-
+    'barcode' => 'الباركود',
+    'by_date' => 'تاريخ شراء اللعبه',
+    'gomla_price' => 'سعر الجمله',
+    'price_seller' => 'سعر البيع',
+    'created_at' => 'انشئ في',
     'add_new_cat' => 'أضافة قسم جديد',
     'categories' => 'الاقسام',
     'ages'=> 'الاعمار',

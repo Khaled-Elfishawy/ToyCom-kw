@@ -72,13 +72,23 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label class="input-label"
-                                           for="exampleFormControlInput1">{{trans('messages.price')}}</label>
+                                           for="exampleFormControlInput1">{{trans('messages.price_seller')}}</label>
                                     <input type="number" min="1" max="100000" step="0.01" value="1" name="price"
                                            class="form-control"
                                            placeholder="Ex : 100" required>
                                 </div>
                             </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label class="input-label"
+                                           for="exampleFormControlInput1">{{trans('messages.gomla_price')}}</label>
+                                    <input type="number" min="1" max="100000" step="0.01" value="1" name="gomla_price"
+                                           class="form-control"
+                                           placeholder="Ex : 50" required>
+                                </div>
+                            </div>
 
+                            {{--
                             @foreach($prices as $price)
                                 <div class="col-6">
                                     <div class="form-group">
@@ -91,7 +101,7 @@
                                 </div>
 
                             @endforeach
-
+                            --}}
                             <div class="col-6">
                                 <div class="form-group">
                                     <label class="input-label"
@@ -140,6 +150,21 @@
                                             <option value="male" selected>{{trans('messages.male')}}</option>
                                             <option value="female">{{trans('messages.female')}}</option>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label class="input-label"
+                                           for="">{{trans('messages.by_date')}}</label>
+                                    <input type="date" name="by_date" class="form-control" id="">
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label class="input-label"
+                                           for="">{{trans('messages.barcode')}}</label>
+                                    <input type="text" name="barcode" class="form-control" id="">
                                 </div>
                             </div>
                         </div>
@@ -203,6 +228,7 @@
                                     </select>
                                 </div>
                             </div>
+                            {{--
                             <div class="col-md-6 col-6">
                                 <div class="form-group">
                                     <label class="input-label"
@@ -215,6 +241,7 @@
                                     </select>
                                 </div>
                             </div>
+                            -- }}
                             {{--<div class="col-md-4 col-6">
                                 <div class="form-group">
                                     <label class="input-label" for="exampleFormControlSelect1">Sub Sub Category<span

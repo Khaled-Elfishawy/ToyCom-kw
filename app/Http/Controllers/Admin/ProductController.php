@@ -80,12 +80,17 @@ class ProductController extends Controller
 
     public function search(Request $request)
     {
-        $key = explode(' ', $request['search']);
-        $products = Product::where(function ($q) use ($key) {
-            foreach ($key as $value) {
-                $q->orWhere('name', 'like', "%{$value}%");
-            }
-        })->get();
+        if($request['search'] == "") {
+            $products = Product::latest()->paginate(10);
+        } else {
+            $key = explode(' ', $request['search']);
+            $products = Product::where(function ($q) use ($key) {
+                foreach ($key as $value) {
+                    $q->orWhere('name', 'like', "%{$value}%");
+                    $q->orWhere('barcode', 'like', "%{$value}%");
+                }
+            })->paginate(10);
+        }
         return response()->json([
             'view' => view('admin-views.product.partials._table', compact('products'))->render(),
         ]);
@@ -107,8 +112,11 @@ class ProductController extends Controller
             'age_id' => 'required',
             'images'      => 'required',
             'gender'      => 'required',
+            'by_date'      => 'required',
+            'barcode'      => 'required',
             'total_stock' => 'required|numeric|min:1',
             'price'       => 'required|numeric|min:1',
+            'gomla_price'       => 'required|numeric|min:1',
         ], [
             'name.required'        => 'Product name is required!',
             'category_id.required' => 'category  is required!',
@@ -147,6 +155,7 @@ class ProductController extends Controller
                 'position' => 1,
             ]);
         }
+        /*
         if ($request->sub_category_id != null) {
             array_push($category, [
                 'id'       => $request->sub_category_id,
@@ -159,8 +168,9 @@ class ProductController extends Controller
                 'position' => 3,
             ]);
         }
-
+ */
         $p->category_ids = json_encode($category);
+
         $p->description = ($request->description)?$request->description:$request->description;
         $p->description_ar = ($request->description_ar)?$request->description_ar:$request->description ;
 
@@ -225,6 +235,9 @@ class ProductController extends Controller
         //combinations end
         $p->variations = json_encode($variations);
         $p->price = $request->price;
+        $p->gomla_price = $request->gomla_price;
+        $p->by_date = $request->by_date;
+        $p->barcode = $request->barcode;
         $p->capacity = $request->capacity;
 
         $p->unit = $request->unit;
@@ -236,7 +249,7 @@ class ProductController extends Controller
         $p->discount = $request->discount_type == 'amount' ? $request->discount : $request->discount;
         $p->discount_type = $request->discount_type;
         $p->total_stock = $request->total_stock;
-        $p->price_group = $request->pricegroup;
+       // $p->price_group = $request->pricegroup;
         $p->age_id = $request->age_id;
         $p->brand_id = $request->brand_id;
         $p->gender = $request->gender;
@@ -271,6 +284,9 @@ class ProductController extends Controller
             'name'        => 'required',
             'category_id' => 'required',
             'price'       => 'required|numeric|min:1',
+            'by_date'      => 'required',
+            'barcode'      => 'required',
+            'gomla_price'       => 'required|numeric|min:1',
         ], [
             'name.required'        => 'Product name is required!',
             'category_id.required' => 'category  is required!',
@@ -314,6 +330,7 @@ class ProductController extends Controller
                 'position' => 1,
             ]);
         }
+        /*
         if ($request->sub_category_id != null) {
             array_push($category, [
                 'id'       => $request->sub_category_id,
@@ -326,7 +343,7 @@ class ProductController extends Controller
                 'position' => 3,
             ]);
         }
-
+*/
         $p->category_ids = json_encode($category);
         $p->description = ($request->description)?($request->description):$request->description;
         $p->description_ar = ($request->description_ar)?($request->description_ar):$request->description;
@@ -399,7 +416,10 @@ class ProductController extends Controller
         $p->discount = $request->discount_type == 'amount' ? $request->discount : $request->discount;
         $p->discount_type = $request->discount_type;
         $p->total_stock = $request->total_stock;
-        $p->price_group = $request->pricegroup;
+        $p->gomla_price = $request->gomla_price;
+        $p->by_date = $request->by_date;
+        $p->barcode = $request->barcode;
+      //  $p->price_group = $request->pricegroup;
         $p->attributes = $request->has('attribute_id') ? json_encode($request->attribute_id) : json_encode([]);
         $p->save();
 
