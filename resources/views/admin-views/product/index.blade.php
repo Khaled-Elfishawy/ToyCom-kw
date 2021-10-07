@@ -114,7 +114,7 @@
                                 <div class="form-group">
                                     <label class="input-label"
                                            for="exampleFormControlInput1">{{trans('messages.age')}}</label>
-                                    <select name="age_id" required class="form-control js-select2-custom">
+                                    <select name="ages[]" required multiple="multiple" class="form-control js-select2-custom">
                                         @foreach($ages as $age)
                                         <option value="{{$age->id}}">@if(app()->getLocale() == 'ar')
                                                 {{$age->name_ar}}
@@ -147,7 +147,8 @@
                                     <label class="input-label"
                                            for="exampleFormControlInput1">{{trans('messages.gender')}}</label>
                                     <select name="gender" required class="form-control js-select2-custom">
-                                            <option value="male" selected>{{trans('messages.male')}}</option>
+                                            <option value="all" selected>{{trans('messages.genderAll')}}</option>
+                                            <option value="male">{{trans('messages.male')}}</option>
                                             <option value="female">{{trans('messages.female')}}</option>
                                     </select>
                                 </div>
@@ -156,7 +157,7 @@
                                 <div class="form-group">
                                     <label class="input-label"
                                            for="">{{trans('messages.by_date')}}</label>
-                                    <input type="date" name="by_date" class="form-control" id="">
+                                    <input type="date" required name="by_date" class="form-control" id="">
                                 </div>
                             </div>
 

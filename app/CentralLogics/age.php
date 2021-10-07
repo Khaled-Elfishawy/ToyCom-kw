@@ -10,23 +10,17 @@ class AgeLogic
     public static function products($age_id ,$gender)
     {
         if ($age_id == 0) {
-            $products = Product::active()->get();
-            $product_ids = [];
-            foreach ($products as $product) {
-                if ($product['gender'] == $gender) {
-                    array_push($product_ids, $product['id']);
-                }
-            }
-            return Product::active()->withCount(['wishlist'])->with('rating')->whereIn('id', $product_ids)->get();
-        }else{        
-            $products = Product::active()->get();
-            $product_ids = [];
-            foreach ($products as $product) {
-                if ($product['age_id'] == $age_id && $product['gender'] == $gender) {
-                    array_push($product_ids, $product['id']);
-                }
-            }
-            return Product::active()->withCount(['wishlist'])->with('rating')->whereIn('id', $product_ids)->get();
+            $products = Product::active()->where(function($e)use($gender){
+                $e->where('gender',$gender)->orWhere('gender','all');
+            })->withCount(['wishlist'])->with('rating')->get();
+            return $products;
+        }else{   
+            $products = Product::active()->whereHas('Ages',function($e)use($age_id){
+                $e->where('age_id',$age_id);
+            })->where(function($e)use($gender){
+                $e->where('gender',$gender)->orWhere('gender','all');
+            })->withCount(['wishlist'])->with('rating')->get();
+            return $products;
         }
     }
     public static function barnds($id)

@@ -16,7 +16,7 @@ class UpdateProducts2Tabel extends Migration
         Schema::table('products', function (Blueprint $table) {
            $table->integer('gomla_price');
            $table->string('barcode');
-           $table->date('by_date');
+           $table->date('by_date')->nullable();
         });
     }
 

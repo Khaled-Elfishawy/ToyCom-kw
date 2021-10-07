@@ -38,6 +38,10 @@ class Product extends Model
     {
         return $this->hasMany(Wishlist::class)->latest();
     }
+    public function Ages()
+    {
+        return $this->hasMany(Product_age::class);
+    }
 
     public function rating()
     {

@@ -9,6 +9,7 @@ use App\Model\Brand;
 use App\Model\Category;
 use App\Model\PriceGroup;
 use App\Model\Product;
+use App\Model\Product_age;
 use App\Model\Review;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
@@ -109,7 +110,7 @@ class ProductController extends Controller
             'name'        => 'required|unique:products',
             'category_id' => 'required',
             'brand_id' => 'required',
-            'age_id' => 'required',
+            'ages' => 'required',
             'images'      => 'required',
             'gender'      => 'required',
             'by_date'      => 'required',
@@ -249,14 +250,15 @@ class ProductController extends Controller
         $p->discount = $request->discount_type == 'amount' ? $request->discount : $request->discount;
         $p->discount_type = $request->discount_type;
         $p->total_stock = $request->total_stock;
-       // $p->price_group = $request->pricegroup;
-        $p->age_id = $request->age_id;
         $p->brand_id = $request->brand_id;
         $p->gender = $request->gender;
         $p->attributes = $request->has('attribute_id') ? json_encode($request->attribute_id) : json_encode([]);
         $p->save();
-
-
+        $age_data['product_id'] = $p->id;
+        foreach ($request->ages as $row){
+            $age_data['age_id'] = $row;
+            Product_age::create($age_data);
+        }
         return response()->json([], 200);
     }
 
