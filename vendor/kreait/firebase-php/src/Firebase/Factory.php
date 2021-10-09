@@ -29,6 +29,7 @@ use Google\Cloud\Storage\StorageClient;
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\MessageFormatter;
+use GuzzleHttp\Psr7\Utils as GuzzleUtils;
 use GuzzleHttp\RequestOptions;
 use Kreait\Clock;
 use Kreait\Clock\SystemClock;
@@ -52,7 +53,6 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 use Psr\SimpleCache\CacheInterface;
 use Throwable;
-use function GuzzleHttp\Psr7\uri_for;
 
 class Factory
 {
@@ -67,51 +67,37 @@ class Factory
         'https://www.googleapis.com/auth/securetoken',
     ];
 
-    /** @var UriInterface|null */
-    protected $databaseUri;
+    protected ?UriInterface $databaseUri = null;
 
-    /** @var string|null */
-    protected $defaultStorageBucket;
+    protected ?string $defaultStorageBucket = null;
 
-    /** @var ServiceAccount|null */
-    protected $serviceAccount;
+    protected ?ServiceAccount $serviceAccount = null;
 
     /** @var ServiceAccountCredentials|UserRefreshCredentials|AppIdentityCredentials|GCECredentials|CredentialsLoader|null */
     protected $googleAuthTokenCredentials;
 
-    /** @var ProjectId|null */
-    protected $projectId;
+    protected ?ProjectId $projectId = null;
 
-    /** @var Email|null */
-    protected $clientEmail;
+    protected ?Email $clientEmail = null;
 
-    /** @var CacheInterface */
-    protected $verifierCache;
+    protected CacheInterface $verifierCache;
 
-    /** @var CacheItemPoolInterface */
-    protected $authTokenCache;
+    protected CacheItemPoolInterface $authTokenCache;
 
-    /** @var bool */
-    protected $discoveryIsDisabled = false;
+    protected bool $discoveryIsDisabled = false;
 
-    /** @var bool */
-    protected $guzzleDebugModeIsEnabled = false;
+    protected bool $guzzleDebugModeIsEnabled = false;
 
     /**
-     * @var string|null
-     *
      * @deprecated 5.7.0 Use {@see withClientOptions} instead.
      */
-    protected $httpProxy;
+    protected ?string $httpProxy = null;
 
-    /** @var string */
-    protected static $databaseUriPattern = 'https://%s.firebaseio.com';
+    protected static string $databaseUriPattern = 'https://%s.firebaseio.com';
 
-    /** @var string */
-    protected static $storageBucketNamePattern = '%s.appspot.com';
+    protected static string $storageBucketNamePattern = '%s.appspot.com';
 
-    /** @var Clock */
-    protected $clock;
+    protected Clock $clock;
 
     /** @var callable|null */
     protected $httpLogMiddleware;
@@ -119,11 +105,12 @@ class Factory
     /** @var callable|null */
     protected $httpDebugLogMiddleware;
 
-    /** @var TenantId|null */
-    protected $tenantId;
+    /** @var callable|null */
+    protected $databaseAuthVariableOverrideMiddleware;
 
-    /** @var HttpClientOptions */
-    protected $httpClientOptions;
+    protected ?TenantId $tenantId = null;
+
+    protected HttpClientOptions $httpClientOptions;
 
     public function __construct()
     {
@@ -145,7 +132,8 @@ class Factory
 
         return $factory
             ->withProjectId($serviceAccount->getProjectId())
-            ->withClientEmail($serviceAccount->getClientEmail());
+            ->withClientEmail($serviceAccount->getClientEmail())
+        ;
     }
 
     public function withProjectId(string $projectId): self
@@ -186,7 +174,26 @@ class Factory
     public function withDatabaseUri($uri): self
     {
         $factory = clone $this;
-        $factory->databaseUri = uri_for($uri);
+        $factory->databaseUri = GuzzleUtils::uriFor($uri);
+
+        return $factory;
+    }
+
+    /**
+     * The object to use as the `auth` variable in your Realtime Database Rules
+     * when the Admin SDK reads from or writes to the Realtime Database.
+     *
+     * This allows you to downscope the Admin SDK from its default full read and
+     * write privileges. You can pass `null` to act as an unauthenticated client.
+     *
+     * @see https://firebase.google.com/docs/database/admin/start#authenticate-with-limited-privileges
+     *
+     * @param array<string, mixed>|null $override
+     */
+    public function withDatabaseAuthVariableOverride(?array $override): self
+    {
+        $factory = clone $this;
+        $factory->databaseAuthVariableOverrideMiddleware = Middleware::addDatabaseAuthVariableOverride($override);
 
         return $factory;
     }
@@ -366,12 +373,16 @@ class Factory
             return null;
         }
 
-        if (
-            ($credentials = $this->getGoogleAuthTokenCredentials())
-            && ($credentials instanceof SignBlobInterface)
-            && ($clientEmail = $credentials->getClientName())
-        ) {
-            return $this->clientEmail = new Email($clientEmail);
+        try {
+            if (
+                ($credentials = $this->getGoogleAuthTokenCredentials())
+                && ($credentials instanceof SignBlobInterface)
+                && ($clientEmail = $credentials->getClientName())
+            ) {
+                return $this->clientEmail = new Email($clientEmail);
+            }
+        } catch (Throwable $e) {
+            return null;
         }
 
         return null;
@@ -384,7 +395,7 @@ class Factory
         }
 
         if ($projectId = $this->getProjectId()) {
-            return $this->databaseUri = uri_for(\sprintf(self::$databaseUriPattern, $projectId->sanitizedValue()));
+            return $this->databaseUri = GuzzleUtils::uriFor(\sprintf(self::$databaseUriPattern, $projectId->sanitizedValue()));
         }
 
         throw new RuntimeException('Unable to build a database URI without a project ID');
@@ -405,19 +416,19 @@ class Factory
 
     public function createAuth(): Contract\Auth
     {
-        $http = $this->createApiClient([
+        $projectId = $this->getProjectId();
+        $tenantId = $this->tenantId;
+
+        $httpClient = $this->createApiClient([
             'base_uri' => 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/',
         ]);
 
-        $apiClient = new Auth\ApiClient($http, $this->tenantId);
-
+        $authApiClient = new Auth\ApiClient($httpClient, $tenantId);
         $customTokenGenerator = $this->createCustomTokenGenerator();
-
         $idTokenVerifier = $this->createIdTokenVerifier();
+        $signInHandler = new Firebase\Auth\SignIn\GuzzleHandler($httpClient);
 
-        $signInHandler = new Firebase\Auth\SignIn\GuzzleHandler($http);
-
-        return new Auth($apiClient, $customTokenGenerator, $idTokenVerifier, $signInHandler, $this->tenantId);
+        return new Auth($authApiClient, $httpClient, $customTokenGenerator, $idTokenVerifier, $signInHandler, $tenantId, $projectId);
     }
 
     public function createCustomTokenGenerator(): Generator
@@ -469,6 +480,10 @@ class Factory
         /** @var HandlerStack $handler */
         $handler = $http->getConfig('handler');
         $handler->push(Firebase\Http\Middleware::ensureJsonSuffix(), 'realtime_database_json_suffix');
+
+        if ($this->databaseAuthVariableOverrideMiddleware) {
+            $handler->push($this->databaseAuthVariableOverrideMiddleware, 'database_auth_variable_override');
+        }
 
         return new Database($this->getDatabaseUri(), new Database\ApiClient($http));
     }
@@ -582,6 +597,53 @@ class Factory
         }
 
         return new Storage($storageClient, $this->getStorageBucketName());
+    }
+
+    /**
+     * @codeCoverageIgnore
+     *
+     * @return array{
+     *     credentialsType: class-string|null,
+     *     databaseUrl: string,
+     *     defaultStorageBucket: string|null,
+     *     serviceAccount: array{
+     *         client_email: string|null,
+     *         private_key: string|null,
+     *         project_id: string|null,
+     *         type: string
+     *     }|array<string, string|null>|null,
+     *     projectId: string|null,
+     *     tenantId: string|null,
+     *     verifierCacheType: class-string|null,
+     * }
+     */
+    public function getDebugInfo(): array
+    {
+        $projectId = $this->getProjectId();
+        $credentials = $this->getGoogleAuthTokenCredentials();
+
+        try {
+            $databaseUrl = (string) $this->getDatabaseUri();
+        } catch (Throwable $e) {
+            $databaseUrl = $e->getMessage();
+        }
+
+        $serviceAccountInfo = null;
+        if ($serviceAccount = $this->getServiceAccount()) {
+            $serviceAccountInfo = $serviceAccount->asArray();
+            $serviceAccountInfo['private_key'] = $serviceAccountInfo['private_key'] ? '{exists, redacted}' : '{not set}';
+        }
+
+        return [
+            'credentialsType' => $credentials ? \get_class($credentials) : null,
+            'databaseUrl' => $databaseUrl,
+            'defaultStorageBucket' => $this->defaultStorageBucket,
+            'projectId' => $projectId ? $projectId->value() : null,
+            'serviceAccount' => $serviceAccountInfo,
+            'tenantId' => $this->tenantId ? $this->tenantId->toString() : null,
+            'tokenCacheType' => \get_class($this->authTokenCache),
+            'verifierCacheType' => \get_class($this->verifierCache),
+        ];
     }
 
     /**

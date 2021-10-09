@@ -54,7 +54,7 @@ Route::post('/ipn', 'SslCommerzPaymentController@ipn');
 /*paypal*/
 /*paypal*/
 /*Route::get('/paypal', function (){return view('paypal-test');})->name('paypal');*/
-Route::post('pay-paypal', 'MoyasarController@paywithMoyasar')->name('pay-paypal');
+Route::post('pay-paypal', 'MoyasarController@paywith')->name('pay-paypal');
 Route::get('paypal-status', 'MoyasarController@getPaymentStatus')->name('paypal-status');
 Route::post('moyasar-oncomplate/{order}', 'MoyasarController@oncomplate')->name('moyasar-oncomplate');
 /*paypal*/
@@ -74,7 +74,9 @@ return redirect('/admin/auth/login');
 
 Route::get('payment-success', 'PaymentController@success')->name('payment-success');
 Route::get('payment-fail', 'PaymentController@fail')->name('payment-fail');
-
+//Knet
+Route::post('knet-response', 'MoyasarController@response')->name('knet-response');
+Route::post('knet-error', 'MoyasarController@error')->name('knet-error');
 //senang pay
 Route::match(['get', 'post'], '/return-senang-pay', 'SenangPayController@return_senang_pay')->name('return-senang-pay');
 

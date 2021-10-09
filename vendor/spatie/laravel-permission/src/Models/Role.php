@@ -21,7 +21,7 @@ class Role extends Model implements RoleContract
 
     public function __construct(array $attributes = [])
     {
-        $attributes['guard_name'] = 'admin';
+        $attributes['guard_name'] = $attributes['guard_name'] ?? config('auth.defaults.guard');
 
         parent::__construct($attributes);
     }
@@ -138,19 +138,20 @@ class Role extends Model implements RoleContract
     public function hasPermissionTo($permission): bool
     {
         if (config('permission.enable_wildcard_permission', false)) {
-            return $this->hasWildcardPermission($permission, 'admin');
+            return $this->hasWildcardPermission($permission, $this->getDefaultGuardName());
         }
 
         $permissionClass = $this->getPermissionClass();
 
         if (is_string($permission)) {
-            $permission = $permissionClass->findByName($permission, 'admin');
+            $permission = $permissionClass->findByName($permission, $this->getDefaultGuardName());
         }
 
         if (is_int($permission)) {
-            $permission = $permissionClass->findById($permission, 'admin');
+            $permission = $permissionClass->findById($permission, $this->getDefaultGuardName());
         }
-        if ($permission->guard_name != 'admin') {
+
+        if (! $this->getGuardNames()->contains($permission->guard_name)) {
             throw GuardDoesNotMatch::create($permission->guard_name, $this->getGuardNames());
         }
 

@@ -1,5 +1,56 @@
 # Changelog
 
+## 7.98.0 - 2021-10-07
+* [#1187](https://github.com/stripe/stripe-php/pull/1187) API Updates
+  * Add support for `phone_number_collection` on `Checkout.Session`
+  * Add support for new value `customer_id` on enum `Radar.ValueList.item_type`
+  * Add support for new value `bbpos_wisepos_e` on enum `Terminal.Reader.device_type`
+
+## 7.97.0 - 2021-09-16
+* [#1181](https://github.com/stripe/stripe-php/pull/1181) API Updates
+  * Add support for `full_name_aliases` on `Person`
+
+## 7.96.0 - 2021-09-15
+* [#1178](https://github.com/stripe/stripe-php/pull/1178) API Updates
+  * Add support for livemode on Reporting.ReportType
+  * Add support for new value `rst` on enum `TaxRate.tax_type`
+
+## 7.95.0 - 2021-09-01
+* [#1177](https://github.com/stripe/stripe-php/pull/1177) API Updates
+  * Add support for `future_requirements` on `Account`, `Capability`, and `Person`
+  * Add support for `after_expiration`, `consent`, `consent_collection`, `expires_at`, and `recovered_from` on `Checkout.Session`
+
+## 7.94.0 - 2021-08-19
+* [#1173](https://github.com/stripe/stripe-php/pull/1173) API Updates
+  * Add support for new value `fil` on enum `Checkout.Session.locale`
+  * Add support for new value `au_arn` on enum `TaxId.type`
+
+## 7.93.0 - 2021-08-11
+* [#1172](https://github.com/stripe/stripe-php/pull/1172) API Updates
+  * Add support for `locale` on `BillingPortal.Session`
+
+* [#1171](https://github.com/stripe/stripe-php/pull/1171) Fix typo in docblock `CurlClient::executeStreamingRequestWithRetries`
+
+## 7.92.0 - 2021-07-28
+* [#1167](https://github.com/stripe/stripe-php/pull/1167) API Updates
+  * Add support for `account_type` on `BankAccount`
+  * Add support for new value `redacted` on enum `Review.closed_reason`
+
+## 7.91.0 - 2021-07-22
+* [#1164](https://github.com/stripe/stripe-php/pull/1164) API Updates
+  * Add support for new values `hr`, `ko`, and `vi` on enum `Checkout.Session.locale`
+  * Add support for `payment_settings` on `Subscription`
+
+## 7.90.0 - 2021-07-20
+* [#1163](https://github.com/stripe/stripe-php/pull/1163) API Updates
+  * Add support for `wallet` on `Issuing.Transaction`
+* [#1160](https://github.com/stripe/stripe-php/pull/1160) Remove unused API error types from docs.
+
+## 7.89.0 - 2021-07-14
+* [#1158](https://github.com/stripe/stripe-php/pull/1158) API Updates
+  * Add support for `list_computed_upfront_line_items` method on resource `Quote`
+* [#1157](https://github.com/stripe/stripe-php/pull/1157) Improve readme for old PHP versions
+
 ## 7.88.0 - 2021-07-09
 * [#1152](https://github.com/stripe/stripe-php/pull/1152) API Updates
   * Add support for new resource `Quote`

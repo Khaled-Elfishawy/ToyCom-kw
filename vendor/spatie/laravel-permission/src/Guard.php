@@ -56,7 +56,8 @@ class Guard
      */
     public static function getDefaultName($class): string
     {
-        $default = 'admin';
+        $default = config('auth.defaults.guard');
+
         return static::getNames($class)->first() ?: $default;
     }
 }

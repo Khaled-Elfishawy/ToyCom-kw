@@ -348,6 +348,9 @@ trait HasPermissions
 
             $class::saved(
                 function ($object) use ($permissions, $model) {
+                    if ($model->getKey() != $object->getKey()) {
+                        return;
+                    }
                     $model->permissions()->sync($permissions, false);
                     $model->load('permissions');
                 }
@@ -430,7 +433,7 @@ trait HasPermissions
      */
     protected function ensureModelSharesGuard($roleOrPermission)
     {
-        if ($roleOrPermission->guard_name != 'admin') {
+        if (! $this->getGuardNames()->contains($roleOrPermission->guard_name)) {
             throw GuardDoesNotMatch::create($roleOrPermission->guard_name, $this->getGuardNames());
         }
     }
