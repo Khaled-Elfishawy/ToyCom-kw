@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'genderAll' => 'all',
     'main_image' => 'main image',
     'add_new_cat' => 'add new category',
     'categories' => 'categories',

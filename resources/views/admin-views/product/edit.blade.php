@@ -28,16 +28,18 @@
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label class="input-label" for="exampleFormControlInput1">{{trans('messages.name_en')}}</label>
+                                    <label class="input-label"
+                                           for="exampleFormControlInput1">{{trans('messages.name_en')}}</label>
                                     <input type="text" name="name" value="{{$product['name']}}" class="form-control"
-                                           required placeholder="New Product In English" >
+                                           required placeholder="New Product In English">
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label class="input-label" for="exampleFormControlInput1">{{trans('messages.name_ar')}}</label>
+                                    <label class="input-label"
+                                           for="exampleFormControlInput1">{{trans('messages.name_ar')}}</label>
                                     <input type="text" name="name_ar" value="{{$product['name_ar']}}"
-                                           class="form-control" placeholder="New Product In Arabic" >
+                                           class="form-control" placeholder="New Product In Arabic">
                                 </div>
                             </div>
                         </div>
@@ -47,7 +49,8 @@
                                 <div class="form-group">
                                     <label class="input-label"
                                            for="exampleFormControlInput1">{{trans('messages.capacity')}}</label>
-                                    <input type="number" min="1" max="100" step="0.01" value="{{ $product['capacity'] }}" name="capacity"
+                                    <input type="number" min="1" max="100" step="0.01"
+                                           value="{{ $product['capacity'] }}" name="capacity"
                                            class="form-control"
                                            placeholder="Ex : 5" required>
                                 </div>
@@ -79,7 +82,8 @@
                                 <div class="form-group">
                                     <label class="input-label"
                                            for="exampleFormControlInput1">{{trans('messages.price_seller')}}</label>
-                                    <input type="number" min="1" max="100000" step="0.01" value="{{$product->price}}" name="price"
+                                    <input type="number" min="1" max="100000" step="0.01" value="{{$product->price}}"
+                                           name="price"
                                            class="form-control"
                                            placeholder="Ex : 100" required>
                                 </div>
@@ -88,7 +92,8 @@
                                 <div class="form-group">
                                     <label class="input-label"
                                            for="exampleFormControlInput1">{{trans('messages.gomla_price')}}</label>
-                                    <input type="number" min="1" max="100000" step="0.01" value="{{$product->gomla_price}}" name="gomla_price"
+                                    <input type="number" min="1" max="100000" step="0.01"
+                                           value="{{$product->gomla_price}}" name="gomla_price"
                                            class="form-control"
                                            placeholder="Ex : 50" required>
                                 </div>
@@ -107,12 +112,76 @@
 
                             @endforeach
                             --}}
-                            <div class="col-12">
+                            <div class="col-6">
                                 <div class="form-group">
                                     <label class="input-label"
                                            for="exampleFormControlInput1">{{trans('messages.stock')}}</label>
-                                    <input type="number" min="0" max="100000000" value="{{ $product['total_stock'] }}" name="total_stock" class="form-control"
+                                    <input type="number" min="0" max="100000000" value="{{ $product['total_stock'] }}"
+                                           name="total_stock" class="form-control"
                                            placeholder="Ex : 100">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label class="input-label"
+                                           for="exampleFormControlInput1">{{trans('messages.age')}}</label>
+                                    <select name="ages[]" required multiple="multiple"
+                                            class="form-control js-select2-custom">
+                                        @foreach($ages as $age)
+                                            @php $exist_age = \App\Model\Product_age::where('product_id',$product['id'])->where('age_id',$age->id)->first(); @endphp
+                                            @if($exist_age)
+                                                <option value="{{$age->id}}" selected>@if(app()->getLocale() == 'ar')
+                                                        {{$age->name_ar}}
+                                                    @else
+                                                        {{$age->name_en}}
+                                                    @endif
+                                                </option>
+                                            @else
+                                                <option value="{{$age->id}}">@if(app()->getLocale() == 'ar')
+                                                        {{$age->name_ar}}
+                                                    @else
+                                                        {{$age->name_en}}
+                                                    @endif
+                                                </option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label class="input-label"
+                                           for="exampleFormControlInput1">{{trans('messages.brands')}}</label>
+                                    <select name="brand_id" required class="form-control js-select2-custom">
+                                        @foreach($brands as $brand)
+                                            @if( $product['brand_id'] == $brand->id)
+                                            <option value="{{$brand->id}}" selected>@if(app()->getLocale() == 'ar')
+                                                    {{$brand->name_ar}}
+                                                @else
+                                                    {{$brand->name_en}}
+                                                @endif
+                                            </option>
+                                            @else
+                                                <option value="{{$brand->id}}">@if(app()->getLocale() == 'ar')
+                                                        {{$brand->name_ar}}
+                                                    @else
+                                                        {{$brand->name_en}}
+                                                    @endif
+                                                </option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label class="input-label"
+                                           for="exampleFormControlInput1">{{trans('messages.gender')}}</label>
+                                    <select name="gender" required class="form-control js-select2-custom">
+                                        <option value="all" @if( $product['gender']== 'all' ) selected @endif >{{trans('messages.genderAll')}}</option>
+                                        <option value="male" @if( $product['gender']== 'male' ) selected @endif  >{{trans('messages.male')}}</option>
+                                        <option value="female" @if( $product['gender']== 'female' ) selected @endif  >{{trans('messages.female')}}</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -143,7 +212,6 @@
                         </div>
 
 
-
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group">
@@ -158,7 +226,8 @@
                                 <div class="form-group">
                                     <label class="input-label"
                                            for="">{{trans('messages.by_date')}}</label>
-                                    <input type="date" name="by_date" value="{{$product->by_date}}"  class="form-control" id="">
+                                    <input type="date" name="by_date" value="{{$product->by_date}}" class="form-control"
+                                           id="">
                                 </div>
                             </div>
 
@@ -166,7 +235,8 @@
                                 <div class="form-group">
                                     <label class="input-label"
                                            for="">{{trans('messages.barcode')}}</label>
-                                    <input type="text" name="barcode" value="{{$product->barcode}}" class="form-control" id="">
+                                    <input type="text" name="barcode" value="{{$product->barcode}}" class="form-control"
+                                           id="">
                                 </div>
                             </div>
                             <div class="col-md-6 col-6">
@@ -220,21 +290,21 @@
 
                         <div class="row"
                              style="border: 1px solid #80808045; border-radius: 10px;padding-top: 10px;margin: 1px">
-{{--                            <div class="col-12">--}}
-{{--                                <div class="form-group">--}}
-{{--                                    <label class="input-label"--}}
-{{--                                           for="exampleFormControlSelect1">{{trans('messages.attribute')}}<span--}}
-{{--                                            class="input-label-secondary"></span></label>--}}
-{{--                                    <select name="attribute_id[]" id="choice_attributes"--}}
-{{--                                            class="form-control js-select2-custom"--}}
-{{--                                            multiple="multiple">--}}
-{{--                                        @foreach(\App\Model\Attribute::orderBy('name')->get() as $attribute)--}}
-{{--                                            <option--}}
-{{--                                                value="{{$attribute['id']}}" {{in_array($attribute->id,json_decode($product['attributes'],true))?'selected':''}}>{{$attribute['name']}}</option>--}}
-{{--                                        @endforeach--}}
-{{--                                    </select>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
+                            {{--                            <div class="col-12">--}}
+                            {{--                                <div class="form-group">--}}
+                            {{--                                    <label class="input-label"--}}
+                            {{--                                           for="exampleFormControlSelect1">{{trans('messages.attribute')}}<span--}}
+                            {{--                                            class="input-label-secondary"></span></label>--}}
+                            {{--                                    <select name="attribute_id[]" id="choice_attributes"--}}
+                            {{--                                            class="form-control js-select2-custom"--}}
+                            {{--                                            multiple="multiple">--}}
+                            {{--                                        @foreach(\App\Model\Attribute::orderBy('name')->get() as $attribute)--}}
+                            {{--                                            <option--}}
+                            {{--                                                value="{{$attribute['id']}}" {{in_array($attribute->id,json_decode($product['attributes'],true))?'selected':''}}>{{$attribute['name']}}</option>--}}
+                            {{--                                        @endforeach--}}
+                            {{--                                    </select>--}}
+                            {{--                                </div>--}}
+                            {{--                            </div>--}}
                             <div class="col-md-12 mt-2 mb-2">
                                 <div class="customer_choice_options" id="customer_choice_options">
                                     @include('admin-views.product.partials._choices',['choice_no'=>json_decode($product['attributes']),'choice_options'=>json_decode($product['choice_options'],true)])

@@ -111,8 +111,8 @@ class ProductController extends Controller
             'category_id' => 'required',
             'brand_id' => 'required',
             'ages' => 'required',
-            'images'      => 'required',
             'gender'      => 'required',
+            'images'      => 'required',
             'by_date'      => 'required',
             'barcode'      => 'required',
             'total_stock' => 'required|numeric|min:1',
@@ -268,7 +268,9 @@ class ProductController extends Controller
         $product_category = json_decode($product->category_ids);
         $categories = Category::where(['parent_id' => 0])->get();
         $prices=PriceGroup::all();
-        return view('admin-views.product.edit', compact('product', 'product_category', 'categories','prices'));
+        $ages = Age::all();
+        $brands = Brand::all();
+        return view('admin-views.product.edit', compact('brands','ages','product', 'product_category', 'categories','prices'));
     }
 
     public function status(Request $request)
@@ -285,6 +287,9 @@ class ProductController extends Controller
         $validator = Validator::make($request->all(), [
             'name'        => 'required',
             'category_id' => 'required',
+            'brand_id' => 'required',
+            'ages' => 'required',
+            'gender'      => 'required',
             'price'       => 'required|numeric|min:1',
             'by_date'      => 'required',
             'barcode'      => 'required',
@@ -421,10 +426,17 @@ class ProductController extends Controller
         $p->gomla_price = $request->gomla_price;
         $p->by_date = $request->by_date;
         $p->barcode = $request->barcode;
+        $p->brand_id = $request->brand_id;
+        $p->gender = $request->gender;
       //  $p->price_group = $request->pricegroup;
         $p->attributes = $request->has('attribute_id') ? json_encode($request->attribute_id) : json_encode([]);
         $p->save();
-
+        Product_age::where('product_id',$id)->delete();
+        $age_data['product_id'] = $id;
+        foreach ($request->ages as $row){
+            $age_data['age_id'] = $row;
+            Product_age::create($age_data);
+        }
         return response()->json([], 200);
     }
 
