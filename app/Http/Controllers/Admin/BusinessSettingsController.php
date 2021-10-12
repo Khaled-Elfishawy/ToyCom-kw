@@ -43,9 +43,19 @@ class BusinessSettingsController extends Controller
         } else {
             $image_name = $curr_logo['value'];
         }
+        $curr_main_image = BusinessSetting::where(['key' => 'main_image'])->first();
+        if ($request->has('main_image')) {
+            $main_image_name = Helpers::update('restaurant/', $curr_main_image->value, 'png', $request->file('main_image'));
+        } else {
+            $main_image_name = $curr_main_image['value'];
+        }
 
         DB::table('business_settings')->updateOrInsert(['key' => 'logo'], [
             'value' => $image_name,
+        ]);
+
+        DB::table('business_settings')->updateOrInsert(['key' => 'main_image'], [
+            'value' => $main_image_name,
         ]);
 
         DB::table('business_settings')->updateOrInsert(['key' => 'delivery_charge'], [

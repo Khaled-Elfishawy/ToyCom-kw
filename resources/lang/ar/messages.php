@@ -3,6 +3,7 @@
 <?php
 
 return [
+    'main_image' => 'صورة الصفحة الرئيسية',
     'barcode' => 'الباركود',
     'by_date' => 'تاريخ شراء اللعبه',
     'gomla_price' => 'سعر الجمله',
@@ -221,7 +222,7 @@ return [
     'value' => 'قيمه',
     'footer' => 'الخاتمه',
     'text' => 'نص',
-    'logo' => 'علامه',
+    'logo' => 'شعار التطبيق',
     'verification' => 'تحقق',
     'smtp' => 'SMTP',
     'mailer' => 'مراسل رقمي',

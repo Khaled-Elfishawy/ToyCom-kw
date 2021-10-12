@@ -196,6 +196,21 @@
                                  src="{{asset('storage/app/public/restaurant/'.$logo)}}" alt="logo image"/>
                         </center>
                     </div>
+                    @php($main_image=\App\Model\BusinessSetting::where('key','main_image')->first()->value)
+                    <div class="form-group">
+                        <label>{{trans('messages.main_image')}}</label><small style="color: red">*</small>
+                        <div class="custom-file">
+                            <input type="file" name="main_image" id="customFileEg2" class="custom-file-input"
+                                   accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*">
+                            <label class="custom-file-label" for="customFileEg2">{{trans('messages.choose')}} {{trans('messages.file')}}</label>
+                        </div>
+                        <hr>
+                        <center>
+                            <img style="height: 100px;border: 1px solid; border-radius: 10px;" id="viewer2"
+                                 onerror="this.src='{{asset('public/assets/admin/img/160x160/img2.jpg')}}'"
+                                 src="{{asset('storage/app/public/restaurant/'.$main_image)}}" alt="logo image"/>
+                        </center>
+                    </div>
                     <hr>
                     <button type="submit" class="btn btn-primary">{{trans('messages.submit')}}</button>
                 </form>
@@ -207,6 +222,9 @@
 
 @push('script_2')
     <script>
+        $("#customFileEg1").change(function () {
+            readURL(this);
+        });
         function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
@@ -219,8 +237,22 @@
             }
         }
 
-        $("#customFileEg1").change(function () {
-            readURL(this);
+
+
+
+        $("#customFileEg2").change(function () {
+            readURL2(this);
         });
+        function readURL2(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#viewer2').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
     </script>
 @endpush

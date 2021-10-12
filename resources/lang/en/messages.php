@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'main_image' => 'main image',
     'add_new_cat' => 'add new category',
     'categories' => 'categories',
     'ages'=> 'ages',

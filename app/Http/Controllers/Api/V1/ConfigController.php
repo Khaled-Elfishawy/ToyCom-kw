@@ -42,7 +42,8 @@ class ConfigController extends Controller
             'branches'                    => Branch::all(['id', 'name', 'email', 'longitude', 'latitude', 'address', 'coverage']),
             'terms_and_conditions' => BusinessSetting::where(['key' => 'terms_and_conditions'])->first()->value,
             'privacy_policy' => BusinessSetting::where(['key' => 'privacy_policy'])->first()->value,
-            'about_us' => BusinessSetting::where(['key' => 'about_us'])->first()->value
+            'about_us' => BusinessSetting::where(['key' => 'about_us'])->first()->value,
+            'main_image' => BusinessSetting::where(['key' => 'main_image'])->first()->value
         ]);
     }
 }
