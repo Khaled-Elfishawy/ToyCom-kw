@@ -43,6 +43,9 @@ class CustomerController extends Controller
             'address' => $request->address,
             'longitude' => $request->longitude,
             'latitude' => $request->latitude,
+            'zone_id' => $request->zone_id,
+            'city_id' => $request->city_id,
+            'district_id' => $request->district_id,
             'created_at' => now(),
             'updated_at' => now()
         ];

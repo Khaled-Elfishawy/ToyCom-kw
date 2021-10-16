@@ -40,7 +40,7 @@ class Product extends Model
     }
     public function Ages()
     {
-        return $this->hasMany(Product_age::class);
+        return $this->hasMany(Product_age::class)->with('Age');
     }
 
     public function rating()
