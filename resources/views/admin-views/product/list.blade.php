@@ -103,7 +103,8 @@
                                         @if(UserCan('view_product','admin'))
                                         <span class="d-block font-size-sm text-body">
                                              <a href="{{route('admin.product.view',[$product['id']])}}">
-                                               {{substr($product['name'],0,20)}}{{strlen($product['name'])>30?'...':''}}
+{{--                                               {{substr($product['name'],0,20)}}{{strlen($product['name'])>30?'...':''}}--}}
+                                              @if(app()->getLocale() == 'ar') {{$product['name_ar']}} @else {{$product['name']}} @endif
                                              </a>
                                         </span>
                                         @endif
