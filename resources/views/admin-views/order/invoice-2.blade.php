@@ -113,7 +113,8 @@
                                         <div class="row">
                                             <div class="col-md-5 mb-3 mb-md-0">
                                                 <strong> {{$detail->product['name']}}</strong><br>
-
+                                                <strong>Barcode : {{$detail->product['barcode']}}</strong>
+                                                <br>
                                                 @if(count(json_decode($detail['variation'],true))>0)
                                                     <strong><u>Variation : </u></strong>
                                                     @foreach(json_decode($detail['variation'],true)[0] as $key1 =>$variation)
