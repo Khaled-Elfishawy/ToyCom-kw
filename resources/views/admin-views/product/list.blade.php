@@ -103,18 +103,27 @@
                                         @if(UserCan('view_product','admin'))
                                         <span class="d-block font-size-sm text-body">
                                              <a href="{{route('admin.product.view',[$product['id']])}}">
-                                               {{substr($product['name'],0,20)}}{{strlen($product['name'])>20?'...':''}}
+                                               {{substr($product['name'],0,20)}}{{strlen($product['name'])>30?'...':''}}
                                              </a>
                                         </span>
                                         @endif
                                     </td>
                                     <td>
+                                        @if(count(json_decode($product['image'],true)) > 0)
                                         <div style="height: 100px; width: 100px; overflow-x: hidden;overflow-y: hidden">
                                             <img
                                                 src="{{asset('storage/app/public/product')}}/{{json_decode($product['image'],true)[0]}}"
                                                 style="width: 100px" onerror="this.src='{{asset('public/assets/admin/img/160x160/img2.jpg')}}'"
                                                 >
                                         </div>
+                                            @else
+                                            <div style="height: 100px; width: 100px; overflow-x: hidden;overflow-y: hidden">
+                                                <img
+                                                    src="{{asset('public/assets/admin/img/160x160/img2.jpg')}}"
+                                                    style="width: 100px" onerror="this.src='{{asset('public/assets/admin/img/160x160/img2.jpg')}}'"
+                                                >
+                                            </div>
+                                            @endif
                                     </td>
                                     <td>
                                         @if(UserCan('edit_product','admin'))
