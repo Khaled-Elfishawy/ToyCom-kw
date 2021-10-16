@@ -60,6 +60,8 @@ class CustomerController extends Controller
         $data['zone_id'] = $request->zone_id;
         $data['city_id'] = $request->city_id;
         $data['district_id'] = $request->district_id;
+//        $data['created_at'] = now();
+//        $data['updated_at'] = now();
         CustomerAddress::create($data);
         return response()->json(['message' => 'successfully added!'], 200);
     }
