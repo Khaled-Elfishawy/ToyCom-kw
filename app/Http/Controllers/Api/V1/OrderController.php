@@ -70,6 +70,7 @@ class OrderController extends Controller
                 'time_slot_id'           => $request->time_slot_id,
                 'delivery_date'          => $request->delivery_date,
 
+
                 'date'                   => date('Y-m-d'),
                 'delivery_charge'        => BusinessSetting::where(['key' => 'delivery_charge'])->first()->value,
                 'created_at'             => now(),
@@ -94,6 +95,10 @@ class OrderController extends Controller
                     'delivery_date'       => $o_delivery,
                     'product_details'     => $product,
                     'quantity'            => $c['quantity'],
+                    'message_from'        => $c['message_from'] ,
+                    'message_to'          => $c['message_to'],
+                    'message_body'        => $c['message_body'] ,
+                    'wraping_id'          => $c['wraping_id'] ,
                     'price'               => $price,
                     'unit'                => $product['unit'],
                     'tax_amount'          => Helpers::tax_calculate($product, $price),
@@ -102,7 +107,6 @@ class OrderController extends Controller
                     'variant'             => json_encode($c['variant']),
                     'variation'           => json_encode($c['variation']),
                     'is_stock_decreased'  => 1,
-
                     'created_at'          => now(),
                     'updated_at'          => now(),
                 ];
