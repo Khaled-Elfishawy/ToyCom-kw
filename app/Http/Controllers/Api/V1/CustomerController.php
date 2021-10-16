@@ -35,21 +35,32 @@ class CustomerController extends Controller
             return response()->json(['errors' => Helpers::error_processor($validator)], 403);
         }
 
-        $address = [
-            'user_id' => $request->user()->id,
-            'contact_person_name' => $request->contact_person_name,
-            'contact_person_number' => $request->contact_person_number,
-            'address_type' => $request->address_type,
-            'address' => $request->address,
-            'longitude' => $request->longitude,
-            'latitude' => $request->latitude,
-            'zone_id' => $request->zone_id,
-            'city_id' => $request->city_id,
-            'district_id' => $request->district_id,
-            'created_at' => now(),
-            'updated_at' => now()
-        ];
-        DB::table('customer_addresses')->insert($address);
+//        $address = [
+//            'user_id' => $request->user()->id,
+//            'contact_person_name' => $request->contact_person_name,
+//            'contact_person_number' => $request->contact_person_number,
+//            'address_type' => $request->address_type,
+//            'address' => $request->address,
+//            'longitude' => $request->longitude,
+//            'latitude' => $request->latitude,
+//            'zone_id' => $request->zone_id,
+//            'city_id' => $request->city_id,
+//            'district_id' => $request->district_id,
+//            'created_at' => now(),
+//            'updated_at' => now()
+//        ];
+//        DB::table('customer_addresses')->insert($address);
+        $data['user_id'] = $request->user()->id;
+        $data['contact_person_name'] = $request->contact_person_name;
+        $data['contact_person_number'] = $request->contact_person_number;
+        $data['address_type'] = $request->address_type;
+        $data['address'] = $request->address;
+        $data['longitude'] = $request->longitude;
+        $data['latitude'] = $request->latitude;
+        $data['zone_id'] = $request->zone_id;
+        $data['city_id'] = $request->city_id;
+        $data['district_id'] = $request->district_id;
+        CustomerAddress::create($data);
         return response()->json(['message' => 'successfully added!'], 200);
     }
 
