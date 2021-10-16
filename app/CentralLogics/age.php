@@ -12,14 +12,14 @@ class AgeLogic
         if ($age_id == 0) {
             $products = Product::active()->where(function($e)use($gender){
                 $e->where('gender',$gender)->orWhere('gender','all');
-            })->withCount(['wishlist'])->with('rating')->get();
+            })->withCount(['wishlist'])->with('rating','Ages')->get();
             return $products;
-        }else{   
+        }else{
             $products = Product::active()->whereHas('Ages',function($e)use($age_id){
                 $e->where('age_id',$age_id);
             })->where(function($e)use($gender){
                 $e->where('gender',$gender)->orWhere('gender','all');
-            })->withCount(['wishlist'])->with('rating')->get();
+            })->withCount(['wishlist'])->with('rating','Ages')->get();
             return $products;
         }
     }
@@ -28,7 +28,7 @@ class AgeLogic
         if ($id == 0) {
             return Product::all();
         }else{
-            return Product::where('brand_id',$id)->get();
+            return Product::with('Ages')->where('brand_id',$id)->get();
         }
     }
 }

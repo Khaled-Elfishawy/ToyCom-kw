@@ -15,7 +15,7 @@ class ProductLogic
 
     public static function get_latest_products($limit = 10, $offset = 1)
     {
-        $paginator = Product::active()->withCount(['wishlist'])->with(['rating'])->latest()->paginate($limit, ['*'], 'page', $offset);
+        $paginator = Product::active()->withCount(['wishlist'])->with(['rating','Ages'])->latest()->paginate($limit, ['*'], 'page', $offset);
         /*$paginator->count();*/
         return [
             'total_size' => $paginator->total(),
