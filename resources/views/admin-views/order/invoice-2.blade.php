@@ -45,7 +45,13 @@
                     <strong class="float-right">Phone
                         : {{$order->customer['phone']}}</strong><br>
                     <strong class="float-right">Delivery Address
-                        : {{$order->delivery_address?$order->delivery_address['address']:''}}</strong><br>
+                        : {{$order->delivery_address?$order->delivery_address['address']:''}}
+<br>
+                        @if($order->delivery_address['zone_id'] != null)   {{$order->delivery_address->Zone->name}}<br> @endif
+                        @if($order->delivery_address['city_id'] != null)   {{$order->delivery_address->City->name}}<br> @endif
+                        @if($order->delivery_address['district_id'] != null)   {{$order->delivery_address->District->name}}<br> @endif
+
+               </strong><br>
                 @endif
             </div>
         </div>

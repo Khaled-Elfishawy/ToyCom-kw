@@ -533,7 +533,7 @@
                                 <hr>
                                 @php($address=\App\Model\CustomerAddress::find($order['delivery_address_id']))
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <h5>{{trans('messages.delivery')}} {{trans('messages.address')}}</h5>
+                                    <h5>{{trans('messages.delivery_address')}}</h5>
                                     @if(isset($address))
                                         <a class="link" data-toggle="modal" data-target="#shipping-address-modal"
                                            href="javascript:">{{trans('messages.edit')}}</a>
@@ -548,6 +548,9 @@
                                        href="http://maps.google.com/maps?z=12&t=m&q=loc:{{$address['latitude']}}+{{$address['longitude']}}">
                                        <i class="tio-map"></i> {{$address['address']}}<br>
                                     </a>
+                                        @if($address['zone_id'] != null)   {{$address->Zone->name}}<br> @endif
+                                        @if($address['city_id'] != null)   {{$address->City->name}}<br> @endif
+                                        @if($address['district_id'] != null)   {{$address->District->name}}<br> @endif
                                 </span>
                                 @endif
                             @endif

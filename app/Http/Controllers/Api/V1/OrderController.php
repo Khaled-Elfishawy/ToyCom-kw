@@ -39,6 +39,7 @@ class OrderController extends Controller
 
         foreach ($request['cart'] as $c) {
             $product = Product::find($c['product_id']);
+//            $type = null;
             $type = $c['variation'][0]['type'];
             foreach (json_decode($product['variations'], true) as $var) {
                 if ($type == $var['type'] && $var['stock'] < $c['quantity']) {
@@ -76,18 +77,19 @@ class OrderController extends Controller
                 'created_at'             => now(),
                 'updated_at'             => now(),
             ];
-
             $o_id = DB::table('orders')->insertGetId($or);
             $o_time = $or['time_slot_id'];
             $o_delivery = $or['delivery_date'];
 
             foreach ($request['cart'] as $c) {
+
                 $product = Product::find($c['product_id']);
                 if (count(json_decode($product['variations'], true)) > 0) {
                     $price = Helpers::variation_price($product, json_encode($c['variation']));
                 } else {
                     $price = $product['price'];
                 }
+
                 $or_d = [
                     'order_id'            => $o_id,
                     'product_id'          => $c['product_id'],

@@ -3,6 +3,7 @@
 <?php
 
 return [
+    'delivery_address' => 'عنوان التوصيل',
     'genderAll' => 'الكل',
     'main_image' => 'صورة الصفحة الرئيسية',
     'barcode' => 'الباركود',

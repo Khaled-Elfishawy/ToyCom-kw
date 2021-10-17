@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class OrderDetail extends Model
 {
+    protected  $guarded = [] ;
     protected $casts = [
         'product_id' => 'integer',
         'order_id' => 'integer',
