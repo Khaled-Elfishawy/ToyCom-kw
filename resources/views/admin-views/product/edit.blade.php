@@ -92,7 +92,7 @@
                                 <div class="form-group">
                                     <label class="input-label"
                                            for="exampleFormControlInput1">{{trans('messages.gomla_price')}}</label>
-                                    <input type="number" min="1" max="100000" step="0.01"
+                                    <input type="number" min="0.001" max="100000" step="0.001"
                                            value="{{$product->gomla_price}}" name="gomla_price"
                                            class="form-control"
                                            placeholder="Ex : 50" required>
@@ -116,7 +116,7 @@
                                 <div class="form-group">
                                     <label class="input-label"
                                            for="exampleFormControlInput1">{{trans('messages.stock')}}</label>
-                                    <input type="number" min="0" max="100000000" value="{{ $product['total_stock'] }}"
+                                    <input type="number" min="0.001" max="100000" step="0.001" value="{{ $product['total_stock'] }}"
                                            name="total_stock" class="form-control"
                                            placeholder="Ex : 100">
                                 </div>
