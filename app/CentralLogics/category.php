@@ -28,7 +28,7 @@ class CategoryLogic
                 }
             }
         }
-        return Product::active()->withCount(['wishlist'])->with('rating')->whereIn('id', $product_ids)->get();
+        return Product::active()->withCount(['wishlist'])->with(['rating','Ages'])->whereIn('id', $product_ids)->get();
     }
 
     public static function all_products($id)
@@ -52,6 +52,6 @@ class CategoryLogic
             }
         }
 
-        return Product::active()->withCount(['wishlist'])->with('rating')->whereIn('id', $product_ids)->get();
+        return Product::active()->withCount(['wishlist'])->with(['rating','Ages'])->whereIn('id', $product_ids)->get();
     }
 }

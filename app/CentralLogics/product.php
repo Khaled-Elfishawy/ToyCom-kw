@@ -37,7 +37,7 @@ class ProductLogic
     public static function search_products($name, $limit = 10, $offset = 1)
     {
         $key = explode(' ', $name);
-        $paginator = Product::active()->withCount(['wishlist'])->with(['rating'])->where(function ($q) use ($key) {
+        $paginator = Product::active()->withCount(['wishlist'])->with(['rating','Ages'])->where(function ($q) use ($key) {
             foreach ($key as $value) {
                 $q->orWhere('name', 'like', "%{$value}%");
             }
