@@ -66,12 +66,12 @@ class Product extends Model
             return $this->attributes['price'];
         }
     }
-    public function getNameAttribute(){
-        if(app()->getLocale() == 'ar'){
-            return $this->attributes['name_ar'];
-        }else{
-            return $this->attributes['name'];
-        }
-    }
+//    public function getNameAttribute(){
+//        if(app()->getLocale() == 'ar'){
+//            return $this->attributes['name_ar'];
+//        }else{
+//            return $this->attributes['name'];
+//        }
+//    }
 
 }

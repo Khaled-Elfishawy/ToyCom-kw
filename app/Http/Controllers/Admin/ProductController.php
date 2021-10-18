@@ -88,6 +88,7 @@ class ProductController extends Controller
             $products = Product::where(function ($q) use ($key) {
                 foreach ($key as $value) {
                     $q->orWhere('name', 'like', "%{$value}%");
+                    $q->orWhere('name_ar', 'like', "%{$value}%");
                     $q->orWhere('barcode', 'like', "%{$value}%");
                 }
             })->paginate(10);
