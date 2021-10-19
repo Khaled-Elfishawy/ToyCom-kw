@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Age;
 use App\CentralLogics\AgeLogic;
+use App\CentralLogics\CategoryLogic;
 use App\CentralLogics\Helpers;
 use App\CentralLogics\ProductLogic;
 use App\Http\Controllers\Controller;
@@ -26,32 +27,51 @@ class ProductController extends Controller
     public function get_searched_products(Request $request)
     {
         $result = [];
+        $products = Product::active()->get();
+        $product_ids = [];
         $sort_from = ($request->sort_type) ? $request->sort_type : 'name';
         $sort = ($request->sort) ? $request->sort : 'asc';
+        $limit = ($request->limit) ? $request->limit : '10';
+        $offset = ($request->offset) ? $request->offset : '1';
         if ($request->name != null && $request->cat_id == null
             && $request->age_id == null && $request->age_id == null
             && $request->price_from == null && $request->price_to == null) {
-            $products = ProductLogic::search_products($request['name'], $request['limit'], $request['offset']);
+            $products = ProductLogic::search_products($request['name'], $limit, $offset);
             $products['products'] = Helpers::product_data_formatting($products['products'], true);
             return response()->json($products, 200);
         }
-        if ($request->cat_id == null || $request->name == null) {
-            $result = Product::where(function ($e) use ($request) {
+        if ($request->cat_id != null || $request->name != null || $request->age_id != null) {
+            $result = Product::active()->withCount(['wishlist'])->with(['rating','Ages'])->where(function ($e) use ($request, $products,$product_ids) {
                 if ($request->age_id != null) {
-                    $e->where('age_id', $request->age_id);
+                    $e->whereHas('Ages',function($q)use($request){
+                        $q->where('age_id',$request->age_id);
+                    });
+                }
+                if ($request->cat_id != null) {
+                    foreach ($products as $product) {
+                        foreach (json_decode($product['category_ids'], true) as $category) {
+                            if ($category['id'] == $request->cat_id) {
+                                array_push($product_ids, $product['id']);
+                            }
+                        }
+                    }
+                    $e->whereIn('id', $product_ids);
                 }
                 if ($request->price_from != null && $request->price_to != null) {
                     $e->whereBetween('price', [$request->price_from, $request->price_to]);
                 }
-            })->orderBy($sort_from, $sort)->get();
-        } else if ($request->cat_id !== null) {
-            $result = CategoryLogic::products($request->cat_id)->orderBy($request->sort_type, $request->sort)->get();
+            })->orderBy($sort_from, $sort)->paginate($limit, ['*'], 'page', $offset);
         } else {
             $proNames = ProductLogic::search_products($request['name'], $request['limit'], $request['offset']);
             $result = $proNames['products'];
         }
-        $result = Helpers::product_data_formatting($result, true);
-        return response()->json($result, 200);
+       $final_result['total_size'] = $result->total() ;
+       $final_result['limit'] = $limit ;
+       $final_result['offset'] = $offset ;
+       $final_result['products'] = $result->items() ;
+
+        $final_result['products'] = Helpers::product_data_formatting($final_result['products'], true);
+        return response()->json($final_result, 200);
     }
 
     public function get_old_searched_products(Request $request)

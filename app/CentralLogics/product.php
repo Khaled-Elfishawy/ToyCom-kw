@@ -52,6 +52,24 @@ class ProductLogic
         ];
     }
 
+    public static function filter_products($name , $cat_id , $age_id, $limit = 10, $offset = 1)
+    {
+        $key = explode(' ', $name);
+        $paginator = Product::active()->withCount(['wishlist'])->with(['rating','Ages'])->where(function ($q) use ($key) {
+            foreach ($key as $value) {
+                $q->orWhere('name', 'like', "%{$value}%");
+                $q->orWhere('name_ar', 'like', "%{$value}%");
+            }
+        })->paginate($limit, ['*'], 'page', $offset);
+
+        return [
+            'total_size' => $paginator->total(),
+            'limit' => $limit,
+            'offset' => $offset,
+            'products' => $paginator->items()
+        ];
+    }
+
     public static function get_product_review($id)
     {
         $reviews = Review::where('product_id', $id)->get();
