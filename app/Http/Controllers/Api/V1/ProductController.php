@@ -26,21 +26,26 @@ class ProductController extends Controller
     public function get_searched_products(Request $request)
     {
         $result = [];
-        $sort_from = ($request->sort_type)?$request->sort_type:'name';
-        $sort      = ($request->sort)?$request->sort:'asc';
-
-        if($request->cat_id == null || $request->name == null){
-            $result = Product::where(function($e)use($request){
+        $sort_from = ($request->sort_type) ? $request->sort_type : 'name';
+        $sort = ($request->sort) ? $request->sort : 'asc';
+        if ($request->name != null && $request->cat_id == nulll
+            && $request->age_id == null && $request->age_id == null
+            && $request->price_from == null && $request->price_to == null) {
+            $products = ProductLogic::search_products($request['name'], 10, 1);
+            $products['products'] = Helpers::product_data_formatting($products['products'], true);
+            return response()->json($products, 200);
+        }
+        if ($request->cat_id == null || $request->name == null) {
+            $result = Product::where(function ($e) use ($request) {
                 if ($request->age_id != null) {
                     $e->where('age_id', $request->age_id);
                 }
-                if ($request->price_from != null && $request->price_to) {
-                    $e->whereBetween('price', [$request->price_from , $request->price_to]);
+                if ($request->price_from != null && $request->price_to != null) {
+                    $e->whereBetween('price', [$request->price_from, $request->price_to]);
                 }
-            })->orderBy($sort_from , $sort)->get();
-        }
-        else if ($request->cat_id !== null){
-            $result = CategoryLogic::products($request->cat_id)->orderBy($request->sort_type , $request->sort)->get();
+            })->orderBy($sort_from, $sort)->get();
+        } else if ($request->cat_id !== null) {
+            $result = CategoryLogic::products($request->cat_id)->orderBy($request->sort_type, $request->sort)->get();
         } else {
             $proNames = ProductLogic::search_products($request['name'], $request['limit'], $request['offset']);
             $result = $proNames['products'];
@@ -116,9 +121,9 @@ class ProductController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'product_id' => 'required',
-            'order_id'   => 'required',
-            'comment'    => 'required',
-            'rating'     => 'required|numeric|max:5',
+            'order_id' => 'required',
+            'comment' => 'required',
+            'rating' => 'required|numeric|max:5',
         ]);
 
         $product = Product::find($request->product_id);
@@ -172,10 +177,11 @@ class ProductController extends Controller
         }
     }
 
-    public function getFilterData() {
+    public function getFilterData()
+    {
         try {
-            $data['categories'] = Category::select('id','name','name_ar')->get();
-            $data['ages'] = Age::select('id','name_en','name_ar')->get();
+            $data['categories'] = Category::select('id', 'name', 'name_ar')->get();
+            $data['ages'] = Age::select('id', 'name_en', 'name_ar')->get();
             $data['max_product'] = Product::get()->max('price');
             return response()->json($data, 200);
         } catch (\Exception $e) {
