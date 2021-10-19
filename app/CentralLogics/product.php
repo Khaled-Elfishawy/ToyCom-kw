@@ -40,6 +40,7 @@ class ProductLogic
         $paginator = Product::active()->withCount(['wishlist'])->with(['rating','Ages'])->where(function ($q) use ($key) {
             foreach ($key as $value) {
                 $q->orWhere('name', 'like', "%{$value}%");
+                $q->orWhere('name_ar', 'like', "%{$value}%");
             }
         })->paginate($limit, ['*'], 'page', $offset);
 
