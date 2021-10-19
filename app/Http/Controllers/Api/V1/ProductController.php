@@ -28,7 +28,7 @@ class ProductController extends Controller
         $result = [];
         $sort_from = ($request->sort_type) ? $request->sort_type : 'name';
         $sort = ($request->sort) ? $request->sort : 'asc';
-        if ($request->name != null && $request->cat_id == nulll
+        if ($request->name != null && $request->cat_id == null
             && $request->age_id == null && $request->age_id == null
             && $request->price_from == null && $request->price_to == null) {
             $products = ProductLogic::search_products($request['name'], 10, 1);
