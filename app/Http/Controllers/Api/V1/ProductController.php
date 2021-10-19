@@ -31,7 +31,7 @@ class ProductController extends Controller
         if ($request->name != null && $request->cat_id == null
             && $request->age_id == null && $request->age_id == null
             && $request->price_from == null && $request->price_to == null) {
-            $products = ProductLogic::search_products($request['name'], 10, 1);
+            $products = ProductLogic::search_products($request['name'], $request['limit'], $request['offset']);
             $products['products'] = Helpers::product_data_formatting($products['products'], true);
             return response()->json($products, 200);
         }
