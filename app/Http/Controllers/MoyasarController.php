@@ -46,7 +46,6 @@ class MoyasarController extends Controller
             "udf4"              => "",
             "udf5"              => "",
         ];
-        dd($config);
         $knet  = new Knet($config);
         $request = $knet->request();
 //         dd($knet,$request,$order);
