@@ -124,15 +124,15 @@ class ProductController extends Controller
             'category_id.required' => 'category  is required!',
         ]);
 
-        if ($request['discount_type'] == 'percent') {
-            $dis = ($request['price'] / 100) * $request['discount'];
-        } else {
-            $dis = $request['discount'];
-        }
-
-        if ($request['price'] <= $dis) {
-            $validator->getMessageBag()->add('unit_price', 'Discount can not be more or equal to the price!');
-        }
+//        if ($request['discount_type'] == 'percent') {
+//            $dis = ($request['price'] / 100) * $request['discount'];
+//        } else {
+//            $dis = $request['discount'];
+//        }
+//
+//        if ($request['price'] <= $dis) {
+//            $validator->getMessageBag()->add('unit_price', 'Discount can not be more or equal to the price!');
+//        }
 
         $img_names = [];
         if (!empty($request->file('images'))) {
@@ -248,8 +248,8 @@ class ProductController extends Controller
         $p->tax = $request->tax_type == 'amount' ? $request->tax : $request->tax;
         $p->tax_type = $request->tax_type;
 
-        $p->discount = $request->discount_type == 'amount' ? $request->discount : $request->discount;
-        $p->discount_type = $request->discount_type;
+//        $p->discount = $request->discount_type == 'amount' ? $request->discount : $request->discount;
+//        $p->discount_type = $request->discount_type;
         $p->total_stock = $request->total_stock;
         $p->brand_id = $request->brand_id;
         $p->gender = $request->gender;
@@ -300,17 +300,17 @@ class ProductController extends Controller
             'category_id.required' => 'category  is required!',
         ]);
 
-        if ($request['discount_type'] == 'percent') {
-            $dis = ($request['price'] / 100) * $request['discount'];
-        } else {
-            $dis = $request['discount'];
-        }
+//        if ($request['discount_type'] == 'percent') {
+//            $dis = ($request['price'] / 100) * $request['discount'];
+//        } else {
+//            $dis = $request['discount'];
+//        }
+//
+//        if ($request['price'] <= $dis) {
+//            $validator->getMessageBag()->add('unit_price', 'Discount can not be more or equal to the price!');
+//        }
 
-        if ($request['price'] <= $dis) {
-            $validator->getMessageBag()->add('unit_price', 'Discount can not be more or equal to the price!');
-        }
-
-        if ($request['price'] <= $dis || $validator->fails()) {
+        if ( $validator->fails()) {
             return response()->json(['errors' => Helpers::error_processor($validator)]);
         }
 
@@ -421,8 +421,8 @@ class ProductController extends Controller
         $p->tax = $request->tax_type == 'amount' ? $request->tax : $request->tax;
         $p->tax_type = $request->tax_type;
 
-        $p->discount = $request->discount_type == 'amount' ? $request->discount : $request->discount;
-        $p->discount_type = $request->discount_type;
+//        $p->discount = $request->discount_type == 'amount' ? $request->discount : $request->discount;
+//        $p->discount_type = $request->discount_type;
         $p->total_stock = $request->total_stock;
         $p->gomla_price = $request->gomla_price;
         $p->by_date = $request->by_date;

@@ -116,7 +116,8 @@
                                 <div class="form-group">
                                     <label class="input-label"
                                            for="exampleFormControlInput1">{{trans('messages.stock')}}</label>
-                                    <input type="number" min="0.001" max="100000" step="0.001" value="{{ $product['total_stock'] }}"
+                                    <input type="number" min="0.001" max="100000" step="0.001"
+                                           value="{{ $product['total_stock'] }}"
                                            name="total_stock" class="form-control"
                                            placeholder="Ex : 100">
                                 </div>
@@ -155,12 +156,12 @@
                                     <select name="brand_id" required class="form-control js-select2-custom">
                                         @foreach($brands as $brand)
                                             @if( $product['brand_id'] == $brand->id)
-                                            <option value="{{$brand->id}}" selected>@if(app()->getLocale() == 'ar')
-                                                    {{$brand->name_ar}}
-                                                @else
-                                                    {{$brand->name_en}}
-                                                @endif
-                                            </option>
+                                                <option value="{{$brand->id}}" selected>@if(app()->getLocale() == 'ar')
+                                                        {{$brand->name_ar}}
+                                                    @else
+                                                        {{$brand->name_en}}
+                                                    @endif
+                                                </option>
                                             @else
                                                 <option value="{{$brand->id}}">@if(app()->getLocale() == 'ar')
                                                         {{$brand->name_ar}}
@@ -178,9 +179,12 @@
                                     <label class="input-label"
                                            for="exampleFormControlInput1">{{trans('messages.gender')}}</label>
                                     <select name="gender" required class="form-control js-select2-custom">
-                                        <option value="all" @if( $product['gender']== 'all' ) selected @endif >{{trans('messages.genderAll')}}</option>
-                                        <option value="male" @if( $product['gender']== 'male' ) selected @endif  >{{trans('messages.male')}}</option>
-                                        <option value="female" @if( $product['gender']== 'female' ) selected @endif  >{{trans('messages.female')}}</option>
+                                        <option value="all"
+                                                @if( $product['gender']== 'all' ) selected @endif >{{trans('messages.genderAll')}}</option>
+                                        <option value="male"
+                                                @if( $product['gender']== 'male' ) selected @endif >{{trans('messages.male')}}</option>
+                                        <option value="female"
+                                                @if( $product['gender']== 'female' ) selected @endif >{{trans('messages.female')}}</option>
                                     </select>
                                 </div>
                             </div>
@@ -216,15 +220,6 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label class="input-label"
-                                           for="exampleFormControlInput1">{{trans('messages.discount')}}</label>
-                                    <input type="number" min="0.001" max="100000" step="0.001" value="{{$product['discount']}}"
-                                           name="discount" class="form-control"
-                                           placeholder="Ex : 100.000">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label class="input-label"
                                            for="">{{trans('messages.by_date')}}</label>
                                     <input type="date" name="by_date" value="{{$product->by_date}}" class="form-control"
                                            id="">
@@ -239,20 +234,30 @@
                                            id="">
                                 </div>
                             </div>
-                            <div class="col-md-6 col-6">
-                                <div class="form-group">
-                                    <label class="input-label"
-                                           for="exampleFormControlInput1">{{trans('messages.discount')}} {{trans('messages.type')}}</label>
-                                    <select name="discount_type" class="form-control js-select2-custom">
-                                        <option value="percent" {{$product['discount_type']=='percent'?'selected':''}}>
-                                            {{trans('messages.percent')}}
-                                        </option>
-                                        <option value="amount" {{$product['discount_type']=='amount'?'selected':''}}>
-                                            {{trans('messages.amount')}}
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
+{{--                            <div class="col-6">--}}
+{{--                                <div class="form-group">--}}
+{{--                                    <label class="input-label"--}}
+{{--                                           for="exampleFormControlInput1">{{trans('messages.discount')}}</label>--}}
+{{--                                    <input type="number" min="0" max="100000" step="0.001"--}}
+{{--                                           value="{{$product['discount']}}"--}}
+{{--                                           name="discount" class="form-control"--}}
+{{--                                           placeholder="Ex : 100.000">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="col-md-6 col-6">--}}
+{{--                                <div class="form-group">--}}
+{{--                                    <label class="input-label"--}}
+{{--                                           for="exampleFormControlInput1">{{trans('messages.discount')}} {{trans('messages.type')}}</label>--}}
+{{--                                    <select name="discount_type" class="form-control js-select2-custom">--}}
+{{--                                        <option value="percent" {{$product['discount_type']=='percent'?'selected':''}}>--}}
+{{--                                            {{trans('messages.percent')}}--}}
+{{--                                        </option>--}}
+{{--                                        <option value="amount" {{$product['discount_type']=='amount'?'selected':''}}>--}}
+{{--                                            {{trans('messages.amount')}}--}}
+{{--                                        </option>--}}
+{{--                                    </select>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                         </div>
 
                         <div class="row">

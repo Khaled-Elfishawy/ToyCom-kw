@@ -193,26 +193,26 @@
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-md-6 col-6">
-                                <div class="form-group">
-                                    <label class="input-label"
-                                           for="exampleFormControlInput1">{{trans('messages.discount')}}</label>
-                                    <input type="number" min="0.001" max="100000" step="0.001" value="0" name="discount" class="form-control"
-                                           placeholder="Ex : 100.000">
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-6">
-                                <div class="form-group">
-                                    <label class="input-label"
-                                           for="exampleFormControlInput1">{{trans('messages.discount')}} {{trans('messages.type')}}</label>
-                                    <select name="discount_type" class="form-control js-select2-custom">
-                                        <option value="percent">{{trans('messages.percent')}}</option>
-                                        <option value="amount">{{trans('messages.amount')}}</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
+{{--                        <div class="row">--}}
+{{--                            <div class="col-md-6 col-6">--}}
+{{--                                <div class="form-group">--}}
+{{--                                    <label class="input-label"--}}
+{{--                                           for="exampleFormControlInput1">{{trans('messages.discount')}}</label>--}}
+{{--                                    <input type="number" min="0.001" max="100000" step="0.001" value="0" name="discount" class="form-control"--}}
+{{--                                           placeholder="Ex : 100.000">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="col-md-6 col-6">--}}
+{{--                                <div class="form-group">--}}
+{{--                                    <label class="input-label"--}}
+{{--                                           for="exampleFormControlInput1">{{trans('messages.discount')}} {{trans('messages.type')}}</label>--}}
+{{--                                    <select name="discount_type" class="form-control js-select2-custom">--}}
+{{--                                        <option value="percent">{{trans('messages.percent')}}</option>--}}
+{{--                                        <option value="amount">{{trans('messages.amount')}}</option>--}}
+{{--                                    </select>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
                         <div class="row">
                             <div class="col-md-6 col-6">

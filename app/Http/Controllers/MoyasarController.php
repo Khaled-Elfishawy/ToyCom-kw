@@ -48,7 +48,7 @@ class MoyasarController extends Controller
         ];
         $knet  = new Knet($config);
         $request = $knet->request();
-        // dd($knet,$request,$order);
+//         dd($knet,$request,$order);
         if($request["status"] == 1){
             return redirect()->to($request["data"]["url"]);
         }else{
@@ -97,7 +97,6 @@ class MoyasarController extends Controller
     }
     public function response(Request $request)
     {
-        dd('response here');
         $ResTranData            = $request->trandata;
         $termResourceKey        = "S409HW134YJ9FRE9";
         $decrytedData           = Knetdecrypt($ResTranData,$termResourceKey);
@@ -105,7 +104,6 @@ class MoyasarController extends Controller
     }
     public function error(Request $request)
     {
-        dd('error here');
         return dd($request);
     }
     // public function getPaymentStatus(Request $request)
