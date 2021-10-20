@@ -385,7 +385,11 @@
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-default waves-effect"
                                                         data-dismiss="modal">
-                                                    إغلاق
+                                                    {{trans('messages.close')}}
+                                                </button>
+                                                <button type="button" class="btn btn-primary"
+                                                        data-dismiss="modal">
+                                                    {{trans('messages.print')}}
                                                 </button>
                                             </div>
                                         </div>
