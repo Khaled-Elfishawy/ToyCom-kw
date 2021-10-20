@@ -188,6 +188,7 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.'], function () {
             Route::get('view/{id}', 'OrderController@view')->name('view');
             Route::post('update-shipping/{id}', 'OrderController@update_shipping')->name('update-shipping');
             Route::post('update-timeSlot', 'OrderController@update_time_slot')->name('update-timeSlot');
+            Route::post('printCard', 'OrderController@printCard')->name('printCard');
             Route::post('update-deliveryDate', 'OrderController@update_deliveryDate')->name('update-deliveryDate');
 
             Route::delete('delete/{id}', 'OrderController@delete')->name('delete');

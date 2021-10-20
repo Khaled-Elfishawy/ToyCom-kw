@@ -326,6 +326,7 @@
                                                     <a data-message-from="{{$detail['message_from']}}"
                                                        data-message-to="{{$detail['message_to']}}"
                                                        data-message-body="{{$detail['message_body']}}"
+                                                       data-message-id="{{$detail['id']}}"
                                                        data-toggle="modal" id="btn_card"
                                                        data-target="#message_modal"
                                                        class="btn btn-primary">{{trans('messages.gift_card')}}</a>
@@ -377,6 +378,7 @@
                                                     {{ Form::text('message_to',null,["class"=>"form-control" ,"readonly",'id'=>'txt_message_to']) }}
                                                 </div>
                                                 <div class="form-group">
+                                                    <input type="hidden" name="card_id" id="card_id">
                                                     <label for="recipient-name"
                                                            class="control-label">{{trans('messages.body')}}</label>
                                                     {{ Form::textArea('message_body',null,["class"=>"form-control","row"=>4 ,"readonly", "min" => "1",'id'=>'txt_message_body']) }}
@@ -387,7 +389,7 @@
                                                         data-dismiss="modal">
                                                     {{trans('messages.close')}}
                                                 </button>
-                                                <button type="button" class="btn btn-primary"
+                                                <button type="button" id="#PrintButton" onclick="PrintCard($('#card_id'));" class="btn btn-primary"
                                                         data-dismiss="modal">
                                                     {{trans('messages.print')}}
                                                 </button>
@@ -815,11 +817,28 @@
             $("#txt_message_from").val($(this).data('message-from'));
             $("#txt_message_to").val($(this).data('message-to'));
             $("#txt_message_body").val($(this).data('message-body'));
+            $('input[name="card_id"]').val($(this).data('message-id'));
 
         });
         $(document).on('click', '#btn_warpping', function () {
             $("#txt_price").val($(this).data('price'));
             $("#txt_name").val($(this).data('name'));
         });
+        function PrintCard(el) {
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    $.post({
+                        url: "{{route('admin.order.printCard')}}",
+                        data: {
+                            "id": el.val(),
+                        },
+                        success: function (data) {
+                            console.log(data);
+                        }
+                    });            
+        }
     </script>
 @endpush

@@ -11,6 +11,8 @@ use App\Model\TimeSlot;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Intervention\Image\ImageManagerStatic as Image;
+use ArPHP\I18N\Arabic;
 
 class OrderController extends Controller
 {
@@ -279,6 +281,43 @@ class OrderController extends Controller
 
             return response()->json($data);
         }
+    }
+    public function printCard(Request $request)
+    {
+
+        $card = OrderDetail::find($request->id);
+        $Arabic = new Arabic('Glyphs');
+        $body = $Arabic->utf8Glyphs($card->message_body);
+        $from = $Arabic->utf8Glyphs($card->message_from);
+        $to   = $Arabic->utf8Glyphs($card->message_to);
+
+        $img = Image::make(public_path('003.png'));
+        // write text at position
+        $img->text($body, 290, 230, function($font) {
+            $font->file(public_path('DroidNaskh-Regular.ttf'));
+            $font->size(13);
+            //$font->color('#fdf6e3');
+            $font->align('right');
+            $font->valign('top');
+            //$font->angle(45);
+        }); 
+        $img->text($from, 200, 325, function($font) {
+            $font->file(public_path('DroidNaskh-Regular.ttf'));
+            $font->size(13);
+            //$font->color('#fdf6e3');
+            $font->align('right');
+            $font->valign('top');
+            //$font->angle(45);
+        }); 
+        $img->text($to, 200, 370, function($font) {
+            $font->file(public_path('DroidNaskh-Regular.ttf'));
+            $font->size(13);
+            //$font->color('#fdf6e3');
+            $font->align('right');
+            $font->valign('top');
+            //$font->angle(45);
+        });        
+        return $img->response();
     }
     public function update_deliveryDate(Request $request)
     {
