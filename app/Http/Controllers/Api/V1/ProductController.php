@@ -33,9 +33,10 @@ class ProductController extends Controller
         $sort = ($request->sort) ? $request->sort : 'asc';
         $limit = ($request->limit) ? $request->limit : '10';
         $offset = ($request->offset) ? $request->offset : '1';
+        $max_price = Product::get()->max('price');
         if ($request->name != null && $request->cat_id == null
             && $request->age_id == null && $request->age_id == null
-            && $request->price_from == null && $request->price_to == null) {
+            && $request->price_from == 0.0 && $request->price_to == $max_price) {
             $products = ProductLogic::search_products($request['name'], $limit, $offset);
             $products['products'] = Helpers::product_data_formatting($products['products'], true);
             return response()->json($products, 200);
