@@ -30,6 +30,7 @@ class MoyasarController extends Controller
 
     public function paywith(Request $request)
     {
+        dd('here');
         $order                  = Order::with(['details'])->where(['id' => session('order_id')])->first();
         $config = [
             "is_test"           => true,
@@ -45,8 +46,8 @@ class MoyasarController extends Controller
             "udf4"              => "",
             "udf5"              => "",
         ];
-        $knet  = new Knet($config); 
-        $request = $knet->request();  
+        $knet  = new Knet($config);
+        $request = $knet->request();
         // dd($knet,$request,$order);
         if($request["status"] == 1){
             return redirect()->to($request["data"]["url"]);
@@ -61,21 +62,21 @@ class MoyasarController extends Controller
         // $TranTrackid            = $tr_ref;
         // $TranportalId           = "309001";
         // $ReqTranportalId        = "id=".$TranportalId;
-        // $ReqTranportalPassword  = "password=309001pg";   
+        // $ReqTranportalPassword  = "password=309001pg";
         // $ReqAmount              = "amt=".$TranAmount;
         // $ReqTrackId             = "trackid=".$TranTrackid;
         // $ReqCurrency            = "currencycode=414";
         // $ReqLangid              = "langid=AR";
         // $ReqAction              = "action=1";
         // $ResponseUrl         =  route('payment-success');
-        // $ReqResponseUrl         = "responseURL=".$ResponseUrl; 
+        // $ReqResponseUrl         = "responseURL=".$ResponseUrl;
         // $ErrorUrl               =  route('payment-fail');
         // $ReqErrorUrl            = "errorURL=".$ErrorUrl;
         // $ReqUdf1                = "udf1=Test1";
         // $ReqUdf2                = "udf2=Test2";
         // $ReqUdf3                = "udf3=Test3";
         // $ReqUdf4                = "udf4=Test4";
-        // $ReqUdf5                = "udf5=Test5";  
+        // $ReqUdf5                = "udf5=Test5";
         // $termResourceKey        ="S409HW134YJ9FRE9";
         // $param                  = $ReqTranportalId.
         //                         "&".$ReqTranportalPassword.
@@ -91,8 +92,8 @@ class MoyasarController extends Controller
         //                         "&".$ReqUdf3.
         //                         "&".$ReqUdf4.
         //                         "&".$ReqUdf5;
-        // $param                  = encryptAES($param,$termResourceKey)."&tranportalId=".$TranportalId."&responseURL=".$ResponseUrl."&errorURL=".$ErrorUrl; 
-        // return redirect()->to($knetUrl.$param);    
+        // $param                  = encryptAES($param,$termResourceKey)."&tranportalId=".$TranportalId."&responseURL=".$ResponseUrl."&errorURL=".$ErrorUrl;
+        // return redirect()->to($knetUrl.$param);
     }
     public function response(Request $request)
     {
@@ -116,14 +117,14 @@ class MoyasarController extends Controller
     //             return redirect($order->callback . '/success');
     //         }else{
     //             return \redirect()->route('payment-success');
-    //         }         
+    //         }
     //     }
     //     $order = Order::where('transaction_reference', $payment_id)->first();
     //     if ($order->callback != null) {
     //         return redirect($order->callback . '/fail');
     //     }else{
     //         return \redirect()->route('payment-fail');
-    //     }    
+    //     }
     // }
     // public function oncomplate(Request $request,Order $order)
     // {
@@ -134,6 +135,6 @@ class MoyasarController extends Controller
     //         'payment_method' => 'paypal',
     //         'order_status' => 'failed',
     //         'updated_at' => now()
-    //     ]);   
+    //     ]);
     // }
 }

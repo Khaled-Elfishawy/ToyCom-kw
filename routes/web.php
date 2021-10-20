@@ -48,7 +48,7 @@ Route::post('/ipn', 'SslCommerzPaymentController@ipn');
 //SSLCOMMERZ END
 
 /*paypal*/
-/*Route::get('/paypal', function (){return view('paypal-test');})->name('paypal');*/
+//Route::get('/paypal', function (){return view('paypal-test');})->name('paypal');
 // Route::post('pay-paypal', 'PaypalPaymentController@payWithpaypal')->name('pay-paypal');
 // Route::get('paypal-status', 'PaypalPaymentController@getPaymentStatus')->name('paypal-status');
 /*paypal*/
