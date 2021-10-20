@@ -544,7 +544,7 @@
                                    title="Pages">
                                     <i class="tio-clock nav-icon"></i>
                                     <span
-                                        class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{trans('messages.Set')}} {{trans('messages.Time Slot')}} </span>
+                                        class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{trans('messages.Time Slot')}} </span>
                                 </a>
                             </li>
                         @endif

@@ -47,7 +47,7 @@
                                 <div class="form-group">
                                     <label class="input-label"
                                            for="exampleFormControlInput1">{{trans('messages.capacity')}}</label>
-                                    <input type="number" min="1" max="100" step="0.01" value="1" name="capacity"
+                                    <input type="number" min="0" max="100" step="0.001" value="1" name="capacity"
                                            class="form-control"
                                            placeholder="Ex : 5" required>
                                 </div>
@@ -176,9 +176,9 @@
                                 <div class="form-group">
                                     <label class="input-label"
                                            for="exampleFormControlInput1">{{trans('messages.tax')}}</label>
-                                    <input type="number" min="0" value="0" step="0.01" max="100000" name="tax"
+                                    <input type="number" min="0" value="0" step="0.001" max="100000" name="tax"
                                            class="form-control"
-                                           placeholder="Ex : 7" required>
+                                           placeholder="Ex : 7.000" required>
                                 </div>
                             </div>
                             <div class="col-6">
@@ -198,8 +198,8 @@
                                 <div class="form-group">
                                     <label class="input-label"
                                            for="exampleFormControlInput1">{{trans('messages.discount')}}</label>
-                                    <input type="number" min="0" max="100000" value="0" name="discount" class="form-control"
-                                           placeholder="Ex : 100">
+                                    <input type="number" min="0.001" max="100000" step="0.001" value="0" name="discount" class="form-control"
+                                           placeholder="Ex : 100.000">
                                 </div>
                             </div>
                             <div class="col-md-6 col-6">

@@ -13,6 +13,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/barryvdh/laravel-dompdf" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/brian2694/laravel-toastr" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/brick/math" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/chehivskiy/i18n-arabic" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/defuse/php-encryption" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/cache" />
@@ -44,6 +45,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/hamcrest/hamcrest-php" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/intervention/image" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/izal/knet-payment-php" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/khaled.alshamaa/ar-php" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/kreait/clock" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/kreait/firebase-php" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/kreait/firebase-tokens" />

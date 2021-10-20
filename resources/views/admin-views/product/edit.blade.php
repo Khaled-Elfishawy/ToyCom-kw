@@ -49,7 +49,7 @@
                                 <div class="form-group">
                                     <label class="input-label"
                                            for="exampleFormControlInput1">{{trans('messages.capacity')}}</label>
-                                    <input type="number" min="1" max="100" step="0.01"
+                                    <input type="number" min="0" max="100" step="0.001"
                                            value="{{ $product['capacity'] }}" name="capacity"
                                            class="form-control"
                                            placeholder="Ex : 5" required>
@@ -82,10 +82,10 @@
                                 <div class="form-group">
                                     <label class="input-label"
                                            for="exampleFormControlInput1">{{trans('messages.price_seller')}}</label>
-                                    <input type="number" min="1" max="100000" step="0.01" value="{{$product->price}}"
+                                    <input type="number" min="0" max="100000" step="0.001" value="{{$product->price}}"
                                            name="price"
                                            class="form-control"
-                                           placeholder="Ex : 100" required>
+                                           placeholder="Ex : 100.000" required>
                                 </div>
                             </div>
                             <div class="col-6">
@@ -95,7 +95,7 @@
                                     <input type="number" min="0.001" max="100000" step="0.001"
                                            value="{{$product->gomla_price}}" name="gomla_price"
                                            class="form-control"
-                                           placeholder="Ex : 50" required>
+                                           placeholder="Ex : 50.000" required>
                                 </div>
                             </div>
                             {{--
@@ -217,9 +217,9 @@
                                 <div class="form-group">
                                     <label class="input-label"
                                            for="exampleFormControlInput1">{{trans('messages.discount')}}</label>
-                                    <input type="number" min="0" value="{{$product['discount']}}" max="100000"
+                                    <input type="number" min="0.001" max="100000" step="0.001" value="{{$product['discount']}}"
                                            name="discount" class="form-control"
-                                           placeholder="Ex : 100">
+                                           placeholder="Ex : 100.000">
                                 </div>
                             </div>
                             <div class="col-6">
