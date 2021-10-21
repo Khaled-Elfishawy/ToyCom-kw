@@ -63,7 +63,7 @@ class ProductController extends Controller
                 }
             })->orderBy($sort_from, $sort)->paginate($limit, ['*'], 'page', $offset);
         } else {
-            $proNames = ProductLogic::search_products($request['name'], $request['limit'], $request['offset']);
+            $proNames = ProductLogic::get_latest_products($limit, $offset);
             $result = $proNames['products'];
         }
         $final_result['total_size'] = $result->total();
