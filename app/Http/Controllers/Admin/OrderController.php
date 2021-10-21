@@ -316,8 +316,16 @@ class OrderController extends Controller
             $font->align('right');
             $font->valign('top');
             //$font->angle(45);
-        });        
-        return $img->response();
+        });   
+        $name = 'card.jpg';
+        $image = $img->encode('jpg');
+        $headers = [
+            'Content-Type' => 'image/jpeg',
+            'Content-Disposition' => 'attachment; filename='. $name,
+        ];
+        return response()->stream(function() use ($image) {
+            echo $image;
+        }, 200, $headers);
     }
     public function update_deliveryDate(Request $request)
     {
