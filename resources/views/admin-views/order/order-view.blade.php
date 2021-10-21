@@ -837,8 +837,7 @@
                         },
                         success: function (data) {
                             console.log(data);
-                            var w = window.open('about:blank', 'Download');
-                            w.document.write(data);
+                            var w = window.open(data, 'Download');
                             w.document.close();                                                        
                         }
                     });            
