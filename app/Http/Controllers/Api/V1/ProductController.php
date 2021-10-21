@@ -41,7 +41,7 @@ class ProductController extends Controller
             $products['products'] = Helpers::product_data_formatting($products['products'], true);
             return response()->json($products, 200);
         }
-        if ($request->cat_id != null || $request->name != null || $request->age_id != null || $request->price_from != null || $request->price_to != null) {
+        if ($request->cat_id != null  || $request->age_id != null || $request->price_from != null || $request->price_to != null) {
             $result = Product::active()->withCount(['wishlist'])->with(['rating', 'Ages'])->where(function ($e) use ($request, $products, $product_ids) {
                 if ($request->age_id != null) {
                     $e->whereHas('Ages', function ($q) use ($request) {
