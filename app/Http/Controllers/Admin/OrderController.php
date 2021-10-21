@@ -319,7 +319,6 @@ class OrderController extends Controller
         });   
         $img->save('public/NewCard.png');
         return url('NewCard.png');
-        //return response()->download(public_path('NewCard.png'))->deleteFileAfterSend();
     }
     public function update_deliveryDate(Request $request)
     {
