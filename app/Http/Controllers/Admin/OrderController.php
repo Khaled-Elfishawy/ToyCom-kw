@@ -318,7 +318,7 @@ class OrderController extends Controller
             //$font->angle(45);
         });   
         $img->save('public/NewCard.png');
-        return public_path('NewCard.png');
+        return url('NewCard.png');
         //return response()->download(public_path('NewCard.png'))->deleteFileAfterSend();
     }
     public function update_deliveryDate(Request $request)
