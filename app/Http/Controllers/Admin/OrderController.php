@@ -294,7 +294,7 @@ class OrderController extends Controller
         $img = Image::make(public_path('003.png'));
         // write text at position
         $img->text($body, 290, 230, function($font) {
-            $font->file(public_path('DroidNaskh-Regular.ttf'));
+            $font->file(public_path('Almarai-Regular.ttf'));
             $font->size(13);
             //$font->color('#fdf6e3');
             $font->align('right');
@@ -302,7 +302,7 @@ class OrderController extends Controller
             //$font->angle(45);
         }); 
         $img->text($from, 200, 325, function($font) {
-            $font->file(public_path('DroidNaskh-Regular.ttf'));
+            $font->file(public_path('Almarai-Regular.ttf'));
             $font->size(13);
             //$font->color('#fdf6e3');
             $font->align('right');
@@ -310,7 +310,7 @@ class OrderController extends Controller
             //$font->angle(45);
         }); 
         $img->text($to, 200, 370, function($font) {
-            $font->file(public_path('DroidNaskh-Regular.ttf'));
+            $font->file(public_path('Almarai-Regular.ttf'));
             $font->size(13);
             //$font->color('#fdf6e3');
             $font->align('right');
