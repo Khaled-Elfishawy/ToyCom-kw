@@ -317,8 +317,15 @@ class OrderController extends Controller
             $font->valign('top');
             //$font->angle(45);
         });   
-        $img->save('public/NewCard.png');
-        return url('NewCard.png');
+        $name = 'card.png';
+        $image = $img->encode('png');
+        $headers = [
+            'Content-Type' => 'image/png',
+            'Content-Disposition' => 'attachment; filename='. $name,
+        ];
+        return response()->stream(function() use ($image) {
+            echo $image;
+        }, 200, $headers);
     }
     public function update_deliveryDate(Request $request)
     {
