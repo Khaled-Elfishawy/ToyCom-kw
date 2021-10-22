@@ -43,40 +43,40 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-6">
+{{--                        <div class="row">--}}
+{{--                            <div class="col-6">--}}
 
-                                <div class="form-group">
-                                    <label class="input-label"
-                                           for="exampleFormControlInput1">{{trans('messages.capacity')}}</label>
-                                    <input type="number" min="0" max="100" step="0.001"
-                                           value="{{ $product['capacity'] }}" name="capacity"
-                                           class="form-control"
-                                           placeholder="Ex : 5" required>
-                                </div>
+{{--                                <div class="form-group">--}}
+{{--                                    <label class="input-label"--}}
+{{--                                           for="exampleFormControlInput1">{{trans('messages.capacity')}}</label>--}}
+{{--                                    <input type="number" min="0" max="100" step="0.001"--}}
+{{--                                           value="{{ $product['capacity'] }}" name="capacity"--}}
+{{--                                           class="form-control"--}}
+{{--                                           placeholder="Ex : 5" required>--}}
+{{--                                </div>--}}
 
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label class="input-label"
-                                           for="exampleFormControlInput1">{{trans('messages.unit')}}</label>
-                                    <select name="unit" class="form-control js-select2-custom">
-                                        <option value="kg" {{$product['unit']=='kg'?'selected':''}}>
-                                            {{trans('messages.kg')}}
-                                        </option>
-                                        <option value="gm" {{$product['unit']=='gm'?'selected':''}}>
-                                            {{trans('messages.gm')}}
-                                        </option>
-                                        <option value="ltr" {{$product['unit']=='ltr'?'selected':''}}>
-                                            {{trans('messages.ltr')}}
-                                        </option>
-                                        <option value="pc" {{$product['unit']=='pc'?'selected':''}}>
-                                            {{trans('messages.pc')}}
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
+{{--                            </div>--}}
+{{--                            <div class="col-6">--}}
+{{--                                <div class="form-group">--}}
+{{--                                    <label class="input-label"--}}
+{{--                                           for="exampleFormControlInput1">{{trans('messages.unit')}}</label>--}}
+{{--                                    <select name="unit" class="form-control js-select2-custom">--}}
+{{--                                        <option value="kg" {{$product['unit']=='kg'?'selected':''}}>--}}
+{{--                                            {{trans('messages.kg')}}--}}
+{{--                                        </option>--}}
+{{--                                        <option value="gm" {{$product['unit']=='gm'?'selected':''}}>--}}
+{{--                                            {{trans('messages.gm')}}--}}
+{{--                                        </option>--}}
+{{--                                        <option value="ltr" {{$product['unit']=='ltr'?'selected':''}}>--}}
+{{--                                            {{trans('messages.ltr')}}--}}
+{{--                                        </option>--}}
+{{--                                        <option value="pc" {{$product['unit']=='pc'?'selected':''}}>--}}
+{{--                                            {{trans('messages.pc')}}--}}
+{{--                                        </option>--}}
+{{--                                    </select>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group">
@@ -324,20 +324,20 @@
 
                         <div class="form-group pt-4">
                             <label class="input-label"
-                                   for="exampleFormControlInput1">{{trans('messages.short')}} {{trans('messages.description_ar')}}</label>
+                                   for="exampleFormControlInput1">{{trans('messages.short_description_ar')}}</label>
                             <div id="editor_ar" style="min-height: 15rem;">{!! $product['description_ar'] !!}</div>
                             <textarea name="description_ar" style="display:none" id="hiddenArea_ar"></textarea>
                         </div>
 
                         <div class="form-group pt-4">
                             <label class="input-label"
-                                   for="exampleFormControlInput1">{{trans('messages.short')}} {{trans('messages.description_en')}}</label>
+                                   for="exampleFormControlInput1">{{trans('messages.short_description_en')}}</label>
                             <div id="editor" style="min-height: 15rem;">{!! $product['description'] !!}</div>
                             <textarea name="description" style="display:none" id="hiddenArea"></textarea>
                         </div>
 
                         <div class="form-group">
-                            <label>{{trans('messages.product')}} {{trans('messages.image')}}</label><small
+                            <label>{{trans('messages.product_image')}}</label><small
                                 style="color: red">* ( {{trans('messages.ratio')}} 1:1 )</small>
                             <div>
                                 <div class="row mb-3">

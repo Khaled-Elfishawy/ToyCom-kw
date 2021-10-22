@@ -3,6 +3,10 @@
 <?php
 
 return [
+    'product_image' => 'صورة المنتج',
+    'short_description_en' => 'وصف قصير باللغة الانجليزية',
+    'short_description_ar' => 'وصف قصير باللغة العربية',
+    'tax_type' => 'نوع الضريبة',
     'delivery_address' => 'عنوان التوصيل',
     'genderAll' => 'الكل',
     'main_image' => 'صورة الصفحة الرئيسية',

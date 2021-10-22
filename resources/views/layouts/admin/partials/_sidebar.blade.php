@@ -400,42 +400,7 @@
                             </ul>
                         </li>
 
-                        @if(UserCan('view_category','admin'))
-                            <li class="navbar-vertical-aside-has-menu {{Request::is('admin/category*')?'active':''}}">
-                            {{--                            <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:"--}}
-                            {{--                            >--}}
-                            {{--                                <i class="tio-category nav-icon"></i>--}}
-                            {{--                                <span--}}
-                            {{--                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{trans('messages.category')}}</span>--}}
-                            {{--                            </a>--}}
-                            {{--                            <ul class="js-navbar-vertical-aside-submenu nav nav-sub"--}}
-                            {{--                                style="display: {{Request::is('admin/category*')?'block':'none'}}">--}}
-                            <li class="nav-item {{Request::is('admin/category/add')?'active':''}}">
-                                <a class="nav-link " href="{{route('admin.category.add')}}"
-                                   title="add new category">
-                                    <span class="tio-circle nav-indicator-icon"></span>
-                                    <span class="text-truncate">{{trans('messages.categories')}}</span>
-                                </a>
-                            </li>
 
-                            {{--                                <li class="nav-item {{Request::is('admin/category/add-sub-category')?'active':''}}">--}}
-                            {{--                                    <a class="nav-link " href="{{route('admin.category.add-sub-category')}}"--}}
-                            {{--                                       title="add new sub category">--}}
-                            {{--                                        <span class="tio-circle nav-indicator-icon"></span>--}}
-                            {{--                                        <span class="text-truncate">{{trans('messages.sub_category')}}</span>--}}
-                            {{--                                    </a>--}}
-                            {{--                                </li>--}}
-
-                            {{--<li class="nav-item {{Request::is('admin/category/add-sub-sub-category')?'active':''}}">
-                                <a class="nav-link " href="{{route('admin.category.add-sub-sub-category')}}"
-                                   title="add new sub sub category">
-                                    <span class="tio-circle nav-indicator-icon"></span>
-                                    <span class="text-truncate">Sub-Sub-Category</span>
-                                </a>
-                            </li>--}}
-                            {{--                            </ul>--}}
-                            {{--                        </li>--}}
-                        @endif
                     <!-- End Pages -->
 
 
@@ -485,7 +450,42 @@
                             </li>
                         @endif
                     <!-- End Pages -->
+                        @if(UserCan('view_category','admin'))
+                            <li class="navbar-vertical-aside-has-menu {{Request::is('admin/category*')?'active':''}}">
+                            {{--                            <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:"--}}
+                            {{--                            >--}}
+                            {{--                                <i class="tio-category nav-icon"></i>--}}
+                            {{--                                <span--}}
+                            {{--                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{trans('messages.category')}}</span>--}}
+                            {{--                            </a>--}}
+                            {{--                            <ul class="js-navbar-vertical-aside-submenu nav nav-sub"--}}
+                            {{--                                style="display: {{Request::is('admin/category*')?'block':'none'}}">--}}
+                            <li class="nav-item {{Request::is('admin/category/add')?'active':''}}">
+                                <a class="nav-link " href="{{route('admin.category.add')}}"
+                                   title="add new category">
+                                    <span class="tio-circle nav-indicator-icon"></span>
+                                    <span class="text-truncate">{{trans('messages.categories')}}</span>
+                                </a>
+                            </li>
 
+                            {{--                                <li class="nav-item {{Request::is('admin/category/add-sub-category')?'active':''}}">--}}
+                            {{--                                    <a class="nav-link " href="{{route('admin.category.add-sub-category')}}"--}}
+                            {{--                                       title="add new sub category">--}}
+                            {{--                                        <span class="tio-circle nav-indicator-icon"></span>--}}
+                            {{--                                        <span class="text-truncate">{{trans('messages.sub_category')}}</span>--}}
+                            {{--                                    </a>--}}
+                            {{--                                </li>--}}
+
+                            {{--<li class="nav-item {{Request::is('admin/category/add-sub-sub-category')?'active':''}}">
+                                <a class="nav-link " href="{{route('admin.category.add-sub-sub-category')}}"
+                                   title="add new sub sub category">
+                                    <span class="tio-circle nav-indicator-icon"></span>
+                                    <span class="text-truncate">Sub-Sub-Category</span>
+                                </a>
+                            </li>--}}
+                            {{--                            </ul>--}}
+                            {{--                        </li>--}}
+                        @endif
                         <li class="nav-item">
                             <small class="nav-subtitle"
                                    title="Layouts">{{trans('messages.business')}} {{trans('messages.section')}}</small>

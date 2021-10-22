@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'tax_type' => 'tax type',
+    'delivery_address' => 'delivery address',
     'genderAll' => 'all',
     'main_image' => 'main image',
     'add_new_cat' => 'add new category',

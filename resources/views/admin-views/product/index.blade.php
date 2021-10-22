@@ -42,29 +42,29 @@
                         </div>
 
 
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label class="input-label"
-                                           for="exampleFormControlInput1">{{trans('messages.capacity')}}</label>
-                                    <input type="number" min="0" max="100" step="0.001" value="1" name="capacity"
-                                           class="form-control"
-                                           placeholder="Ex : 5" required>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label class="input-label"
-                                           for="exampleFormControlInput1">{{trans('messages.unit')}}</label>
-                                    <select name="unit" class="form-control js-select2-custom">
-                                        <option value="kg">{{trans('messages.kg')}}</option>
-                                        <option value="gm">{{trans('messages.gm')}}</option>
-                                        <option value="ltr">{{trans('messages.ltr')}}</option>
-                                        <option value="pc">{{trans('messages.pc')}}</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
+{{--                        <div class="row">--}}
+{{--                            <div class="col-6">--}}
+{{--                                <div class="form-group">--}}
+{{--                                    <label class="input-label"--}}
+{{--                                           for="exampleFormControlInput1">{{trans('messages.capacity')}}</label>--}}
+{{--                                    <input type="number" min="0" max="100" step="0.001" value="1" name="capacity"--}}
+{{--                                           class="form-control"--}}
+{{--                                           placeholder="Ex : 5" required>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="col-6">--}}
+{{--                                <div class="form-group">--}}
+{{--                                    <label class="input-label"--}}
+{{--                                           for="exampleFormControlInput1">{{trans('messages.unit')}}</label>--}}
+{{--                                    <select name="unit" class="form-control js-select2-custom">--}}
+{{--                                        <option value="kg">{{trans('messages.kg')}}</option>--}}
+{{--                                        <option value="gm">{{trans('messages.gm')}}</option>--}}
+{{--                                        <option value="ltr">{{trans('messages.ltr')}}</option>--}}
+{{--                                        <option value="pc">{{trans('messages.pc')}}</option>--}}
+{{--                                    </select>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
 
 
@@ -184,7 +184,7 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label class="input-label"
-                                           for="exampleFormControlInput1">{{trans('messages.tax')}} {{trans('messages.type')}}</label>
+                                           for="exampleFormControlInput1">{{trans('messages.tax_type')}}</label>
                                     <select name="tax_type" class="form-control js-select2-custom">
                                         <option value="percent">{{trans('messages.percent')}}</option>
                                         <option value="amount">{{trans('messages.amount')}}</option>
@@ -255,8 +255,8 @@
                             </div>--}}
                         </div>
 
-                        <div class="row"
-                             style="border: 1px solid #80808045; border-radius: 10px;padding-top: 10px;margin: 1px">
+{{--                        <div class="row"--}}
+{{--                             style="border: 1px solid #80808045; border-radius: 10px;padding-top: 10px;margin: 1px">--}}
 {{--                            <div class="col-12">--}}
 {{--                                <div class="form-group">--}}
 {{--                                    <label class="input-label"--}}
@@ -272,41 +272,41 @@
 {{--                                </div>--}}
 {{--                            </div>--}}
 
-                            <div class="col-md-12 mt-2 mb-2">
-                                <div class="customer_choice_options" id="customer_choice_options">
+{{--                            <div class="col-md-12 mt-2 mb-2">--}}
+{{--                                <div class="customer_choice_options" id="customer_choice_options">--}}
 
-                                </div>
-                            </div>
-                            <div class="col-md-12 mt-2 mb-2">
-                                <div class="variant_combination" id="variant_combination">
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="col-md-12 mt-2 mb-2">--}}
+{{--                                <div class="variant_combination" id="variant_combination">--}}
 
-                                </div>
-                            </div>
-                        </div>
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
-                        <div class="form-group pt-4">
-                            <label class="input-label"
-                                   for="exampleFormControlInput1">{{trans('messages.short')}} {{trans('messages.description_en')}}</label>
-                            <div id="editor_ar" style="min-height: 15rem;"></div>
-                            <textarea name="description" style="display:none" id="hiddenArea_ar"></textarea>
-                        </div>
+
 
                         <div class="form-group pt-4">
                             <label class="input-label"
-                                   for="exampleFormControlInput1">{{trans('messages.short')}} {{trans('messages.description_ar')}}</label>
+                                   for="exampleFormControlInput1">{{trans('messages.short_description_ar')}}</label>
                             <div id="editor" style="min-height: 15rem;"></div>
                             <textarea name="description_ar" style="display:none" id="hiddenArea"></textarea>
                         </div>
-
+                        <div class="form-group pt-4">
+                            <label class="input-label"
+                                   for="exampleFormControlInput1">{{trans('messages.short_description_en')}}</label>
+                            <div id="editor_ar" style="min-height: 15rem;"></div>
+                            <textarea name="description" style="display:none" id="hiddenArea_ar"></textarea>
+                        </div>
                         <div class="form-group">
-                            <label>{{trans('messages.product')}} {{trans('messages.image')}}</label><small
+                            <label>{{trans('messages.product_image')}}</label><small
                                 style="color: red">* ( {{trans('messages.ratio')}} 1:1 )</small>
                             <div>
                                 <div class="row" id="coba"></div>
                             </div>
                         </div>
                         <hr>
-                        <button type="submit" class="btn btn-primary">{{trans('messages.submit')}}</button>
+                        <button type="submit" class="btn btn-primary">{{trans('messages.add')}}</button>
                     </form>
                 </div>
             </div>

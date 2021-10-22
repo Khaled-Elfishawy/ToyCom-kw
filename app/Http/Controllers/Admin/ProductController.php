@@ -108,7 +108,8 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name'        => 'required|unique:products',
+            'name'        => 'required|unique:products,name',
+            'name_ar'        => 'required|unique:products,name_ar',
             'category_id' => 'required',
             'brand_id' => 'required',
             'ages' => 'required',
@@ -240,9 +241,9 @@ class ProductController extends Controller
         $p->gomla_price = $request->gomla_price;
         $p->by_date = $request->by_date;
         $p->barcode = $request->barcode;
-        $p->capacity = $request->capacity;
-
-        $p->unit = $request->unit;
+//        $p->capacity = $request->capacity;
+//
+//        $p->unit = $request->unit;
         $p->image = $image_data;
 
         $p->tax = $request->tax_type == 'amount' ? $request->tax : $request->tax;
@@ -286,7 +287,8 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'name'        => 'required',
+            'name'        => 'required|unique:products,name,'.$id,
+            'name_ar'        => 'required|unique:products,name_ar,'.$id,
             'category_id' => 'required',
             'brand_id' => 'required',
             'ages' => 'required',
@@ -414,8 +416,8 @@ class ProductController extends Controller
         //combinations end
         $p->variations = json_encode($variations);
         $p->price = $request->price;
-        $p->capacity = $request->capacity;
-        $p->unit = $request->unit;
+//        $p->capacity = $request->capacity;
+//        $p->unit = $request->unit;
         $p->image = json_encode(array_merge(json_decode($p['image'], true), json_decode($image_data, true)));
 
         $p->tax = $request->tax_type == 'amount' ? $request->tax : $request->tax;
