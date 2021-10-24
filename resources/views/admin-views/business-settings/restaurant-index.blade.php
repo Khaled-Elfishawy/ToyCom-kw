@@ -50,7 +50,7 @@
 
                     <div class="row">
                         @php($phone=\App\Model\BusinessSetting::where('key','phone')->first()->value)
-                        <div class="col-md-4 col-12">
+                        <div class="col-md-3 col-12">
                             <div class="form-group">
                                 <label class="input-label" for="exampleFormControlInput1">{{trans('messages.phone')}}</label>
                                 <input type="text" value="{{$phone}}"
@@ -58,8 +58,17 @@
                                        placeholder="" required>
                             </div>
                         </div>
+                        @php($whatsapp=\App\Model\BusinessSetting::where('key','whatsapp')->first()->value)
+                        <div class="col-md-3 col-12">
+                            <div class="form-group">
+                                <label class="input-label" for="exampleFormControlInput1">{{trans('messages.whatsapp')}}</label>
+                                <input type="number" value="{{$whatsapp}}"
+                                       name="whatsapp" class="form-control"
+                                       placeholder="" required>
+                            </div>
+                        </div>
                         @php($email=\App\Model\BusinessSetting::where('key','email_address')->first()->value)
-                        <div class="col-md-4 col-12">
+                        <div class="col-md-3 col-12">
                             <div class="form-group">
                                 <label class="input-label" for="exampleFormControlInput1">{{trans('messages.email')}}</label>
                                 <input type="email" value="{{$email}}"
@@ -68,7 +77,7 @@
                             </div>
                         </div>
                         @php($address=\App\Model\BusinessSetting::where('key','address')->first()->value)
-                        <div class="col-md-4 col-12">
+                        <div class="col-md-3 col-12">
                             <div class="form-group">
                                 <label class="input-label" for="exampleFormControlInput1">{{trans('messages.address')}}</label>
                                 <input type="text" value="{{$address}}"
