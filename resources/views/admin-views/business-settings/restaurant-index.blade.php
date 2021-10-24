@@ -58,12 +58,12 @@
                                        placeholder="" required>
                             </div>
                         </div>
-                        @php($whatsapp=\App\Model\BusinessSetting::where('key','whatsapp')->first()->value)
+                        @php($whatsapp=\App\Model\BusinessSetting::where('key','watsapp')->first()->value)
                         <div class="col-md-3 col-12">
                             <div class="form-group">
                                 <label class="input-label" for="exampleFormControlInput1">{{trans('messages.whatsapp')}}</label>
                                 <input type="number" value="{{$whatsapp}}"
-                                       name="whatsapp" class="form-control"
+                                       name="watsapp" class="form-control"
                                        placeholder="" required>
                             </div>
                         </div>

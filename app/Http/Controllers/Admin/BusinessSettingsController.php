@@ -66,8 +66,8 @@ class BusinessSettingsController extends Controller
             'value' => $request['phone'],
         ]);
 
-        DB::table('business_settings')->updateOrInsert(['key' => 'whatsapp'], [
-            'value' => $request['whatsapp'],
+        DB::table('business_settings')->updateOrInsert(['key' => 'watsapp'], [
+            'value' => $request['watsapp'],
         ]);
 
         DB::table('business_settings')->updateOrInsert(['key' => 'email_address'], [
