@@ -20,6 +20,7 @@ class ConfigController extends Controller
             'ecommerce_logo'              => BusinessSetting::where(['key' => 'logo'])->first()->value,
             'ecommerce_address'           => BusinessSetting::where(['key' => 'address'])->first()->value,
             'ecommerce_phone'             => BusinessSetting::where(['key' => 'phone'])->first()->value,
+            'whatsapp'                    => BusinessSetting::where(['key' => 'whatsapp'])->first()->value,
             'ecommerce_email'             => BusinessSetting::where(['key' => 'email_address'])->first()->value,
             'ecommerce_location_coverage' => Branch::where(['id' => 1])->first(['longitude', 'latitude', 'coverage']),
             'minimum_order_value'         => (float) BusinessSetting::where(['key' => 'minimum_order_value'])->first()->value,
