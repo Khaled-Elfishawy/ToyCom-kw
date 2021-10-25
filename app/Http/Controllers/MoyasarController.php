@@ -46,11 +46,12 @@ class MoyasarController extends Controller
             "udf4"              => "",
             "udf5"              => "",
         ];
-        $order->payment_method = 'K-Net';
-        $order->save();
         $knet  = new Knet($config);
         $request = $knet->request();
+//         dd($knet,$request,$order);
         if($request["status"] == 1){
+            $order->payment_method = 'K-Net';
+            $order->save();
             return redirect()->to($request["data"]["url"]);
         }else{
             print_r($request["errors"]);
@@ -61,7 +62,24 @@ class MoyasarController extends Controller
         $ResTranData            = $request->trandata;
         $termResourceKey        = "S409HW134YJ9FRE9";
         $decrytedData           = Knetdecrypt($ResTranData,$termResourceKey);
-        dd($decrytedData);
+        parse_str($decrytedData, $request);
+        if($request['result'] == "CAPTURED"){
+            DB::table('orders')
+                ->where('id', $request['udf1'])
+                ->update(['order_status' => 'confirmed', 'payment_status' => 'paid', 'transaction_reference' => $request['paymentid']]);
+            $order = Order::find($request['udf1']);
+            if ($order->callback != null) {
+                return redirect($order->callback . '/success');
+            }else{
+                return \redirect()->route('payment-success');
+            }
+        }
+        $order = Order::where('transaction_reference', $payment_id)->first();
+        if ($order->callback != null) {
+            return redirect($order->callback . '/fail');
+        }else{
+            return \redirect()->route('payment-fail');
+        }
     }
     public function error(Request $request)
     {
