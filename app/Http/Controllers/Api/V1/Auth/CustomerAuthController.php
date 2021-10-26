@@ -19,7 +19,7 @@ class CustomerAuthController extends Controller
     public function verify_phone(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'phone' => 'required|min:11|max:14|unique:users'
+            'phone' => 'required|min:11|max:14'
         ]);
 
         if ($validator->fails()) {
@@ -93,7 +93,7 @@ class CustomerAuthController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'username' => 'required',
-            'phone' => 'required|unique:users',
+            'phone' => 'required',
         ]);
         if ($validator->fails()) {
             return response()->json(['errors' => Helpers::error_processor($validator)], 403);
