@@ -34,38 +34,39 @@ class ProductController extends Controller
         $limit = ($request->limit) ? $request->limit : '10';
         $offset = ($request->offset) ? $request->offset : '1';
         $max_price = Product::get()->max('price');
-        if ($request->name != null && $request->cat_id == null
-            && $request->age_id == null && $request->age_id == null
-            && $request->price_from == 0.0 && $request->price_to == $max_price) {
-            $products = ProductLogic::search_products($request['name'], $limit, $offset);
-            $products['products'] = Helpers::product_data_formatting($products['products'], true);
-            return response()->json($products, 200);
+//        if ($request->name != null && $request->cat_id == null
+//            && $request->age_id == null && $request->age_id == null
+//            && $request->price_from == 0.0 && $request->price_to == $max_price) {
+//            $products = ProductLogic::search_products($request['name'], $limit, $offset);
+//            $products['products'] = Helpers::product_data_formatting($products['products'], true);
+//            return response()->json($products, 200);
+//        }
+//        if ($request->cat_id != null  || $request->age_id != null || $request->price_from != null || $request->price_to != null) {
+        $result = Product::query();
+        $result = $result->active()->withCount(['wishlist'])->with(['rating', 'Ages']);
+        if ($request->name != null) {
+            $result = $result->Where('name', 'like', "%$request->name%")->orWhere('name_ar', 'like', "%$request->name%");
         }
-        if ($request->cat_id != null  || $request->age_id != null || $request->price_from != null || $request->price_to != null) {
-            $result = Product::active()->withCount(['wishlist'])->with(['rating', 'Ages'])->where(function ($e) use ($request, $products, $product_ids) {
-                if ($request->age_id != null) {
-                    $e->whereHas('Ages', function ($q) use ($request) {
-                        $q->where('age_id', $request->age_id);
-                    });
-                }
-                if ($request->cat_id != null) {
-                    foreach ($products as $product) {
-                        foreach (json_decode($product['category_ids'], true) as $category) {
-                            if ($category['id'] == $request->cat_id) {
-                                array_push($product_ids, $product['id']);
-                            }
-                        }
+        if ($request->age_id != null) {
+            $result = $result->whereHas('Ages', function ($q) use ($request) {
+                $q->where('age_id', $request->age_id);
+            });
+        }
+        if ($request->cat_id != null) {
+            foreach ($products as $product) {
+                foreach (json_decode($product['category_ids'], true) as $category) {
+                    if ($category['id'] == $request->cat_id) {
+                        array_push($product_ids, $product['id']);
                     }
-                    $e->whereIn('id', $product_ids);
                 }
-                if ($request->price_from != null && $request->price_to != null) {
-                    $e->whereBetween('price', [$request->price_from, $request->price_to]);
-                }
-            })->orderBy($sort_from, $sort)->paginate($limit, ['*'], 'page', $offset);
-        } else {
-            $proNames = ProductLogic::get_latest_products($limit, $offset);
-            $result = $proNames['products'];
+            }
+            $result = $result->whereIn('id', $product_ids);
         }
+        if ($request->price_from != null && $request->price_to != null) {
+            $result = $result->whereBetween('price', [$request->price_from, $request->price_to]);
+        }
+        $result = $result->orderBy($sort_from, $sort)->paginate($limit, ['*'], 'page', $offset);
+
         $final_result['total_size'] = $result->total();
         $final_result['limit'] = $limit;
         $final_result['offset'] = $offset;
