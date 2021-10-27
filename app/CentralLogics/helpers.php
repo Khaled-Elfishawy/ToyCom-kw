@@ -56,6 +56,7 @@ class Helpers
                 $variations = [];
                 $item['category_ids'] = json_decode($item['category_ids']);
                 $item['image'] = json_decode($item['image']);
+                $item['price'] = number_format((float)( $item['price']), 3);
                 $item['attributes'] = json_decode($item['attributes']);
                 $item['choice_options'] = json_decode($item['choice_options']);
                 foreach (json_decode($item['variations'], true) as $var) {
@@ -85,7 +86,6 @@ class Helpers
             }
             $data['variations'] = $variations;
         }
-
         return $data;
     }
 
