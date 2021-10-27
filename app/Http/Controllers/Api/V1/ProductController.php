@@ -45,7 +45,7 @@ class ProductController extends Controller
         $result = Product::query();
         $result = $result->active()->withCount(['wishlist'])->with(['rating', 'Ages']);
         if ($request->name != null) {
-            $result = $result->Where('name', 'like', "%$request->name%")->orWhere('name_ar', 'like', "%$request->name%");
+            $result = $result->Where('name', 'like', "%$request->name%");
         }
         if ($request->age_id != null) {
             $result = $result->whereHas('Ages', function ($q) use ($request) {
