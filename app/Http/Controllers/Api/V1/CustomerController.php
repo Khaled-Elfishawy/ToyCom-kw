@@ -28,13 +28,13 @@ class CustomerController extends Controller
             'contact_person_name' => 'required',
             'address_type' => 'required',
             'contact_person_number' => 'required',
-            'address' => 'required'
+            'address' => 'required',
+            'gada' => 'required',
+            'house' => 'required'
         ]);
-
         if ($validator->fails()) {
             return response()->json(['errors' => Helpers::error_processor($validator)], 403);
         }
-
 //        $address = [
 //            'user_id' => $request->user()->id,
 //            'contact_person_name' => $request->contact_person_name,
@@ -60,6 +60,8 @@ class CustomerController extends Controller
         $data['zone_id'] = $request->zone_id;
         $data['city_id'] = $request->city_id;
         $data['district_id'] = $request->district_id;
+        $data['gada'] = $request->gada;
+        $data['house'] = $request->house;
 //        $data['created_at'] = now();
 //        $data['updated_at'] = now();
         CustomerAddress::create($data);

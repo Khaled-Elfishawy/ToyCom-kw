@@ -63,7 +63,7 @@ class ProductController extends Controller
             $result = $result->whereBetween('price', [$request->price_from, $request->price_to]);
         }
         if ($request->name != null) {
-            $result = $result->Where('name', 'like', "%$request->name%")->orWhere('name_ar', 'like', "%$request->name%");
+            $result = $result->Where('name', 'like', "%$request->name%")->orWhere('name', 'like', "%$request->name%");
         }
         $result = $result->orderBy($sort_from, $sort)->paginate($limit, ['*'], 'page', $offset);
 
