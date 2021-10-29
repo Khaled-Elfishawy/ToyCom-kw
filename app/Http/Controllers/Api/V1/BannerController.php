@@ -87,9 +87,9 @@ class BannerController extends Controller
         }
     }
 
-    public function get_products_by_age(Request $request ,$id,$gender){
+    public function get_products_by_age($id,$gender){
         try {
-            return response()->json(Helpers::product_data_formatting(AgeLogic::products($id,$gender,$request->limit,$request->offset), true), 200);
+            return response()->json(Helpers::product_data_formatting(AgeLogic::products($id,$gender), true), 200);
         } catch (\Exception $e) {
             return response()->json([], 200);
         }

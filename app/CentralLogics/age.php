@@ -7,25 +7,20 @@ use App\Model\Product;
 
 class AgeLogic
 {
-    public static function products($age_id ,$gender , $limit = 10, $offset = 1)
+    public static function products($age_id ,$gender )
     {
         if ($age_id == 0) {
             $products = Product::active()->where(function($e)use($gender){
                 $e->where('gender',$gender)->orWhere('gender','all');
-            })->withCount(['wishlist'])->with(['rating','Ages'])->paginate($limit, ['*'], 'page', $offset);
+            })->withCount(['wishlist'])->with(['rating','Ages'])->get();
         }else{
             $products = Product::active()->whereHas('Ages',function($e)use($age_id){
                 $e->where('age_id',$age_id);
             })->where(function($e)use($gender){
                 $e->where('gender',$gender)->orWhere('gender','all');
-            })->withCount(['wishlist'])->with(['rating','Ages'])->paginate($limit, ['*'], 'page', $offset);
+            })->withCount(['wishlist'])->with(['rating','Ages'])->get();
         }
-        return [
-            'total_size' => $products->total(),
-            'limit' => $limit,
-            'offset' => $offset,
-            'products' => $products->items()
-        ];
+        return $products ;  
     }
     public static function barnds($id)
     {
