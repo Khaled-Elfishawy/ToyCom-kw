@@ -63,11 +63,11 @@ class BannerController extends Controller
         }
     }
 
-    public function get_products_by_brand($id)
+    public function get_products_by_brand(Request $request, $id)
     {
         try {
-            return response()->json(Helpers::product_data_formatting(AgeLogic::barnds($id), true), 200);
-
+            $products = AgeLogic::barnds($id, $request['limit'], $request['offset']);
+            return response()->json(Helpers::product_data_formatting($products['products'], true), 200);
         } catch (\Exception $e) {
             return response()->json([], 200);
         }
@@ -94,9 +94,12 @@ class BannerController extends Controller
 
     public function get_products_by_age(Request $request, $id, $gender)
     {
-        $products = AgeLogic::products($id, $gender, $request['limit'], $request['offset']);
-        return response()->json(Helpers::product_data_formatting(
-            $products['products'] , true), 200);
-
+        try {
+            $products = AgeLogic::products($id, $gender, $request['limit'], $request['offset']);
+            return response()->json(Helpers::product_data_formatting(
+                $products['products'], true), 200);
+        } catch (\Exception $e) {
+            return response()->json([], 200);
+        }
     }
 }

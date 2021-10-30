@@ -29,12 +29,18 @@ class AgeLogic
             'products' => $products->items()
         ];
     }
-    public static function barnds($id)
+    public static function barnds($id ,$limit = 10, $offset = 1)
     {
         if ($id == 0) {
-            return Product::all();
+            $products =  Product::paginate($limit, ['*'], 'page', $offset);
         }else{
-            return Product::with('Ages')->where('brand_id',$id)->get();
+            $products = Product::with('Ages')->where('brand_id',$id)->paginate($limit, ['*'], 'page', $offset);
         }
+        return [
+            'total_size' => $products->total(),
+            'limit' => $limit,
+            'offset' => $offset,
+            'products' => $products->items()
+        ];
     }
 }
