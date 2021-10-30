@@ -109,8 +109,8 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:products,name',
-            'name_ar' => 'required|unique:products,name_ar',
+            'name' => 'required',
+            'name_ar' => 'required',
             'category_id' => 'required',
             'brand_id' => 'required',
             'ages' => 'required',
