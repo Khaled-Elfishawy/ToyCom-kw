@@ -68,20 +68,21 @@ class ProductController extends Controller
     public function index()
     {
         $categories = Category::where(['position' => 0])->get();
-        $prices=PriceGroup::all();
+        $prices = PriceGroup::all();
         $ages = Age::all();
         $brands = Brand::all();
-        return view('admin-views.product.index', compact('categories','prices','ages','brands'));
+        return view('admin-views.product.index', compact('categories', 'prices', 'ages', 'brands'));
     }
 
-    function list() {
+    function list()
+    {
         $products = Product::latest()->paginate(10);
         return view('admin-views.product.list', compact('products'));
     }
 
     public function search(Request $request)
     {
-        if($request['search'] == "") {
+        if ($request['search'] == "") {
             $products = Product::latest()->paginate(10);
         } else {
             $key = explode(' ', $request['search']);
@@ -108,160 +109,120 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name'        => 'required|unique:products,name',
-            'name_ar'        => 'required|unique:products,name_ar',
+            'name' => 'required|unique:products,name',
+            'name_ar' => 'required|unique:products,name_ar',
             'category_id' => 'required',
             'brand_id' => 'required',
             'ages' => 'required',
-            'gender'      => 'required',
-            'images'      => 'required',
-            'by_date'      => 'required',
-            'barcode'      => 'required',
+            'gender' => 'required',
+            'images' => 'required',
+            'by_date' => 'required',
+            'barcode' => 'required',
             'total_stock' => 'required|numeric|min:1',
-            'price'       => 'required|numeric|min:1',
-            'gomla_price'       => 'required|numeric',
+            'price' => 'required|numeric|min:1',
+            'gomla_price' => 'required|numeric',
         ], [
-            'name.required'        => 'Product name is required!',
+            'name.required' => 'Product name is required!',
             'category_id.required' => 'category  is required!',
         ]);
-
-//        if ($request['discount_type'] == 'percent') {
-//            $dis = ($request['price'] / 100) * $request['discount'];
-//        } else {
-//            $dis = $request['discount'];
-//        }
-//
-//        if ($request['price'] <= $dis) {
-//            $validator->getMessageBag()->add('unit_price', 'Discount can not be more or equal to the price!');
-//        }
-
         $img_names = [];
         if (!empty($request->file('images'))) {
             foreach ($request->images as $img) {
-                $image_data =  Helpers::upload('product/', 'png', $img);
+                $image_data = Helpers::upload('product/', 'png', $img);
                 array_push($img_names, $image_data);
             }
             $image_data = json_encode($img_names);
         } else {
             $image_data = json_encode([]);
         }
-
-        $p = new Product;
-        $p->name = ($request->name)?($request->name):$request->name;
-        $p->name_ar = ($request->name_ar)?$request->name_ar:$request->name ;
-
-
-        $category = [];
-        if ($request->category_id != null) {
-            array_push($category, [
-                'id'       => $request->category_id,
-                'position' => 1,
-            ]);
-        }
-        /*
-        if ($request->sub_category_id != null) {
-            array_push($category, [
-                'id'       => $request->sub_category_id,
-                'position' => 2,
-            ]);
-        }
-        if ($request->sub_sub_category_id != null) {
-            array_push($category, [
-                'id'       => $request->sub_sub_category_id,
-                'position' => 3,
-            ]);
-        }
- */
-        $p->category_ids = json_encode($category);
-
-        $p->description = ($request->description)?$request->description:$request->description;
-        $p->description_ar = ($request->description_ar)?$request->description_ar:$request->description ;
-
-        $choice_options = [];
-        if ($request->has('choice')) {
-            foreach ($request->choice_no as $key => $no) {
-                $str = 'choice_options_' . $no;
-                if ($request[$str][0] == null) {
-                    $validator->getMessageBag()->add('name', 'Attribute choice option values can not be null!');
-                    return response()->json(['errors' => Helpers::error_processor($validator)]);
-                }
-                $item['name'] = 'choice_' . $no;
-                $item['title'] = $request->choice[$key];
-                $item['options'] = explode(',', implode('|', preg_replace('/\s+/', ' ', $request[$str])));
-                array_push($choice_options, $item);
+        for ($i = 0; $i < 20; $i++) {
+            $p = new Product;
+            $p->name = ($request->name) ? ($request->name) : $request->name;
+            $p->name_ar = ($request->name_ar) ? $request->name_ar : $request->name;
+            $category = [];
+            if ($request->category_id != null) {
+                array_push($category, [
+                    'id' => $request->category_id,
+                    'position' => 1,
+                ]);
             }
-        }
-
-        $p->choice_options = json_encode($choice_options);
-        $variations = [];
-        $options = [];
-        if ($request->has('choice_no')) {
-            foreach ($request->choice_no as $key => $no) {
-                $name = 'choice_options_' . $no;
-                $my_str = implode('|', $request[$name]);
-                array_push($options, explode(',', $my_str));
-            }
-        }
-        //Generates the combinations of customer choice options
-        $combinations = Helpers::combinations($options);
-
-        $stock_count = 0;
-        if (count($combinations[0]) > 0) {
-            foreach ($combinations as $key => $combination) {
-                $str = '';
-                foreach ($combination as $k => $item) {
-                    if ($k > 0) {
-                        $str .= '-' . str_replace(' ', '', $item);
-                    } else {
-                        $str .= str_replace(' ', '', $item);
+            $p->category_ids = json_encode($category);
+            $p->description = ($request->description) ? $request->description : $request->description;
+            $p->description_ar = ($request->description_ar) ? $request->description_ar : $request->description;
+            $choice_options = [];
+            if ($request->has('choice')) {
+                foreach ($request->choice_no as $key => $no) {
+                    $str = 'choice_options_' . $no;
+                    if ($request[$str][0] == null) {
+                        $validator->getMessageBag()->add('name', 'Attribute choice option values can not be null!');
+                        return response()->json(['errors' => Helpers::error_processor($validator)]);
                     }
+                    $item['name'] = 'choice_' . $no;
+                    $item['title'] = $request->choice[$key];
+                    $item['options'] = explode(',', implode('|', preg_replace('/\s+/', ' ', $request[$str])));
+                    array_push($choice_options, $item);
                 }
-                $item = [];
-                $item['type'] = $str;
-                $item['price'] = abs($request['price_' . str_replace('.', '_', $str)]);
-                $item['stock'] = abs($request['stock_' . str_replace('.', '_', $str)]);
-                array_push($variations, $item);
-                $stock_count += $item['stock'];
             }
-        } else {
-            $stock_count = (integer) $request['total_stock'];
+            $p->choice_options = json_encode($choice_options);
+            $variations = [];
+            $options = [];
+            if ($request->has('choice_no')) {
+                foreach ($request->choice_no as $key => $no) {
+                    $name = 'choice_options_' . $no;
+                    $my_str = implode('|', $request[$name]);
+                    array_push($options, explode(',', $my_str));
+                }
+            }
+            //Generates the combinations of customer choice options
+            $combinations = Helpers::combinations($options);
+            $stock_count = 0;
+            if (count($combinations[0]) > 0) {
+                foreach ($combinations as $key => $combination) {
+                    $str = '';
+                    foreach ($combination as $k => $item) {
+                        if ($k > 0) {
+                            $str .= '-' . str_replace(' ', '', $item);
+                        } else {
+                            $str .= str_replace(' ', '', $item);
+                        }
+                    }
+                    $item = [];
+                    $item['type'] = $str;
+                    $item['price'] = abs($request['price_' . str_replace('.', '_', $str)]);
+                    $item['stock'] = abs($request['stock_' . str_replace('.', '_', $str)]);
+                    array_push($variations, $item);
+                    $stock_count += $item['stock'];
+                }
+            } else {
+                $stock_count = (integer)$request['total_stock'];
+            }
+            if ((integer)$request['total_stock'] != $stock_count) {
+                $validator->getMessageBag()->add('total_stock', 'Stock calculation mismatch!');
+            }
+            if ($validator->getMessageBag()->count() > 0) {
+                return response()->json(['errors' => Helpers::error_processor($validator)]);
+            }
+            //combinations end
+            $p->variations = json_encode($variations);
+            $p->price = $request->price;
+            $p->gomla_price = $request->gomla_price;
+            $p->by_date = $request->by_date;
+            $p->barcode = $request->barcode;
+            $p->image = $image_data;
+            $p->tax = $request->tax_type == 'amount' ? $request->tax : $request->tax;
+            $p->tax_type = $request->tax_type;
+            $p->total_stock = $request->total_stock;
+            $p->brand_id = $request->brand_id;
+            $p->gender = $request->gender;
+            $p->attributes = $request->has('attribute_id') ? json_encode($request->attribute_id) : json_encode([]);
+            $p->save();
+            $age_data['product_id'] = $p->id;
+            foreach ($request->ages as $row) {
+                $age_data['age_id'] = $row;
+                Product_age::create($age_data);
+            }
         }
-
-        if ((integer) $request['total_stock'] != $stock_count) {
-            $validator->getMessageBag()->add('total_stock', 'Stock calculation mismatch!');
-        }
-
-        if ($validator->getMessageBag()->count() > 0) {
-            return response()->json(['errors' => Helpers::error_processor($validator)]);
-        }
-
-        //combinations end
-        $p->variations = json_encode($variations);
-        $p->price = $request->price;
-        $p->gomla_price = $request->gomla_price;
-        $p->by_date = $request->by_date;
-        $p->barcode = $request->barcode;
-//        $p->capacity = $request->capacity;
-//
-//        $p->unit = $request->unit;
-        $p->image = $image_data;
-
-        $p->tax = $request->tax_type == 'amount' ? $request->tax : $request->tax;
-        $p->tax_type = $request->tax_type;
-
-//        $p->discount = $request->discount_type == 'amount' ? $request->discount : $request->discount;
-//        $p->discount_type = $request->discount_type;
-        $p->total_stock = $request->total_stock;
-        $p->brand_id = $request->brand_id;
-        $p->gender = $request->gender;
-        $p->attributes = $request->has('attribute_id') ? json_encode($request->attribute_id) : json_encode([]);
-        $p->save();
-        $age_data['product_id'] = $p->id;
-        foreach ($request->ages as $row){
-            $age_data['age_id'] = $row;
-            Product_age::create($age_data);
-        }
-//        return response()->json([], 200);
+        return response()->json([], 200);
     }
 
     public function edit($id)
@@ -269,10 +230,10 @@ class ProductController extends Controller
         $product = Product::find($id);
         $product_category = json_decode($product->category_ids);
         $categories = Category::where(['parent_id' => 0])->get();
-        $prices=PriceGroup::all();
+        $prices = PriceGroup::all();
         $ages = Age::all();
         $brands = Brand::all();
-        return view('admin-views.product.edit', compact('brands','ages','product', 'product_category', 'categories','prices'));
+        return view('admin-views.product.edit', compact('brands', 'ages', 'product', 'product_category', 'categories', 'prices'));
     }
 
     public function status(Request $request)
@@ -287,18 +248,18 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'name'        => 'required|unique:products,name,'.$id,
-            'name_ar'        => 'required|unique:products,name_ar,'.$id,
+            'name' => 'required|unique:products,name,' . $id,
+            'name_ar' => 'required|unique:products,name_ar,' . $id,
             'category_id' => 'required',
             'brand_id' => 'required',
             'ages' => 'required',
-            'gender'      => 'required',
-            'price'       => 'required|numeric|min:1',
-            'by_date'      => 'required',
-            'barcode'      => 'required',
-            'gomla_price'       => 'required|numeric|min:1',
+            'gender' => 'required',
+            'price' => 'required|numeric|min:1',
+            'by_date' => 'required',
+            'barcode' => 'required',
+            'gomla_price' => 'required|numeric|min:1',
         ], [
-            'name.required'        => 'Product name is required!',
+            'name.required' => 'Product name is required!',
             'category_id.required' => 'category  is required!',
         ]);
 
@@ -312,7 +273,7 @@ class ProductController extends Controller
 //            $validator->getMessageBag()->add('unit_price', 'Discount can not be more or equal to the price!');
 //        }
 
-        if ( $validator->fails()) {
+        if ($validator->fails()) {
             return response()->json(['errors' => Helpers::error_processor($validator)]);
         }
 
@@ -329,14 +290,14 @@ class ProductController extends Controller
             $image_data = json_encode([]);
         }
 
-        $p->name = ($request->name)?($request->name):$request->name;
-        $p->name_ar = ($request->name_ar)?($request->name_ar):$request->name;
+        $p->name = ($request->name) ? ($request->name) : $request->name;
+        $p->name_ar = ($request->name_ar) ? ($request->name_ar) : $request->name;
 
 
         $category = [];
         if ($request->category_id != null) {
             array_push($category, [
-                'id'       => $request->category_id,
+                'id' => $request->category_id,
                 'position' => 1,
             ]);
         }
@@ -355,8 +316,8 @@ class ProductController extends Controller
         }
 */
         $p->category_ids = json_encode($category);
-        $p->description = ($request->description)?($request->description):$request->description;
-        $p->description_ar = ($request->description_ar)?($request->description_ar):$request->description;
+        $p->description = ($request->description) ? ($request->description) : $request->description;
+        $p->description_ar = ($request->description_ar) ? ($request->description_ar) : $request->description;
 
         $choice_options = [];
         if ($request->has('choice')) {
@@ -402,10 +363,10 @@ class ProductController extends Controller
                 $stock_count += $item['stock'];
             }
         } else {
-            $stock_count = (integer) $request['total_stock'];
+            $stock_count = (integer)$request['total_stock'];
         }
 
-        if ((integer) $request['total_stock'] != $stock_count) {
+        if ((integer)$request['total_stock'] != $stock_count) {
             $validator->getMessageBag()->add('total_stock', 'Stock calculation mismatch!');
         }
 
@@ -431,12 +392,12 @@ class ProductController extends Controller
         $p->barcode = $request->barcode;
         $p->brand_id = $request->brand_id;
         $p->gender = $request->gender;
-      //  $p->price_group = $request->pricegroup;
+        //  $p->price_group = $request->pricegroup;
         $p->attributes = $request->has('attribute_id') ? json_encode($request->attribute_id) : json_encode([]);
         $p->save();
-        Product_age::where('product_id',$id)->delete();
+        Product_age::where('product_id', $id)->delete();
         $age_data['product_id'] = $id;
-        foreach ($request->ages as $row){
+        foreach ($request->ages as $row) {
             $age_data['age_id'] = $row;
             Product_age::create($age_data);
         }
