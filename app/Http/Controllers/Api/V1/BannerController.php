@@ -67,7 +67,8 @@ class BannerController extends Controller
     {
         try {
             $products = AgeLogic::barnds($id, $request['limit'], $request['offset']);
-            return response()->json(Helpers::product_data_formatting($products['products'], true), 200);
+            $products['products'] = Helpers::product_data_formatting($products['products'], true);
+            return response()->json($products, 200);
         } catch (\Exception $e) {
             return response()->json([], 200);
         }
@@ -96,8 +97,8 @@ class BannerController extends Controller
     {
         try {
             $products = AgeLogic::products($id, $gender, $request['limit'], $request['offset']);
-            return response()->json(Helpers::product_data_formatting(
-                $products['products'], true), 200);
+            $products['products'] = Helpers::product_data_formatting($products['products'], true);
+            return response()->json($products, 200);
         } catch (\Exception $e) {
             return response()->json([], 200);
         }
