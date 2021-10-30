@@ -50,6 +50,8 @@
                         @if($order->delivery_address['zone_id'] != null)   {{$order->delivery_address->Zone->name}}<br> @endif
                         @if($order->delivery_address['city_id'] != null)   {{$order->delivery_address->City->name}}<br> @endif
                         @if($order->delivery_address['district_id'] != null)   {{$order->delivery_address->District->name}}<br> @endif
+                        @if($order->delivery_address['gada'] != null)   {{$order->delivery_address->gada}}<br> @endif
+                        @if($order->delivery_address['house'] != null)   {{$order->delivery_address->house}}<br> @endif
 
                </strong><br>
                 @endif

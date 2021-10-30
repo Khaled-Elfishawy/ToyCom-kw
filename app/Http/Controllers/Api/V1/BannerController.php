@@ -11,11 +11,12 @@ use App\Model\Brand;
 use App\Model\Gift_warping;
 use App\Model\Product;
 use App\CentralLogics\Helpers;
-use http\Env\Request;
+use Illuminate\Http\Request;
 
 class BannerController extends Controller
 {
-    public function get_banners(){
+    public function get_banners()
+    {
         try {
             return response()->json(Banner::active()->get(), 200);
         } catch (\Exception $e) {
@@ -23,7 +24,8 @@ class BannerController extends Controller
         }
     }
 
-    public function get_gift_warping(){
+    public function get_gift_warping()
+    {
         try {
             $defualt = [
                 "id" => 0,
@@ -42,7 +44,8 @@ class BannerController extends Controller
         }
     }
 
-    public function get_brands(){
+    public function get_brands()
+    {
         try {
             $defualt = [
                 "id" => 0,
@@ -60,7 +63,8 @@ class BannerController extends Controller
         }
     }
 
-    public function get_products_by_brand($id){
+    public function get_products_by_brand($id)
+    {
         try {
             return response()->json(Helpers::product_data_formatting(AgeLogic::barnds($id), true), 200);
 
@@ -69,7 +73,8 @@ class BannerController extends Controller
         }
     }
 
-    public function get_ages(){
+    public function get_ages()
+    {
         try {
             $defualt = [
                 "id" => 0,
@@ -87,11 +92,11 @@ class BannerController extends Controller
         }
     }
 
-    public function get_products_by_age($id,$gender){
-        try {
-            return response()->json(Helpers::product_data_formatting(AgeLogic::products($id,$gender), true), 200);
-        } catch (\Exception $e) {
-            return response()->json([], 200);
-        }
+    public function get_products_by_age(Request $request, $id, $gender)
+    {
+        $products = AgeLogic::products($id, $gender, $request['limit'], $request['offset']);
+        return response()->json(Helpers::product_data_formatting(
+            $products['products'] , true), 200);
+
     }
 }

@@ -557,6 +557,8 @@
                                         @if($address['zone_id'] != null)   {{$address->Zone->name}}<br> @endif
                                         @if($address['city_id'] != null)   {{$address->City->name}}<br> @endif
                                         @if($address['district_id'] != null)   {{$address->District->name}}<br> @endif
+                                        @if($address['gada'] != null)   {{$address->gada}}<br> @endif
+                                        @if($address['house'] != null)   {{$address->house}}<br> @endif
                                 </span>
                                 @endif
                             @endif
@@ -838,9 +840,9 @@
                         success: function (data) {
                             console.log(data);
                             var w = window.open(data, 'Download');
-                            w.document.close();                                                        
+                            w.document.close();
                         }
-                    });            
+                    });
         }
     </script>
 @endpush
