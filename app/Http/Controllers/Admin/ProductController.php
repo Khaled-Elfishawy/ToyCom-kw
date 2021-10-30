@@ -261,7 +261,7 @@ class ProductController extends Controller
             $age_data['age_id'] = $row;
             Product_age::create($age_data);
         }
-        return response()->json([], 200);
+//        return response()->json([], 200);
     }
 
     public function edit($id)
