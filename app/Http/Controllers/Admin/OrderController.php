@@ -60,6 +60,7 @@ class OrderController extends Controller
     {
         $order = Order::with('details')->where(['id' => $id])->first();
 
+//        return $order;
         if (isset($order)) {
             return view('admin-views.order.order-view', compact('order'));
         } else {
@@ -300,7 +301,7 @@ class OrderController extends Controller
             $font->align('right');
             $font->valign('top');
             //$font->angle(45);
-        }); 
+        });
         $img->text($from, 200, 325, function($font) {
             $font->file(public_path('Almarai-Regular.ttf'));
             $font->size(13);
@@ -308,7 +309,7 @@ class OrderController extends Controller
             $font->align('right');
             $font->valign('top');
             //$font->angle(45);
-        }); 
+        });
         $img->text($to, 200, 370, function($font) {
             $font->file(public_path('Almarai-Regular.ttf'));
             $font->size(13);
@@ -316,7 +317,7 @@ class OrderController extends Controller
             $font->align('right');
             $font->valign('top');
             //$font->angle(45);
-        });   
+        });
         $img->save('public/NewCard.png');
         return url('public/NewCard.png');
     }

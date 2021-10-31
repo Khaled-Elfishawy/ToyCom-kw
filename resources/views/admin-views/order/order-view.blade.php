@@ -344,6 +344,7 @@
                                                        @else
                                                         data-name="{{$detail->Warpping->name_en}}"
                                                        @endif
+                                                       data-image="{{asset('storage/app/public/wraping')}}/{{$detail->Warpping->image }}"
                                                        data-toggle="modal" id="btn_warpping"
                                                        data-target="#warpping_modal"
                                                        class="btn btn-primary">{{trans('messages.wraping')}}</a>
@@ -407,17 +408,31 @@
                                                         aria-hidden="true">×
                                                 </button>
                                             </div>
-                                            <div class="modal-body">
-                                                <div class="form-group">
-                                                    <label for="recipient-name"
-                                                           class="control-label">{{trans('messages.wraping')}} {{trans('messages.name')}}</label>
-                                                    {{ Form::text('name',null,["class"=>"form-control" ,"readonly" ,'id'=>'txt_name']) }}
+                                            <div class="modal-body row">
+
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="recipient-name"
+                                                               class="control-label"> {{trans('messages.name')}}</label>
+
+                                                        @if(app()->getLocale() == 'ar')
+                                                            : <span >{{$detail->Warpping->name_ar}}</span>
+                                                        @else
+                                                            : <span>{{$detail->Warpping->name_en}}</span>
+                                                        @endif
+                                                           </div>
+                                                    <div class="form-group">
+                                                        <label for="recipient-name"
+                                                               class="control-label">{{trans('messages.price')}}</label>
+                                                       :
+                                                        <span>{{$detail->Warpping->price}}</span>
+
+                                                    </div>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label for="recipient-name"
-                                                           class="control-label">{{trans('messages.wraping')}} {{trans('messages.price')}}</label>
-                                                    {{ Form::text('price',null,["class"=>"form-control" ,"readonly",'id'=>'txt_price']) }}
+                                                <div class="col-6 ">
+                                                    <img id="txt_image" src="" style="height: 140px; ">
                                                 </div>
+
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-default waves-effect"
@@ -825,6 +840,7 @@
         $(document).on('click', '#btn_warpping', function () {
             $("#txt_price").val($(this).data('price'));
             $("#txt_name").val($(this).data('name'));
+            $("#txt_image").attr('src',$(this).data('image'));
         });
         function PrintCard(el) {
                     $.ajaxSetup({
