@@ -204,7 +204,7 @@ class ProductController extends Controller
             $data['categories'] = Category::select('id', 'name', 'name_ar')->get();
             $data['ages'] = Age::select('id', 'name_en', 'name_ar')->get();
             $max_price = Product::get()->max('price');
-            $data['max_product'] = number_format((float)( $max_price), 3);
+            $data['max_product'] =(string) $max_price;
 
             return response()->json($data, 200);
         } catch (\Exception $e) {
