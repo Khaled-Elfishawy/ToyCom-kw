@@ -29,7 +29,7 @@ class CustomerController extends Controller
             'address_type' => 'required',
             'contact_person_number' => 'required',
             'address' => 'required',
-            'gada' => 'required',
+            'gada' => '',
             'house' => 'required'
         ]);
         if ($validator->fails()) {

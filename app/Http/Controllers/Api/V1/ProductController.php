@@ -33,15 +33,6 @@ class ProductController extends Controller
         $sort = ($request->sort) ? $request->sort : 'asc';
         $limit = ($request->limit) ? $request->limit : '10';
         $offset = ($request->offset) ? $request->offset : '1';
-        $max_price = Product::get()->max('price');
-//        if ($request->name != null && $request->cat_id == null
-//            && $request->age_id == null && $request->age_id == null
-//            && $request->price_from == 0.0 && $request->price_to == $max_price) {
-//            $products = ProductLogic::search_products($request['name'], $limit, $offset);
-//            $products['products'] = Helpers::product_data_formatting($products['products'], true);
-//            return response()->json($products, 200);
-//        }
-//        if ($request->cat_id != null  || $request->age_id != null || $request->price_from != null || $request->price_to != null) {
         $result = Product::query();
         $result = $result->active()->withCount(['wishlist'])->with(['rating', 'Ages']);
         if ($request->age_id != null) {
@@ -66,7 +57,6 @@ class ProductController extends Controller
             $result = $result->Where('name', 'like', "%$request->name%")->orWhere('name', 'like', "%$request->name%");
         }
         $result = $result->orderBy($sort_from, $sort)->paginate($limit, ['*'], 'page', $offset);
-
         $final_result['total_size'] = $result->total();
         $final_result['limit'] = $limit;
         $final_result['offset'] = $offset;
@@ -80,7 +70,6 @@ class ProductController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required',
         ]);
-
         if ($validator->fails()) {
             return response()->json(['errors' => Helpers::error_processor($validator)], 403);
         }
@@ -117,13 +106,11 @@ class ProductController extends Controller
     public function get_product_reviews($id)
     {
         $reviews = Review::with(['customer'])->where(['product_id' => $id])->get();
-
         $storage = [];
         foreach ($reviews as $item) {
             $item['attachment'] = json_decode($item['attachment']);
             array_push($storage, $item);
         }
-
         return response()->json($storage, 200);
     }
 
@@ -146,23 +133,19 @@ class ProductController extends Controller
             'comment' => 'required',
             'rating' => 'required|numeric|max:5',
         ]);
-
         $product = Product::find($request->product_id);
         if (isset($product) == false) {
             $validator->errors()->add('product_id', 'There is no such product');
         }
-
         $multi_review = Review::where(['product_id' => $request->product_id, 'user_id' => $request->user()->id])->first();
         if (isset($multi_review)) {
             $review = $multi_review;
         } else {
             $review = new Review;
         }
-
         if ($validator->errors()->count() > 0) {
             return response()->json(['errors' => Helpers::error_processor($validator)], 403);
         }
-
         $image_array = [];
         if (!empty($request->file('attachment'))) {
             foreach ($request->file('attachment') as $image) {
@@ -174,7 +157,6 @@ class ProductController extends Controller
                 }
             }
         }
-
         $review->user_id = $request->user()->id;
         $review->product_id = $request->product_id;
         $review->order_id = $request->order_id;
@@ -182,7 +164,6 @@ class ProductController extends Controller
         $review->rating = $request->rating;
         $review->attachment = json_encode($image_array);
         $review->save();
-
         return response()->json(['message' => 'successfully review submitted!'], 200);
     }
 
