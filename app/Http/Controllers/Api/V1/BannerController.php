@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Age;
 use App\Model\Banner;
 use App\Model\Brand;
+use App\Model\CardColor;
 use App\Model\Gift_warping;
 use App\Model\Product;
 use App\CentralLogics\Helpers;
@@ -36,9 +37,9 @@ class BannerController extends Controller
                 "created_at" => "2021-08-22 15:50:38",
                 "updated_at" => "2021-09-06 10:18:15",
             ];
-            $wraping = Gift_warping::all();
-            $wraping->prepend($defualt);
-            return response()->json($wraping->sortBy('id'), 200);
+            $data['wraping'] = Gift_warping::all()->prepend($defualt)->sortBy('id');
+            $data['card_colors'] = CardColor::where('deleted','0')->orderBy('created_at','desc')->get();
+            return response()->json($data, 200);
         } catch (\Exception $e) {
             return response()->json([], 200);
         }
