@@ -3,6 +3,10 @@
 <?php
 
 return [
+    'color' => 'اللون',
+    'create_card_color' => 'انشاء لون الكارت',
+
+    'card_colors' => 'الوان الكروت',
     'product_image' => 'صورة المنتج',
     'short_description_en' => 'وصف قصير باللغة الانجليزية',
     'short_description_ar' => 'وصف قصير باللغة العربية',

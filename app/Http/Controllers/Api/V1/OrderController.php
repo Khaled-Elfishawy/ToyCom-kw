@@ -100,6 +100,7 @@ class OrderController extends Controller
                     'message_from'        => $c['message_from'] ,
                     'message_to'          => $c['message_to'],
                     'message_body'        => $c['message_body'] ,
+                    'card_color_id'        => $c['card_color_id'] ,
                     'wraping_id'          => $c['wraping_id'] ,
                     'price'               => $price,
                     'unit'                => $product['unit'],

@@ -399,6 +399,29 @@
                                 </li>
                             </ul>
                         </li>
+                        <li class="navbar-vertical-aside-has-menu {{Request::is('admin/card_colors*')?'active':''}}">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:">
+                                <i class="tio-image nav-icon"></i>
+                                <span
+                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{trans('messages.card_colors')}}</span>
+                            </a>
+                            <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
+                                style="display: {{Request::is('admin/wraping*')?'block':'none'}}">
+                                <li class="nav-item {{Request::is('admin/card_colors/add-new')?'active':''}}">
+                                    <a class="nav-link " href="{{route('admin.card_colors.add-new')}}">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span
+                                            class="text-truncate">{{trans('messages.add')}} {{trans('messages.new')}}</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item {{Request::is('admin/card_colors/list')?'active':''}}">
+                                    <a class="nav-link " href="{{route('admin.card_colors.list')}}">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="text-truncate">{{trans('messages.list')}}</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
 
 
                     <!-- End Pages -->

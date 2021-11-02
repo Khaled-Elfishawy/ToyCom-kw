@@ -73,6 +73,14 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.'], function () {
             Route::put('update/{id}', 'WrapingController@update')->name('update');
             Route::delete('delete/{id}', 'WrapingController@destroy')->name('delete');
         });
+        Route::group(['prefix' => 'card_colors', 'as' => 'card_colors.'], function () {
+            Route::get('list', 'CardColorsController@index')->name('list');
+            Route::get('add-new', 'CardColorsController@create')->name('add-new');
+            Route::post('store', 'CardColorsController@store')->name('store');
+            Route::get('edit/{id}', 'CardColorsController@edit')->name('edit');
+            Route::put('update/{id}', 'CardColorsController@update')->name('update');
+            Route::delete('delete/{id}', 'CardColorsController@destroy')->name('delete');
+        });
 
         Route::group(['prefix' => 'Age', 'as' => 'Age.'], function () {
 

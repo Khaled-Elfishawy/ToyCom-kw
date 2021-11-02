@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'card_colors' => 'card colors',
+    'product_image' => 'product image',
+    'short_description_en' => 'short description in english',
+    'short_description_ar' => 'short description in arabic',
     'tax_type' => 'tax type',
     'delivery_address' => 'delivery address',
     'genderAll' => 'all',

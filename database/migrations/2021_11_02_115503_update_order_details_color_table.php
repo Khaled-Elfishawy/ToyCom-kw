@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateOrderDetailsTable extends Migration
+class UpdateOrderDetailsColorTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +14,9 @@ class UpdateOrderDetailsTable extends Migration
     public function up()
     {
         Schema::table('order_details', function (Blueprint $table) {
-            $table->string('message_from')->nullable();
-            $table->string('message_to')->nullable();
-            $table->string('message_body')->nullable();
-            $table->bigInteger('wraping_id')->default(0);
+            $table->bigInteger('card_color_id')->unsigned()->nullable();
+            $table->foreign('card_color_id')->references('id')->on('card_colors')
+                ->onDelete('restrict');
         });
     }
 
