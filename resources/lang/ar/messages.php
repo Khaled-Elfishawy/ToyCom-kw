@@ -4,6 +4,7 @@
 
 return [
     'color' => 'اللون',
+    'color_name' => 'اسم اللون',
     'create_card_color' => 'انشاء لون الكارت',
 
     'card_colors' => 'الوان الكروت',

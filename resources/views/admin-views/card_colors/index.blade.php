@@ -34,6 +34,7 @@
                                 <th>{{trans('messages.#')}}</th>
                                 <th style="width: 50%">{{trans('messages.name_ar')}}</th>
                                 <th style="width: 50%">{{trans('messages.name_en')}}</th>
+                                <th style="width: 50%">{{trans('messages.color')}}</th>
                                 <th style="width: 10%">{{trans('messages.action')}}</th>
                             </tr>
                             <tr>
@@ -54,15 +55,10 @@
                             @foreach($data as $row)
                                 <tr>
                                     <td>{{$i++}}</td>
-                                    <td>
-                                    <span class="d-block font-size-sm text-body">
-                                        {{$row->name_ar}}
-
-                                    </span>
-                                    </td>
+                                    <td><span class="d-block font-size-sm text-body">{{$row->name_ar}}</span></td>
                                     <td>{{$row->name_en}}</td>
+                                    <td style="cursor:pointer;background-color:{{$row->color_code}}" onclick="clickColor(&quot;#ff0000&quot;)"></td>
                                     <td>
-                                        <!-- Dropdown -->
                                         <div class="dropdown">
                                             <button class="btn btn-secondary dropdown-toggle" type="button"
                                                     id="dropdownMenuButton" data-toggle="dropdown"

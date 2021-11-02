@@ -32,4 +32,8 @@ class OrderDetail extends Model
     {
         return $this->belongsTo(Gift_warping::class, 'wraping_id');
     }
+    public function Card_color()
+    {
+        return $this->belongsTo(CardColor::class, 'card_color_id');
+    }
 }

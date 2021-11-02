@@ -323,7 +323,9 @@
                                             </div>
                                             @if($detail['message_from'] != null)
                                                 <div class="col col-md-2 align-self-center">
-                                                    <a data-message-from="{{$detail['message_from']}}"
+                                                    <a @if($detail->Card_color) data-card-color-code="{{$detail->Card_color->color_code}}"
+                                                       data-card-color-name="{{$detail->Card_color->name_ar}}" @endif
+                                                       data-message-from="{{$detail['message_from']}}"
                                                        data-message-to="{{$detail['message_to']}}"
                                                        data-message-body="{{$detail['message_body']}}"
                                                        data-message-id="{{$detail['id']}}"
@@ -368,21 +370,35 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <div class="form-group">
+                                                <div class="row">
+                                                <div class="form-group col-md-6">
                                                     <label for="recipient-name"
                                                            class="control-label">{{trans('messages.from')}}</label>
                                                     {{ Form::text('message_from',null,["class"=>"form-control" ,"readonly" ,'id'=>'txt_message_from']) }}
                                                 </div>
-                                                <div class="form-group">
+                                                <div class="form-group col-md-6">
                                                     <label for="recipient-name"
                                                            class="control-label">{{trans('messages.to')}}</label>
                                                     {{ Form::text('message_to',null,["class"=>"form-control" ,"readonly",'id'=>'txt_message_to']) }}
+                                                </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <input type="hidden" name="card_id" id="card_id">
                                                     <label for="recipient-name"
                                                            class="control-label">{{trans('messages.body')}}</label>
                                                     {{ Form::textArea('message_body',null,["class"=>"form-control","row"=>4 ,"readonly", "min" => "1",'id'=>'txt_message_body']) }}
+                                                </div>
+                                                <div class="row">
+                                                    <div class="form-group col-md-6">
+                                                        <label for="recipient-name"
+                                                               class="control-label">{{trans('messages.color_name')}}</label>
+                                                        {{ Form::text('card_color_name',null,["class"=>"form-control" ,"readonly",'id'=>'txt_card_color_name']) }}
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <label for="recipient-name"
+                                                               class="control-label">{{trans('messages.color')}}</label>
+                                                        {{ Form::color('card_color_code',null,["class"=>"form-control" ,"readonly",'id'=>'txt_card_color_code']) }}
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
@@ -571,7 +587,7 @@
                                     </a>
                                         @if($address['zone_id'] != null)   {{$address->Zone->name}}<br> @endif
                                         @if($address['city_id'] != null)   {{$address->City->name}}<br> @endif
-                                        @if($address['district_id'] != null)   {{$address->District->name}}<br> @endif
+                                        @if($address['district_id'] != null)   {{$address->district_id}}<br> @endif
                                         @if($address['gada'] != null)   {{$address->gada}}<br> @endif
                                         @if($address['house'] != null)   {{$address->house}}<br> @endif
                                 </span>
@@ -834,6 +850,8 @@
             $("#txt_message_from").val($(this).data('message-from'));
             $("#txt_message_to").val($(this).data('message-to'));
             $("#txt_message_body").val($(this).data('message-body'));
+            $("#txt_card_color_code").val($(this).data('card-color-code'));
+            $("#txt_card_color_name").val($(this).data('card-color-name'));
             $('input[name="card_id"]').val($(this).data('message-id'));
 
         });
