@@ -323,8 +323,9 @@
                                             </div>
                                             @if($detail['message_from'] != null)
                                                 <div class="col col-md-2 align-self-center">
-                                                    <a @if($detail->Card_color) data-card-color-code="{{$detail->Card_color->color_code}}"
-                                                       data-card-color-name="{{$detail->Card_color->name_ar}}" @endif
+                                                    <a
+                                                        
+
                                                        data-message-from="{{$detail['message_from']}}"
                                                        data-message-to="{{$detail['message_to']}}"
                                                        data-message-body="{{$detail['message_body']}}"
