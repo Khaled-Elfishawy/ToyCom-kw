@@ -279,9 +279,17 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.'], function () {
         });
 
         Route::group(['prefix' => 'report', 'as' => 'report.'], function () {
-            Route::get('order', 'ReportController@order_index')->name('order')->middleware('permission:view_order');
-            Route::get('earning', 'ReportController@earning_index')->name('earning')->middleware('permission:view_order');
-            Route::post('set-date', 'ReportController@set_date')->name('set-date')->middleware('permission:view_order');
+            Route::get('order', 'ReportController@order_index')->name('order');
+            Route::get('earning', 'ReportController@earning_index')->name('earning');
+            Route::post('set-date', 'ReportController@set_date')->name('set-date');
+            Route::get('driver-report', 'ReportController@driver_report')->name('driver-report');
+            Route::post('driver-filter', 'ReportController@driver_filter')->name('driver_filter');
+            Route::get('product-report', 'ReportController@product_report')->name('product-report');
+            Route::post('product-report-filter', 'ReportController@product_report_filter')->name('product-report-filter');
+            Route::get('export-product-report', 'ReportController@export_product_report')->name('export-product-report');
+            Route::get('sale-report', 'ReportController@sale_report')->name('sale-report');
+            Route::post('sale-report-filter', 'ReportController@sale_filter')->name('sale-report-filter');
+            Route::get('export-sale-report', 'ReportController@export_sale_report')->name('export-sale-report');
         });
 
         Route::group(['prefix' => 'customer', 'as' => 'customer.'], function () {
