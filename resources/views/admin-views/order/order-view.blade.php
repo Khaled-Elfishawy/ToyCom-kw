@@ -432,17 +432,13 @@
                                                         <label for="recipient-name"
                                                                class="control-label"> {{trans('messages.name')}}</label>
 
-                                                        @if(app()->getLocale() == 'ar')
-                                                            : <span >{{$detail->Warpping->name_ar}}</span>
-                                                        @else
-                                                            : <span>{{$detail->Warpping->name_en}}</span>
-                                                        @endif
+                                                        {{ Form::text('name',null,["class"=>"form-control" ,"readonly" ,'id'=>'txt_name']) }}
                                                            </div>
                                                     <div class="form-group">
                                                         <label for="recipient-name"
                                                                class="control-label">{{trans('messages.price')}}</label>
-                                                       :
-                                                        <span>{{$detail->Warpping->price}}</span>
+
+                                                        {{ Form::text('price',null,["class"=>"form-control" ,"readonly",'id'=>'txt_price']) }}
 
                                                     </div>
                                                 </div>
