@@ -7,7 +7,6 @@
 @endpush
 
 @section('content')
-    @if(UserCan('view_reports','admin'))
     <div class="content container-fluid">
         <!-- Page Header -->
         <div class="page-header">
@@ -27,12 +26,13 @@
                             <div class="row align-items-center">
                                 <div class="col-auto">
                                     <span>{{trans('messages.admin')}}:</span>
-                                    <a href="#">{{auth('admin')->user()->from_datename.' '.auth('admin')->user()->l_name}}</a>
+                                    <a href="#">{{auth('admin')->user()->f_name.' '.auth('admin')->user()->l_name}}</a>
                                 </div>
 
                                 <div class="col-auto">
                                     <div class="row align-items-center g-0">
                                         <div class="col-auto pr-2">{{trans('messages.date')}}</div>
+
                                         <!-- Flatpickr -->
                                         <div>
                                             ( {{session('from_date')}} - {{session('to_date')}} )
@@ -42,6 +42,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-lg-auto">
                             <div class="d-flex">
                                 <a class="btn btn-icon btn-primary rounded-circle" href="{{route('admin.dashboard')}}">
@@ -90,61 +91,40 @@
                                     {{trans('messages.range')}}</label>
                             </div>
                         </div>
-                        <div class="col-3">
-                            <div class="mb-2">
+                        <div class="col-4">
+                            <div class="mb-3">
                                 <input type="date" name="from" id="from_date"
-                                       class="form-control" value="{{session('from_date')}}">
+                                       class="form-control" required>
                             </div>
                         </div>
-                        <div class="col-3">
-                            <div class="mb-2">
+                        <div class="col-4">
+                            <div class="mb-3">
                                 <input type="date" name="to" id="to_date"
-                                       class="form-control" value="{{session('to_date')}}">
+                                       class="form-control" required>
                             </div>
                         </div>
-                        <div class="col-3">
-                            <div class="mb-2">
-                                <select name="user_id" id="user_id" class="form-control js-select2-custom">
-                                    <?php $customers=\App\User::all()  ?>
-                                    <option value="" selected>All</option>
-                                    @foreach($customers as $customer)
-                                        <option value="{{$customer['id']}}" @if($customer['id'] == session('user_id')) selected="" @endif >{{$customer['name']}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <div class="mb-2">
+                        <div class="col-4">
+                            <div class="mb-3">
                                 <button type="submit" class="btn btn-primary btn-block">{{trans('messages.show')}}</button>
                             </div>
                         </div>
                     </div>
                 </form>
             </div>
+
             @php
                 $from = session('from_date');
                 $to = session('to_date');
-                $user_id=session('user_id');
-                $total=\App\Model\Order::whereBetween('created_at', [$from, $to])->where(function($e)use($user_id){
-                    if(!is_null($user_id)){
-                        $e->where('user_id',$user_id);
-                    }
-                })->count();
+                $total=\App\Model\Order::whereBetween('created_at', [$from, $to])->count();
                 if($total==0){
                    $total=.01;
                 }
             @endphp
             <div class="col-sm-6 col-lg-3 mb-3 mb-lg-6">
-                @php
-                    $user_id=session('user_id');
-                    $delivered=\App\Model\Order::where(['order_status'=>'delivered'])->whereBetween('created_at', [$from, $to])
-                      ->where(function($e)use($user_id){
-                        if(!is_null($user_id)){
-                            $e->where('user_id',$user_id);
-                        }
-                    })->count()
-                @endphp
-                <!-- Card -->
+            @php
+                $delivered=\App\Model\Order::where(['order_status'=>'delivered'])->whereBetween('created_at', [$from, $to])->count()
+            @endphp
+            <!-- Card -->
                 <div class="card card-sm">
                     <div class="card-body">
                         <div class="row">
@@ -190,16 +170,10 @@
             </div>
 
             <div class="col-sm-6 col-lg-3 mb-3 mb-lg-6">
-                @php
-                    $user_id=session('user_id');
-                    $returned=\App\Model\Order::where(['order_status'=>'returned'])->whereBetween('created_at', [$from, $to])
-                       ->where(function($e)use($user_id){
-                        if(!is_null($user_id)){
-                            $e->where('user_id',$user_id);
-                        }
-                    })->count()
-                @endphp
-                <!-- Card -->
+            @php
+                $returned=\App\Model\Order::where(['order_status'=>'returned'])->whereBetween('created_at', [$from, $to])->count()
+            @endphp
+            <!-- Card -->
                 <div class="card card-sm">
                     <div class="card-body">
                         <div class="row">
@@ -245,17 +219,10 @@
             </div>
 
             <div class="col-sm-6 col-lg-3 mb-3 mb-lg-6">
-                @php
-                    $user_id=session('user_id');
-                    $failed=\App\Model\Order::where(['order_status'=>'failed'])->whereBetween('created_at', [$from, $to])
-                      ->where(function($e)use($user_id){
-                        if(!is_null($user_id)){
-                            $e->where('user_id',$user_id);
-                        }
-                    })
-                    ->count()
-                @endphp
-                <!-- Card -->
+            @php
+                $failed=\App\Model\Order::where(['order_status'=>'failed'])->whereBetween('created_at', [$from, $to])->count()
+            @endphp
+            <!-- Card -->
                 <div class="card card-sm">
                     <div class="card-body">
                         <div class="row">
@@ -301,16 +268,10 @@
             </div>
 
             <div class="col-sm-6 col-lg-3 mb-3 mb-lg-6">
-                @php
-                    $user_id=session('user_id');
-                    $canceled=\App\Model\Order::where(['order_status'=>'canceled'])->whereBetween('created_at', [$from, $to])
-                    ->where(function($e)use($user_id){
-                        if(!is_null($user_id)){
-                            $e->where('user_id',$user_id);
-                        }
-                    })->count()
-                @endphp
-                <!-- Card -->
+            @php
+                $canceled=\App\Model\Order::where(['order_status'=>'canceled'])->whereBetween('created_at', [$from, $to])->count()
+            @endphp
+            <!-- Card -->
                 <div class="card card-sm">
                     <div class="card-body">
                         <div class="row">
@@ -357,125 +318,291 @@
         </div>
         <!-- End Stats -->
         <hr>
+        <!-- Card -->
+        <div class="card mb-3 mb-lg-5 border-bottom border-right border-left border-top">
+            <!-- Header -->
+            <div class="card-header">
+                @php
+                    $x=1;
+                    $y=12;
+                    $total=\App\Model\Order::whereBetween('created_at', [date('Y-'.$x.'-01'), date('Y-'.$y.'-30')])->count()
+                @endphp
+                <h6 class="card-subtitle mb-0">{{trans('messages.total')}} {{trans('messages.orders')}} of {{date('Y')}}: <span
+                        class="h3 ml-sm-2">{{round($total)}}</span>
+                </h6>
+
+                <!-- Unfold -->
+                <div class="hs-unfold">
+                    <a class="js-hs-unfold-invoker btn btn-white"
+                       href="{{route('admin.orders.list',['status'=>'all'])}}">
+                        <i class="tio-shopping-cart-outlined mr-1"></i> {{trans('messages.orders')}}
+                    </a>
+                </div>
+                <!-- End Unfold -->
+            </div>
+            <!-- End Header -->
+
+        @php
+            $delivered=[];
+                for ($i=1;$i<=12;$i++){
+                    $from = date('Y-'.$i.'-01');
+                    $to = date('Y-'.$i.'-30');
+                    $delivered[$i]=\App\Model\Order::where(['order_status'=>'delivered'])->whereBetween('created_at', [$from, $to])->count();
+                }
+        @endphp
+
+        @php
+            $ret=[];
+                for ($i=1;$i<=12;$i++){
+                    $from = date('Y-'.$i.'-01');
+                    $to = date('Y-'.$i.'-30');
+                    $ret[$i]=\App\Model\Order::where(['order_status'=>'returned'])->whereBetween('created_at', [$from, $to])->count();
+                }
+        @endphp
+
+        @php
+            $fai=[];
+                for ($i=1;$i<=12;$i++){
+                    $from = date('Y-'.$i.'-01');
+                    $to = date('Y-'.$i.'-30');
+                    $fai[$i]=\App\Model\Order::where(['order_status'=>'failed'])->whereBetween('created_at', [$from, $to])->count();
+                }
+        @endphp
+
+        @php
+            $can=[];
+                for ($i=1;$i<=12;$i++){
+                    $from = date('Y-'.$i.'-01');
+                    $to = date('Y-'.$i.'-30');
+                    $can[$i]=\App\Model\Order::where(['order_status'=>'canceled'])->whereBetween('created_at', [$from, $to])->count();
+                }
+        @endphp
+
+        <!-- Body -->
+            <div class="card-body">
+                <!-- Bar Chart -->
+                <div class="chartjs-custom" style="height: 18rem;">
+                    <canvas class="js-chart"
+                            data-hs-chartjs-options='{
+                        "type": "line",
+                        "data": {
+                           "labels": ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+                           "datasets": [{
+                            "data": [{{$delivered[1]}},{{$delivered[2]}},{{$delivered[3]}},{{$delivered[4]}},{{$delivered[5]}},{{$delivered[6]}},{{$delivered[7]}},{{$delivered[8]}},{{$delivered[9]}},{{$delivered[10]}},{{$delivered[11]}},{{$delivered[12]}}],
+                            "backgroundColor": ["rgba(55, 125, 255, 0)", "rgba(255, 255, 255, 0)"],
+                            "borderColor": "green",
+                            "borderWidth": 2,
+                            "pointRadius": 0,
+                            "pointBorderColor": "#fff",
+                            "pointBackgroundColor": "green",
+                            "pointHoverRadius": 0,
+                            "hoverBorderColor": "#fff",
+                            "hoverBackgroundColor": "#377dff"
+                          },
+                          {
+                            "data": [{{$ret[1]}},{{$ret[2]}},{{$ret[3]}},{{$ret[4]}},{{$ret[5]}},{{$ret[6]}},{{$ret[7]}},{{$ret[8]}},{{$ret[9]}},{{$ret[10]}},{{$ret[11]}},{{$ret[12]}}],
+                            "backgroundColor": ["rgba(0, 201, 219, 0)", "rgba(255, 255, 255, 0)"],
+                            "borderColor": "#ec9a3c",
+                            "borderWidth": 2,
+                            "pointRadius": 0,
+                            "pointBorderColor": "#fff",
+                            "pointBackgroundColor": "#ec9a3c",
+                            "pointHoverRadius": 0,
+                            "hoverBorderColor": "#fff",
+                            "hoverBackgroundColor": "#00c9db"
+                          },
+                          {
+                            "data": [{{$fai[1]}},{{$fai[2]}},{{$fai[3]}},{{$fai[4]}},{{$fai[5]}},{{$fai[6]}},{{$fai[7]}},{{$fai[8]}},{{$fai[9]}},{{$fai[10]}},{{$fai[11]}},{{$fai[12]}}],
+                            "backgroundColor": ["rgba(0, 201, 219, 0)", "rgba(255, 255, 255, 0)"],
+                            "borderColor": "darkred",
+                            "borderWidth": 2,
+                            "pointRadius": 0,
+                            "pointBorderColor": "#fff",
+                            "pointBackgroundColor": "darkred",
+                            "pointHoverRadius": 0,
+                            "hoverBorderColor": "#fff",
+                            "hoverBackgroundColor": "#00c9db"
+                          },
+                          {
+                            "data": [{{$can[1]}},{{$can[2]}},{{$can[3]}},{{$can[4]}},{{$can[5]}},{{$can[6]}},{{$can[7]}},{{$can[8]}},{{$can[9]}},{{$can[10]}},{{$can[11]}},{{$can[12]}}],
+                            "backgroundColor": ["rgba(0, 201, 219, 0)", "rgba(255, 255, 255, 0)"],
+                            "borderColor": "gray",
+                            "borderWidth": 2,
+                            "pointRadius": 0,
+                            "pointBorderColor": "#fff",
+                            "pointBackgroundColor": "gray",
+                            "pointHoverRadius": 0,
+                            "hoverBorderColor": "#fff",
+                            "hoverBackgroundColor": "#00c9db"
+                          }]
+                        },
+                        "options": {
+                          "gradientPosition": {"y1": 200},
+                           "scales": {
+                              "yAxes": [{
+                                "gridLines": {
+                                  "color": "#e7eaf3",
+                                  "drawBorder": false,
+                                  "zeroLineColor": "#e7eaf3"
+                                },
+                                "ticks": {
+                                  "min": 0,
+                                  "max": {{\App\CentralLogics\Helpers::max_orders()}},
+                                  "stepSize": {{round(\App\CentralLogics\Helpers::max_orders()/4)}},
+                                  "fontColor": "#97a4af",
+                                  "fontFamily": "Open Sans, sans-serif",
+                                  "padding": 10,
+                                  "postfix": ""
+                                }
+                              }],
+                              "xAxes": [{
+                                "gridLines": {
+                                  "display": false,
+                                  "drawBorder": false
+                                },
+                                "ticks": {
+                                  "fontSize": 12,
+                                  "fontColor": "#97a4af",
+                                  "fontFamily": "Open Sans, sans-serif",
+                                  "padding": 5
+                                }
+                              }]
+                          },
+                          "tooltips": {
+                            "prefix": "",
+                            "postfix": "",
+                            "hasIndicator": true,
+                            "mode": "index",
+                            "intersect": false,
+                            "lineMode": true,
+                            "lineWithLineColor": "rgba(19, 33, 68, 0.075)"
+                          },
+                          "hover": {
+                            "mode": "nearest",
+                            "intersect": true
+                          }
+                        }
+                      }'>
+                    </canvas>
+                </div>
+                <!-- End Bar Chart -->
+            </div>
+            <!-- End Body -->
+        </div>
+        <!-- End Card -->
+
         <div class="row">
-            <div class="col-lg-12">
-                <table class="table table-hover table-borderless table-thead-bordered table-nowrap table-align-middle card-table no-footer">
-                    <thead>
-                        <tr>
-                            <th class="">
-                                {{trans('messages.#')}}
-                            </th>
-                            <th class="table-column-pl-0">{{trans('messages.order')}}</th>
-                            <th>{{trans('messages.Delivery')}} {{trans('messages.date')}}</th>
-                            <th>{{trans('messages.Time Slot')}}</th>
-                            <th>{{trans('messages.customer')}}</th>
-                            <th>{{trans('messages.branch')}}</th>
-                            {{-- <th>{{trans('messages.payment')}} {{trans('messages.status')}}</th> --}}
-                            <th>{{trans('messages.total')}}</th>
-                            <th>{{trans('messages.order')}} {{trans('messages.status')}}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+            <div class="col-lg-12 mb-3 mb-lg-12">
+                <!-- Card -->
+                <div class="card h-100">
+                    <!-- Header -->
+                    <div class="card-header">
+                        <h4 class="card-header-title">{{trans('messages.weekly')}} {{trans('messages.report')}}</h4>
+
+                        <!-- Nav -->
+                        <ul class="nav nav-segment" id="eventsTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="this-week-tab" data-toggle="tab" href="#this-week"
+                                   role="tab">
+                                    {{trans('messages.this')}} {{trans('messages.week')}}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="last-week-tab" data-toggle="tab" href="#last-week" role="tab">
+                                    {{trans('messages.last')}} {{trans('messages.week')}}
+                                </a>
+                            </li>
+                        </ul>
+                        <!-- End Nav -->
+                    </div>
+                    <!-- End Header -->
+
+                    <!-- Body -->
+                    <div class="card-body card-body-height">
                     @php
-                        $user_id=session('user_id');
-                        $orders=\App\Model\Order::whereBetween('created_at', [$from, $to])
-                          ->where(function($e)use($user_id){
-                            if(!is_null($user_id)){
-                                $e->where('user_id',$user_id);
-                            }
-                        })->paginate(30)
-                    @endphp                        
-                    @foreach($orders as $key=>$order)
+                        $orders= \App\Model\Order::whereBetween('created_at', [now()->startOfWeek(), now()->endOfWeek()])->get();
+                    @endphp
+                    <!-- Tab Content -->
+                        <div class="tab-content" id="eventsTabContent">
+                            <div class="tab-pane fade show active" id="this-week" role="tabpanel"
+                                 aria-labelledby="this-week-tab">
+                                <!-- Card -->
+                                @foreach($orders as $order)
+                                    <a class="card card-border-left border-left-primary shadow-none rounded-0"
+                                       href="{{route('admin.orders.details',['id'=>$order['id']])}}">
+                                        <div class="card-body py-0">
+                                            <div class="row">
+                                                <div class="col-sm mb-2 mb-sm-0">
+                                                    <h2 class="font-weight-normal mb-1">#{{$order['id']}} <small
+                                                            class="font-size-sm text-body text-uppercase">{{trans('messages.id')}}</small>
+                                                    </h2>
+                                                    <h5 class="text-hover-primary mb-0">{{trans('messages.order')}} {{trans('messages.amount')}}
+                                                        : {{$order['order_amount']}} {{\App\CentralLogics\Helpers::currency_symbol()}}</h5>
+                                                    <small
+                                                        class="text-body">{{date('d M Y',strtotime($order['created_at']))}}</small>
+                                                </div>
 
-                        <tr class="status-{{$order['order_status']}} class-all">
-                            <td class="">
-                                {{$key+1}}
-                            </td>
-                            <td class="table-column-pl-0">
-                                <a href="{{route('admin.orders.details',['id'=>$order['id']])}}">{{$order['id']}}</a>
-                            </td>
-                            <td>{{date('d M Y',strtotime($order['delivery_date']))}}</td>
-                            <td>
-                               <span>{{$order->time_slot?$order->time_slot['start_time'].' - ' .$order->time_slot['end_time'] :'No Time Slot'}}</span>
-                            
-                            </td>
-                            <td>
-                                @if($order->customer)
-                                    <a class="text-body text-capitalize"
-                                       href="{{route('admin.customer.view',[$order['user_id']])}}">{{$order->customer['f_name'].' '.$order->customer['l_name']}}</a>
-                                @else
-                                    <label class="badge badge-danger">{{trans('messages.invalid')}} {{trans('messages.customer')}} {{trans('messages.data')}}</label>
-                                @endif
-                            </td>
-                            <td>
-                                <label class="badge badge-soft-primary">{{$order->branch?$order->branch->name:'Branch deleted!'}}</label>
-                            </td>
-                           
-                            {{-- <td>
-                                @if($order->payment_status=='paid')
-                                    <span class="badge badge-soft-success">
-                                      <span class="legend-indicator bg-success"></span>{{trans('messages.paid')}}
-                                    </span>
-                                @else
-                                    <span class="badge badge-soft-danger">
-                                      <span class="legend-indicator bg-danger"></span>{{trans('messages.unpaid')}}
-                                    </span>
-                                @endif
-                            </td> --}}
-                            <td>{{$order['order_amount'] ." ". \App\CentralLogics\Helpers::currency_symbol()}}</td>
-                            <td class="text-capitalize">
-                                @if($order['order_status']=='pending')
-                                    <span class="badge badge-soft-info ml-2 ml-sm-3">
-                                      <span class="legend-indicator bg-info"></span>{{trans('messages.pending')}}
-                                    </span>
-                                @elseif($order['order_status']=='confirmed')
-                                    <span class="badge badge-soft-info ml-2 ml-sm-3">
-                                      <span class="legend-indicator bg-info"></span>{{trans('messages.confirmed')}}
-                                    </span>
-                                @elseif($order['order_status']=='processing')
-                                    <span class="badge badge-soft-warning ml-2 ml-sm-3">
-                                      <span class="legend-indicator bg-warning"></span>{{trans('messages.processing')}}
-                                    </span>
-                                @elseif($order['order_status']=='out_for_delivery')
-                                    <span class="badge badge-soft-warning ml-2 ml-sm-3">
-                                      <span class="legend-indicator bg-warning"></span>{{trans('messages.out_for_delivery')}}
-                                    </span>
-                                @elseif($order['order_status']=='delivered')
-                                    <span class="badge badge-soft-success ml-2 ml-sm-3">
-                                      <span class="legend-indicator bg-success"></span>{{trans('messages.delivered')}}
-                                    </span>
-                                @else
-                                    <span class="badge badge-soft-danger ml-2 ml-sm-3">
-                                      <span class="legend-indicator bg-danger"></span>{{str_replace('_',' ',$order['order_status'])}}
-                                    </span>
-                                @endif
-                            </td>
-                            <td>
-                                <div class="dropdown">
-                                    <button class="btn btn-outline-secondary dropdown-toggle" type="button"
-                                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false">
-                                        <i class="tio-settings"></i>
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item"
-                                           href="{{route('admin.orders.details',['id'=>$order['id']])}}"><i
-                                                class="tio-visible"></i> {{trans('messages.view')}}</a>
-                                        <a class="dropdown-item" target="_blank"
-                                           href="{{route('admin.orders.generate-invoice',[$order['id']])}}"><i
-                                                class="tio-download"></i> {{trans('messages.invoice')}}</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
+                                                <div class="col-sm-auto align-self-sm-end">
+                                                    <!-- Avatar Group -->
+                                                    <div class="">
+                                                        {{trans('messages.status')}} <strong> : {{$order['order_status']}} <br></strong>
+                                                    </div>
+                                                    <!-- End Avatar Group -->
+                                                </div>
+                                            </div>
+                                            <!-- End Row -->
+                                        </div>
+                                    </a>
+                                    <!-- End Card -->
+                                    <hr>
+                                @endforeach
+                            </div>
 
-                    @endforeach
-                    </tbody>
-                </table>
+                            @php
+                                $orders= \App\Model\Order::whereBetween('created_at', [now()->subDays(7)->startOfWeek(), now()->subDays(7)->endOfWeek()])->get();
+                            @endphp
+
+                            <div class="tab-pane fade" id="last-week" role="tabpanel" aria-labelledby="last-week-tab">
+                                @foreach($orders as $order)
+                                    <a class="card card-border-left border-left-primary shadow-none rounded-0"
+                                       href="{{route('admin.orders.details',['id'=>$order['id']])}}">
+                                        <div class="card-body py-0">
+                                            <div class="row">
+                                                <div class="col-sm mb-2 mb-sm-0">
+                                                    <h2 class="font-weight-normal mb-1">#{{$order['id']}} <small
+                                                            class="font-size-sm text-body text-uppercase">{{trans('messages.id')}}</small>
+                                                    </h2>
+                                                    <h5 class="text-hover-primary mb-0">{{trans('messages.order')}} {{trans('messages.amount')}}
+                                                        : {{$order['order_amount']}} {{\App\CentralLogics\Helpers::currency_symbol()}}</h5>
+                                                    <small
+                                                        class="text-body">{{date('d M Y',strtotime($order['created_at']))}}</small>
+                                                </div>
+
+                                                <div class="col-sm-auto align-self-sm-end">
+                                                    <!-- Avatar Group -->
+                                                    <div class="">
+                                                        {{trans('messages.status')}} <strong> : {{$order['order_status']}} <br></strong>
+                                                    </div>
+                                                    <!-- End Avatar Group -->
+                                                </div>
+                                            </div>
+                                            <!-- End Row -->
+                                        </div>
+                                    </a>
+                                    <!-- End Card -->
+                                    <hr>
+                                @endforeach
+                            </div>
+                        </div>
+                        <!-- End Tab Content -->
+                    </div>
+                    <!-- End Body -->
+                </div>
+                <!-- End Card -->
             </div>
         </div>
+        <!-- End Row -->
     </div>
-    @endif
 @endsection
 
 @push('script')
@@ -692,13 +819,4 @@
 
         })
     </script>
-
-    <script>
-        $(document).on('ready', function () {
-            $('.js-select2-custom').each(function () {
-                var select2 = $.HSCore.components.HSSelect2.init($(this));
-            });
-        });
-    </script>
-
 @endpush

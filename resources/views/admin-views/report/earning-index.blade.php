@@ -7,8 +7,7 @@
 @endpush
 
 @section('content')
-    @if(UserCan('view_reports','admin'))
-        <div class="content container-fluid">
+    <div class="content container-fluid">
         <!-- Page Header -->
         <div class="page-header">
             <div class="media mb-3">
@@ -238,7 +237,7 @@
                 <!-- Unfold -->
                 <div class="hs-unfold">
                     <a class="js-hs-unfold-invoker btn btn-white"
-                       href="{{route('admin.order.list',['status'=>'all'])}}">
+                       href="{{route('admin.orders.list',['status'=>'all'])}}">
                         <i class="tio-shopping-cart-outlined mr-1"></i> {{trans('messages.orders')}}
                     </a>
                 </div>
@@ -355,7 +354,6 @@
         <!-- End Card -->
         <!-- End Row -->
     </div>
-    @endif
 @endsection
 
 @push('script')
