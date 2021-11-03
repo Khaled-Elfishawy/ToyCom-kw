@@ -809,6 +809,28 @@
                                                 class="text-truncate">{{trans('messages.order')}} {{trans('messages.report')}}</span>
                                         </a>
                                     </li>
+                                    <li class="nav-item {{Request::is('admin/report/driver-report')?'active':''}}">
+                                        <a class="nav-link " href="{{route('admin.report.driver-report')}}"
+                                        >
+                                            <span class="tio-circle nav-indicator-icon"></span>
+                                            <span
+                                                class="text-truncate">{{trans('messages.driver')}} {{trans('messages.report')}}</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item {{Request::is('admin/report/product-report')?'active':''}}">
+                                        <a class="nav-link " href="{{route('admin.report.product-report')}}"
+                                        >
+                                            <span class="tio-circle nav-indicator-icon"></span>
+                                            <span
+                                                class="text-truncate">{{trans('messages.product')}} {{trans('messages.report')}}</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item {{Request::is('admin/report/sale-report')?'active':''}}">
+                                        <a class="nav-link " href="{{route('admin.report.sale-report')}}">
+                                            <span class="tio-circle nav-indicator-icon"></span>
+                                            <span class="text-truncate">{{trans('messages.sale')}} {{trans('messages.report')}}</span>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                     @endif
