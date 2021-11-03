@@ -73,6 +73,8 @@ class MoyasarController extends Controller
             }else{
                 return \redirect()->route('payment-success');
             }
+        }else{
+                return \redirect()->route('payment-fail');
         }
         $order = Order::where('transaction_reference', $payment_id)->first();
         if ($order->callback != null) {
