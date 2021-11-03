@@ -37,11 +37,11 @@ class CardColorsController extends Controller
     }
     public function update(Request $request, $id)
     {
-        $brand = CardColor::find($id);
-        $brand->name_ar = $request->name_ar;
-        $brand->name_en = $request->name_en;
-        $brand->color_code = $request->price;
-        $brand->save();
+        $cardColor = CardColor::find($id);
+        $cardColor->name_ar = $request->name_ar;
+        $cardColor->name_en = $request->name_en;
+        $cardColor->color_code = $request->price;
+        $cardColor->save();
         return redirect()->route('admin.card_colors.list');
     }
 
