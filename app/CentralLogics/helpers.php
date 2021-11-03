@@ -38,11 +38,15 @@ class Helpers
 
     public static function variation_price($product, $variation)
     {
-        $match = json_decode($variation, true)[0];
-        $result = 0;
-        foreach (json_decode($product['variations'], true) as $property => $value) {
-            if ($value['type'] == $match['type']) {
-                $result = $value['price'];
+        if (empty(json_decode($variation, true))) {
+            $result = $product['price'];
+        } else {
+            $match = json_decode($variation, true)[0];
+            $result = 0;
+            foreach (json_decode($product['variations'], true) as $property => $value) {
+                if ($value['type'] == $match['type']) {
+                    $result = $value['price'];
+                }
             }
         }
         return $result;
