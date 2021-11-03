@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'update_card_color' => 'update card color',
+    'color' => 'color',
+    'color_name' => 'color name',
+    'create_card_color' => 'create card color',
     'card_colors' => 'card colors',
     'product_image' => 'product image',
     'short_description_en' => 'short description in english',

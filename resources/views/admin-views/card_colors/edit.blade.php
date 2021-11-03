@@ -8,7 +8,7 @@
             <div class="row align-items-center">
                 <div class="col-sm mb-2 mb-sm-0">
                     <h1 class="page-header-title"><i
-                            class="tio-edit"></i> {{trans('messages.update')}} {{trans('messages.wraping')}}</h1>
+                            class="tio-edit"></i> {{trans('messages.update_card_color')}}</h1>
                 </div>
             </div>
         </div>

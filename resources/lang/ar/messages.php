@@ -3,10 +3,12 @@
 <?php
 
 return [
+
+
+    'update_card_color' => 'تعديل لون الكارت',
     'color' => 'اللون',
     'color_name' => 'اسم اللون',
     'create_card_color' => 'انشاء لون الكارت',
-
     'card_colors' => 'الوان الكروت',
     'product_image' => 'صورة المنتج',
     'short_description_en' => 'وصف قصير باللغة الانجليزية',
