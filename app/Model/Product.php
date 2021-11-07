@@ -26,7 +26,7 @@ class Product extends Model
 
     public function scopeActive($query)
     {
-        return $query->where('status', '=', 1);
+        return $query->where('status', '=', 1)->where('total_stock','!=', 0);
     }
 
     public function reviews()
