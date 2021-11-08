@@ -93,7 +93,7 @@
                                 <form class="needs-validation" method="POST" id="payment-form"
                                       action="{{route('pay-wallet')}}">
                                     {{ csrf_field() }}
-                                    <button class="btn btn-block btn-primary" type="submit">دفع الأن</button>
+                                    <button class="btn btn-block btn-primary" type="submit">رجوع إلى صفحة الدفع</button>
                                 </form>
                             </div>
                         </div>
