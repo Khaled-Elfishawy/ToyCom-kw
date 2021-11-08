@@ -46,4 +46,8 @@ class WalletController extends Controller
             return Redirect::back();          
         }
     }
+    public function paynow(Request $request)
+    {
+        return dd($request->all());
+    }
 }
