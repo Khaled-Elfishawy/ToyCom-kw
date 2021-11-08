@@ -14,8 +14,11 @@ class WalletController extends Controller
     public function pay(Request $request)
     {
         $order = Order::with(['details'])->where(['id' => session('order_id')])->first();
-        $user  = User::find($order->user_id);
-        return dd($user);
-
+        if($order){
+            $user  = User::find($order->user_id);
+            return view('wallet',compact('order','user'));
+        }else{
+            return \redirect()->route('payment-fail');
+        }
     }
 }
