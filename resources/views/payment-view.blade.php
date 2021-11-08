@@ -69,6 +69,20 @@
                             </div>
                         </div>
                     @endif
+                    <div class="col-md-12 mb-4" style="cursor: pointer">
+                        <div class="card">
+                            <div class="card-body">
+                                <form class="needs-validation" method="POST" id="payment-form"
+                                      action="{{route('pay-wallet')}}">
+                                    {{ csrf_field() }}
+                                    <button class="btn btn-block" type="submit">
+                                        <img width="100"
+                                             src="{{asset('public/assets/admin/img/wallet.jpg')}}"/>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>                    
                 </div>
             </div>
         </section>
