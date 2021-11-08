@@ -48,6 +48,17 @@ class WalletController extends Controller
     }
     public function paynow(Request $request)
     {
-        return dd($request->all());
+        DB::table('orders')
+            ->where('id', session('order_id'))
+            ->update(['order_status' => 'confirmed', 'payment_status' => 'paid', 'transaction_reference' => 'wallet']);      
+        $order = Order::with(['details'])->where(['id' => session('order_id')])->first();
+        $user = User::find($order->user_id);
+        if ($user->my_money >= $order->order_amount) {
+            $user->my_money = $user->my_money-$order->order_amount;
+            $user->save();
+            return \redirect()->route('payment-success');
+        }else{
+            return \redirect()->route('payment-fail');
+        }
     }
 }
