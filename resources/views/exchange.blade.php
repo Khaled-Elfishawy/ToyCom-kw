@@ -55,6 +55,8 @@
             <div class="checkout_details mt-3">
                 <div class="row">
                     <div class="col-md-12 mb-4">
+                        <form class="needs-validation" method="POST" id="payment-form"
+                                      action="{{route('wallet-Doexchange')}}">
                         <div class="card">
                             <div class="card-body">
                                 <center>
@@ -77,8 +79,6 @@
                     <div class="col-md-12 mb-4">
                         <div class="card">
                             <div class="card-body">
-                                <form class="needs-validation" method="POST" id="payment-form"
-                                      action="{{route('wallet-exchange')}}">
                                     {{ csrf_field() }}
                                     <input type="hidden" name="user" value="{{$user->id}}">
                                     <input type="hidden" name="order" value="{{$order->id}}">

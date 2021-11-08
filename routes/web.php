@@ -60,6 +60,7 @@ Route::post('moyasar-oncomplate/{order}', 'MoyasarController@oncomplate')->name(
 /*paypal*/
 Route::post('pay-wallet', 'WalletController@pay')->name('pay-wallet');
 Route::post('wallet-exchange', 'WalletController@exchange')->name('wallet-exchange');
+Route::post('exchange', 'WalletController@Doexchange')->name('wallet-Doexchange');
 
 /*Route::get('stripe', function (){
 return view('stripe-test');
