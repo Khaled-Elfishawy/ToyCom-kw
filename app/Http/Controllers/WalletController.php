@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use App\Model\Order;
-use App\Model\BusinessSetting;
 use App\User;
 
 class WalletController extends Controller
