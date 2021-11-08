@@ -30,7 +30,7 @@ class WalletController extends Controller
     }
     public function Doexchange(Request $request)
     {
-        $user = User::find($request->user()->id);
+        $user = User::find($request->user);
         if ($user->my_points >= $request->points) {
             $points_dinar = BusinessSetting::where('key', 'points_dinar')->first()->value;
             $money = $request->points / $points_dinar;    //ex.  700/100 = 7 dinar
