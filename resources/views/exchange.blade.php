@@ -61,7 +61,7 @@
                             <div class="card-body">
                                 <center>
                                     <label>عدد النقاط</label>
-                                    <input type="number" id="points" max="{{$user->my_points}}">
+                                    <input type="number" id="points" name="points" max="{{$user->my_points}}">
                                 </center>
                             </div>
                         </div>
