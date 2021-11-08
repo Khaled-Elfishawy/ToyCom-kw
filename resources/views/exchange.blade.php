@@ -112,9 +112,9 @@
 {!! Toastr::message() !!}
 
 <script>
-    $('#points').keyup(function(el){
+    $('#points').keyup(function(){
         var ex = "{{$points_dinar}}";
-        $('#my_money').val(el.val()/ex);
+        $('#my_money').val($(this).val()/ex);
     });
 </script>
 
