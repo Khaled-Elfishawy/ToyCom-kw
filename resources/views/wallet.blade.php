@@ -90,7 +90,7 @@
                             </div>
                         </div>
                     </div> 
-                    @if($user->my_money > $order->order_amount)
+                    @if($user->my_money >= $order->order_amount)
                     <div class="col-md-12 mb-4">
                         <div class="card">
                             <div class="card-body">
