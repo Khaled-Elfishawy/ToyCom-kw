@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use App\Model\Order;
 use App\User;
+use Illuminate\Support\Facades\Redirect;
 
 class WalletController extends Controller
 {
@@ -37,9 +38,11 @@ class WalletController extends Controller
             $user->my_points = $user->my_points - $request->points;  //ex.  700 - 700 = 0 points
             $user->my_money = $user->my_money + $money;  // ex.  0 + 7 = 7 dinar
             $user->save();
-            return back()->with('success','تم تحويل النقاط بنجاح يمكنك الدفع الأن');
+            Toastr::success('تم تحويل النقاط بنجاح يمكنك الدفع الأن');
+            return Redirect::back();            
         }else{
-            return back()->with('success','نقاطك لا تكفى');
+            Toastr::error('نقاطك لا تكفى');
+            return Redirect::back();          
         }
     }
 }
