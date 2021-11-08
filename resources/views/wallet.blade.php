@@ -60,6 +60,9 @@
                                 <center>
                                     <label>رصيدك الحالى </label>
                                     <input type="text" disabled value="{{$user->my_money}}">
+                                    @if($user->my_money < $order->order_amount)
+                                    <small style="color:red;">رصيدك لا يكفى لسداد قيمة الطلب .</small>
+                                    @endif
                                 </center>
                             </div>
                         </div>
@@ -71,6 +74,17 @@
                                     <label>نقاطك الحالية</label>
                                     <input type="text" disabled value="{{$user->my_points}}">
                                 </center>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="col-md-12 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <form class="needs-validation" method="POST" id="payment-form"
+                                      action="{{route('pay-wallet')}}">
+                                    {{ csrf_field() }}
+                                    <button class="btn btn-block btn-primary" type="submit">دفع الأن</button>
+                                </form>
                             </div>
                         </div>
                     </div>                    
