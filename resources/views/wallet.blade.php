@@ -80,7 +80,7 @@
                     <div class="col-md-12 mb-4">
                         <div class="card">
                             <div class="card-body">
-                                <form class="needs-validation" method="POST" id="payment-form"
+                                <form class="needs-validation" method="get" id="payment-form"
                                       action="{{route('wallet-exchange')}}">
                                     {{ csrf_field() }}
                                     <input type="hidden" name="user" value="{{$user->id}}">
