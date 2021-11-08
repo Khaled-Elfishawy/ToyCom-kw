@@ -58,6 +58,7 @@ Route::post('pay-paypal', 'MoyasarController@paywith')->name('pay-paypal');
 Route::get('paypal-status', 'MoyasarController@getPaymentStatus')->name('paypal-status');
 Route::post('moyasar-oncomplate/{order}', 'MoyasarController@oncomplate')->name('moyasar-oncomplate');
 /*paypal*/
+Route::post('pay-wallet', 'WalletController@pay')->name('pay-wallet');
 
 /*Route::get('stripe', function (){
 return view('stripe-test');
