@@ -54,12 +54,23 @@
         <section class="col-lg-12">
             <div class="checkout_details mt-3">
                 <div class="row">
-                    <div class="col-md-12 mb-4" style="cursor: pointer">
+                    <div class="col-md-12 mb-4">
                         <div class="card">
                             <div class="card-body">
-                                <div class="col-md-12 mb-5 pt-5">
-
-                                </div>
+                                <center>
+                                    <label>رصيدك الحالى </label>
+                                    <input type="text" disabled value="{{$user->my_money}}">
+                                </center>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="col-md-12 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <center>
+                                    <label>نقاطك الحالية</label>
+                                    <input type="text" disabled value="{{$user->my_points}}">
+                                </center>
                             </div>
                         </div>
                     </div>                    
