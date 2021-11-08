@@ -61,7 +61,7 @@
                                     <label>رصيدك الحالى </label>
                                     <input type="text" disabled value="{{$user->my_money}}">
                                     @if($user->my_money < $order->order_amount)
-                                    <small style="color:red;">رصيدك لا يكفى لسداد قيمة الطلب .</small>
+                                    <small style="color:red;display: block;">رصيدك لا يكفى لسداد قيمة الطلب .</small>
                                     @endif
                                 </center>
                             </div>
@@ -90,6 +90,7 @@
                             </div>
                         </div>
                     </div> 
+                    @if($user->my_money > $order->order_amount)
                     <div class="col-md-12 mb-4">
                         <div class="card">
                             <div class="card-body">
@@ -100,7 +101,8 @@
                                 </form>
                             </div>
                         </div>
-                    </div>                    
+                    </div>   
+                    @endif                 
                 </div>
             </div>
         </section>
