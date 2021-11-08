@@ -77,7 +77,7 @@
                                     {{ csrf_field() }}
                                     <button class="btn btn-block" type="submit">
                                         <img width="100"
-                                             src="{{asset('public/assets/admin/img/wallet.jpg')}}"/>
+                                             src="{{asset('public/assets/admin/img/wallet.png')}}"/>
                                     </button>
                                 </form>
                             </div>
