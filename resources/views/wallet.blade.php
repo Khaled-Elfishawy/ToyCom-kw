@@ -81,6 +81,19 @@
                         <div class="card">
                             <div class="card-body">
                                 <form class="needs-validation" method="POST" id="payment-form"
+                                      action="{{route('wallet-exchange')}}">
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="user" value="{{$user->id}}">
+                                    <input type="hidden" name="order" value="{{$order->id}}">
+                                    <button class="btn btn-block btn-warning" type="submit">تحويل نقاط إلى رصيد</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="col-md-12 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <form class="needs-validation" method="POST" id="payment-form"
                                       action="{{route('pay-wallet')}}">
                                     {{ csrf_field() }}
                                     <button class="btn btn-block btn-primary" type="submit">دفع الأن</button>
