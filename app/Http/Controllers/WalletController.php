@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Model\Order;
 use App\User;
 use Illuminate\Support\Facades\Redirect;
+use Brian2694\Toastr\Facades\Toastr;
 
 class WalletController extends Controller
 {
