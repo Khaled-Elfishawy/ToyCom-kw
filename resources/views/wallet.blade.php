@@ -46,7 +46,9 @@
     <div class="row">
         <div class="col-md-12 mb-5 pt-5">
             <center class="">
-                <h1>Payment method</h1>
+                <h1>تأكيد الدفع  عن طريق النقاط</h1>
+                <h3>قيمة الطلب</h3>
+                <h4>{{$order->order_amount}} KWD</h4>
             </center>
         </div>
         <section class="col-lg-12">
@@ -55,8 +57,9 @@
                     <div class="col-md-12 mb-4" style="cursor: pointer">
                         <div class="card">
                             <div class="card-body">
+                                <div class="col-md-12 mb-5 pt-5">
 
-
+                                </div>
                             </div>
                         </div>
                     </div>                    
