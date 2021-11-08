@@ -114,7 +114,7 @@
 <script>
     $('#points').keyup(function(el){
         var ex = "{{$points_dinar}}";
-        $('#my_money').val(el/ex);
+        $('#my_money').val(el.val()/ex);
     });
 </script>
 
