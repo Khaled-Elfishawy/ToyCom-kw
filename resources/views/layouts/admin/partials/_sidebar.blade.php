@@ -764,7 +764,7 @@
                                 >
                                     <i class="tio-poi-user nav-icon"></i>
                                     <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
-                                    {{trans('messages.customer')}} {{trans('messages.list')}}
+                                    {{trans('messages.customer overview')}}
                                 </span>
                                 </a>
                             </li>

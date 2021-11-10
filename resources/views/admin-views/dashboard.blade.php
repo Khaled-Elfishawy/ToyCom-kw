@@ -419,7 +419,7 @@
                                 <!-- Legend Indicators -->
                                 <div class="row font-size-sm">
                                     <div class="col-auto">
-                                        <h5 class="card-header-title">{{trans('messages.monthly')}} {{trans('messages.earning')}}</h5>
+                                        <h5 class="card-header-title">{{trans('messages.monthly earn')}}</h5>
                                     </div>
                                 </div>
                                 <!-- End Legend Indicators -->
@@ -508,7 +508,7 @@
                 <div class="card h-100">
                     <!-- Header -->
                     <div class="card-header">
-                        <h5 class="card-header-title">{{trans('messages.business')}} {{trans('messages.overview')}}
+                        <h5 class="card-header-title">{{trans('messages.work over view')}}
                             ( {{date('M').'-'.date('M',strtotime('first day of +1 month'))}} ) {{trans('messages.in')}} % </h5>
 
                         <!-- Daterangepicker -->
@@ -628,7 +628,7 @@
                 <div class="card h-100">
                     <!-- Header -->
                     <div class="card-header">
-                        <h5 class="card-header-title">{{trans('messages.reports')}} {{trans('messages.overview')}}</h5>
+                        <h5 class="card-header-title">{{trans('messages.reports over view')}}</h5>
 
                         <!-- Unfold -->
                         <div class="hs-unfold">
@@ -647,7 +647,7 @@
                     <!-- Body -->
                     <div class="card-body">
                         @php($items=\App\Model\Wishlist::select('product_id', DB::raw('COUNT(product_id) as count'))->groupBy('product_id')->orderBy('count','DESC')->get())
-                        <span class="h1 d-block mb-4">{{$items->count()}} {{trans('messages.items')}} {{trans('messages.people')}} {{trans('messages.like')}}</span>
+                        <span class="h1 d-block mb-4">{{$items->count()}} {{trans('messages.pepole admiration in items')}}</span>
                         <!-- Progress -->
                     {{--<div class="progress rounded-pill mb-2">
                         @php($total=\App\Model\Wishlist::count())
