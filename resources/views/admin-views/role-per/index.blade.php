@@ -6,7 +6,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        @lang('lang.roles')
+        {{trans('messages.role-per')}}
     </h1>
 {{--    <ol class="breadcrumb">--}}
 {{--        <li><a href="/home"><i class="fa fa-dashboard"></i> @lang('lang.Home')</a></li>--}}
