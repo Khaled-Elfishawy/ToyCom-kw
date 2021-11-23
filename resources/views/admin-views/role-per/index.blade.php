@@ -8,10 +8,10 @@
     <h1>
         @lang('lang.roles')
     </h1>
-    <ol class="breadcrumb">
-        <li><a href="/home"><i class="fa fa-dashboard"></i> @lang('lang.Home')</a></li>
-        <li class="active">@lang('lang.roles')</li>
-    </ol>
+{{--    <ol class="breadcrumb">--}}
+{{--        <li><a href="/home"><i class="fa fa-dashboard"></i> @lang('lang.Home')</a></li>--}}
+{{--        <li class="active">@lang('lang.roles')</li>--}}
+{{--    </ol>--}}
 </section>
 
 <!-- Main content -->
@@ -35,7 +35,7 @@
 
                             @if(UserCan('add_role','admin'))
                                 <br>
-                                {!! Form::submit(__('lang.Save'), ['class' => 'btn btn-primary']) !!}
+                                {!! Form::submit( trans('messages.update') , ['class' => 'btn btn-primary']) !!}
                             @endif
 
                             {!! Form::close() !!}

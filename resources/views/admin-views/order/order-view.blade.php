@@ -325,14 +325,14 @@
                                                 <div class="col col-md-2 align-self-center">
                                                     <a
                                                         @if($detail->Card_color) data-card-color-code="{{$detail->Card_color->color_code}}"
-                                                       data-card-color-name="{{$detail->Card_color->name_ar}}" @endif
-                                                       data-message-from="{{$detail['message_from']}}"
-                                                       data-message-to="{{$detail['message_to']}}"
-                                                       data-message-body="{{$detail['message_body']}}"
-                                                       data-message-id="{{$detail['id']}}"
-                                                       data-toggle="modal" id="btn_card"
-                                                       data-target="#message_modal"
-                                                       class="btn btn-primary">{{trans('messages.gift_card')}}</a>
+                                                        data-card-color-name="{{$detail->Card_color->name_ar}}" @endif
+                                                        data-message-from="{{$detail['message_from']}}"
+                                                        data-message-to="{{$detail['message_to']}}"
+                                                        data-message-body="{{$detail['message_body']}}"
+                                                        data-message-id="{{$detail['id']}}"
+                                                        data-toggle="modal" id="btn_card"
+                                                        data-target="#message_modal"
+                                                        class="btn btn-primary">{{trans('messages.gift_card')}}</a>
                                                 </div>
                                             @else
                                                 <div class="col col-md-2 align-self-center">
@@ -343,9 +343,9 @@
                                                 <div class="col col-md-2 align-self-center">
                                                     <a data-price="{{$detail->Warpping->price}}"
                                                        @if(app()->getLocale() == 'ar')
-                                                        data-name="{{$detail->Warpping->name_ar}}"
+                                                       data-name="{{$detail->Warpping->name_ar}}"
                                                        @else
-                                                        data-name="{{$detail->Warpping->name_en}}"
+                                                       data-name="{{$detail->Warpping->name_en}}"
                                                        @endif
                                                        data-image="{{asset('storage/app/public/wraping')}}/{{$detail->Warpping->image }}"
                                                        data-toggle="modal" id="btn_warpping"
@@ -372,16 +372,16 @@
                                             </div>
                                             <div class="modal-body">
                                                 <div class="row">
-                                                <div class="form-group col-md-6">
-                                                    <label for="recipient-name"
-                                                           class="control-label">{{trans('messages.from')}}</label>
-                                                    {{ Form::text('message_from',null,["class"=>"form-control" ,"readonly" ,'id'=>'txt_message_from']) }}
-                                                </div>
-                                                <div class="form-group col-md-6">
-                                                    <label for="recipient-name"
-                                                           class="control-label">{{trans('messages.to')}}</label>
-                                                    {{ Form::text('message_to',null,["class"=>"form-control" ,"readonly",'id'=>'txt_message_to']) }}
-                                                </div>
+                                                    <div class="form-group col-md-6">
+                                                        <label for="recipient-name"
+                                                               class="control-label">{{trans('messages.from')}}</label>
+                                                        {{ Form::text('message_from',null,["class"=>"form-control" ,"readonly" ,'id'=>'txt_message_from']) }}
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <label for="recipient-name"
+                                                               class="control-label">{{trans('messages.to')}}</label>
+                                                        {{ Form::text('message_to',null,["class"=>"form-control" ,"readonly",'id'=>'txt_message_to']) }}
+                                                    </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <input type="hidden" name="card_id" id="card_id">
@@ -407,7 +407,8 @@
                                                         data-dismiss="modal">
                                                     {{trans('messages.close')}}
                                                 </button>
-                                                <button type="button" id="#PrintButton" onclick="PrintCard($('#card_id'));" class="btn btn-primary"
+                                                <button type="button" id="#PrintButton"
+                                                        onclick="PrintCard($('#card_id'));" class="btn btn-primary"
                                                         data-dismiss="modal">
                                                     {{trans('messages.print')}}
                                                 </button>
@@ -433,7 +434,7 @@
                                                                class="control-label"> {{trans('messages.name')}}</label>
 
                                                         {{ Form::text('name',null,["class"=>"form-control" ,"readonly" ,'id'=>'txt_name']) }}
-                                                           </div>
+                                                    </div>
                                                     <div class="form-group">
                                                         <label for="recipient-name"
                                                                class="control-label">{{trans('messages.price')}}</label>
@@ -855,25 +856,26 @@
         $(document).on('click', '#btn_warpping', function () {
             $("#txt_price").val($(this).data('price'));
             $("#txt_name").val($(this).data('name'));
-            $("#txt_image").attr('src',$(this).data('image'));
+            $("#txt_image").attr('src', $(this).data('image'));
         });
+
         function PrintCard(el) {
-                    $.ajaxSetup({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        }
-                    });
-                    $.post({
-                        url: "{{route('admin.order.printCard')}}",
-                        data: {
-                            "id": el.val(),
-                        },
-                        success: function (data) {
-                            console.log(data);
-                            var w = window.open(data, 'Download');
-                            w.document.close();
-                        }
-                    });
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.post({
+                url: "{{route('admin.order.printCard')}}",
+                data: {
+                    "id": el.val(),
+                },
+                success: function (data) {
+                    console.log(data);
+                    var w = window.open(data, 'Download');
+                    w.document.close();
+                }
+            });
         }
     </script>
 @endpush

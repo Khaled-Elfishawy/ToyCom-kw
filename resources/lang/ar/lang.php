@@ -3,6 +3,6 @@
 return [
     'roles' => 'Roles',
     'Home'  => 'Home',
-    'save'  => 'save',
+    'save'  => 'حفظ',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 ];
