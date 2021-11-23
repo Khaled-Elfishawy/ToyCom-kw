@@ -3,6 +3,13 @@
 <?php
 
 return [
+    //NEW
+    'work over view' => 'نظره عامه علي العمل',
+    'reports over view' => 'نظره عامه علي التقارير',
+    'pepole admiration in items' => 'اعجاب المستخدمين علي العناصر',
+    'monthly earn' => 'المكسب الشهري',
+    'customer overview' => 'عرض العميل',
+
 
 
     'update_card_color' => 'تعديل لون الكارت',
