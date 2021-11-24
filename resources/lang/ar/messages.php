@@ -72,6 +72,7 @@ return [
     'brand'=> 'الماركه',
     'brands'=> 'المركات',
     'admins'=> 'المديرين',
+    'admins list'=> 'عرض المديرين ' ,
     'seller'=> 'البائعين',
     'price-group'=> 'مجموعه الاسعار',
     'price-groups'=> 'مجموعه الاسعار',

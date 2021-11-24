@@ -18,15 +18,11 @@ class CustomerController extends Controller
         $customers = User::with(['orders'])->latest()->paginate(10);
         return view('admin-views.customer.list', compact('customers'));
     }
-    public function admin_list()
-    {
-        $admins = Admin::latest()->paginate(10);
-        return view('admin-views.admins.list', compact('admins'));
-    }
 
-    public function search(Request $request){
+    public function search(Request $request)
+    {
         $key = explode(' ', $request['search']);
-        $customers=User::where(function ($q) use ($key) {
+        $customers = User::where(function ($q) use ($key) {
             foreach ($key as $value) {
                 $q->orWhere('f_name', 'like', "%{$value}%")
                     ->orWhere('l_name', 'like', "%{$value}%")
@@ -35,7 +31,7 @@ class CustomerController extends Controller
             }
         })->get();
         return response()->json([
-            'view'=>view('admin-views.customer.partials._table',compact('customers'))->render()
+            'view' => view('admin-views.customer.partials._table', compact('customers'))->render()
         ]);
     }
 
@@ -44,33 +40,35 @@ class CustomerController extends Controller
         $customer = User::find($id);
         if (isset($customer)) {
             $orders = Order::latest()->where(['user_id' => $id])->paginate(10);
-            $price_groups=PriceGroup::all();
+            $price_groups = PriceGroup::all();
             return view('admin-views.customer.edit', compact('customer', 'orders'
-            ,'price_groups'));
+                , 'price_groups'));
         }
         Toastr::error('Customer not found!');
         return back();
     }
+
     public function edit($id)
     {
         $customer = User::find($id);
-        $price_groups=PriceGroup::all();
+        $price_groups = PriceGroup::all();
         $orders = Order::latest()->where(['user_id' => $id])->paginate(10);
-        return view('admin-views.customer.edit', compact('customer','orders','price_groups'));
+        return view('admin-views.customer.edit', compact('customer', 'orders', 'price_groups'));
 
     }
 
-    public function update(Request $request ,$id){
+    public function update(Request $request, $id)
+    {
         $customer = User::find($id);
-        $customer->email=$request->email;
-        $customer->phone=$request->phone;
-        $customer->my_points=$request->my_points;
-        $customer->my_money=$request->my_money;
+        $customer->email = $request->email;
+        $customer->phone = $request->phone;
+        $customer->my_points = $request->my_points;
+        $customer->my_money = $request->my_money;
         $customer->first_approve = 1;
-        $customer->password=($request->password)? Hash::make($request['password']) : $customer->password;
+        $customer->password = ($request->password) ? Hash::make($request['password']) : $customer->password;
         $customer->save();
 
-        if ($customer->is_company == 1){
+        if ($customer->is_company == 1) {
             $customer->update([
                 $customer->pending_price_group = $request->price_group_id,
             ]);
@@ -89,6 +87,18 @@ class CustomerController extends Controller
         $customer->save();
         Toastr::success('Customer status updated!');
         return back();
+    }
+
+    public function admin_list() // for admin
+    {
+        $admins = Admin::latest()->paginate(10);
+        return view('admin-views.admins.list', compact('admins'));
+    }
+
+    public function admin_add() // for admin
+    {
+        return 'hello';
+
     }
 
 }

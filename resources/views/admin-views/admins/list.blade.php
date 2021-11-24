@@ -12,7 +12,7 @@
         <div class="page-header">
             <div class="row align-items-center mb-3">
                 <div class="col-sm">
-                    <h1 class="page-header-title">{{trans('messages.customers')}}
+                    <h1 class="page-header-title">{{trans('messages.admins')}}
                         <span class="badge badge-soft-dark ml-2">{{\App\User::count()}}</span>
                     </h1>
                 </div>
@@ -36,7 +36,7 @@
                 <!-- Nav -->
                 <ul class="nav nav-tabs page-header-tabs">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">{{trans('messages.customer')}} {{trans('messages.list')}}</a>
+                        <a class="nav-link active" href="#">{{trans('messages.admins list')}}</a>
                     </li>
                     {{--<li class="nav-item">
                         <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Open</a>

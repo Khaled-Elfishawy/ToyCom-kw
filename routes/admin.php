@@ -300,6 +300,7 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.'], function () {
             Route::post('search', 'CustomerController@search')->name('search')->middleware('permission:view_customer');
             Route::get('second_approve/{id}/{second_approve}', 'CustomerController@second_approve')->name('second_approve')->middleware('permission:second_approve');
         });
+
         Route::group(['prefix' => 'admins', 'as' => 'admins.'], function () {
             Route::get('list', 'CustomerController@admin_list')->name('list')->middleware('permission:view_customer');
             Route::get('add-new', 'CustomerController@admin_add')->name('add-new')->middleware('permission:view_customer');
