@@ -6,9 +6,9 @@
             <td>{{trans('messages.#')}} </td>
             <td>{{trans('messages.order')}}</td>
             <td>{{trans('messages.date')}}</td>
-            <td>{{trans('messages.qty')}}</td>
-            <td>{{trans('messages.customer')}}</td>
             <td>{{trans('messages.amount')}}</td>
+            <td>{{trans('messages.customer')}}</td>
+            <td>{{trans('messages.price')}}</td>
         </tr>
         @foreach($data as $key=>$row)
             <tr>

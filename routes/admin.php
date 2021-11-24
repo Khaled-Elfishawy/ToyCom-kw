@@ -78,7 +78,7 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.'], function () {
             Route::get('add-new', 'CardColorsController@create')->name('add-new');
             Route::post('store', 'CardColorsController@store')->name('store');
             Route::get('edit/{id}', 'CardColorsController@edit')->name('edit');
-            Route::put('update/{id}', 'CardColorsController@update')->name('update');
+            Route::post('update/{id}', 'CardColorsController@update')->name('update');
             Route::delete('delete/{id}', 'CardColorsController@destroy')->name('delete');
         });
 

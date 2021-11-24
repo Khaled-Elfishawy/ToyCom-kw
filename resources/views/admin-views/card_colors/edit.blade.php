@@ -16,7 +16,7 @@
             <div class="col-sm-12 col-lg-12 mb-3 mb-lg-2">
                 <form action="{{route('admin.card_colors.update', $data->id)}}" method="post"
                       enctype="multipart/form-data">
-                    @csrf @method('put')
+                    @csrf
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">

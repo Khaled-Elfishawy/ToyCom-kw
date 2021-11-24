@@ -284,12 +284,12 @@
                                 @if($customer['second_approve']==1)
                                     <div style="padding: 10px;border: 1px solid;cursor: pointer"
                                          onclick="location.href='{{route('admin.customer.second_approve',[$customer['id'],0])}}'">
-                                        <span class="legend-indicator bg-success"></span>Active
+                                        <span class="legend-indicator bg-success"></span>{{trans('messages.actives')}}
                                     </div>
                                 @else
                                     <div style="padding: 10px;border: 1px solid;cursor: pointer"
                                          onclick="location.href='{{route('admin.customer.second_approve',[$customer['id'],1])}}'">
-                                        <span class="legend-indicator bg-danger"></span>not active
+                                        <span class="legend-indicator bg-danger"></span>{{trans('messages.not_active')}}
                                     </div>
                                 @endif
                                 @endif

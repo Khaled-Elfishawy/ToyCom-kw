@@ -144,11 +144,11 @@
                         <!-- end permissions -->
 
 
-                        <li class="nav-item">
-                            <small
-                                class="nav-subtitle">{{trans('messages.product')}} {{trans('messages.section')}}</small>
-                            <small class="tio-more-horizontal nav-subtitle-replacer"></small>
-                        </li>
+{{--                        <li class="nav-item">--}}
+{{--                            <small--}}
+{{--                                class="nav-subtitle">{{trans('messages.product')}} {{trans('messages.section')}}</small>--}}
+{{--                            <small class="tio-more-horizontal nav-subtitle-replacer"></small>--}}
+{{--                        </li>--}}
 
                         <!-- orders -->
                         @if(UserCan('view_order','admin'))
@@ -509,11 +509,11 @@
                             {{--                            </ul>--}}
                             {{--                        </li>--}}
                         @endif
-                        <li class="nav-item">
-                            <small class="nav-subtitle"
-                                   title="Layouts">{{trans('messages.business')}} {{trans('messages.section')}}</small>
-                            <small class="tio-more-horizontal nav-subtitle-replacer"></small>
-                        </li>
+{{--                        <li class="nav-item">--}}
+{{--                            <small class="nav-subtitle"--}}
+{{--                                   title="Layouts">{{trans('messages.business')}} {{trans('messages.section')}}</small>--}}
+{{--                            <small class="tio-more-horizontal nav-subtitle-replacer"></small>--}}
+{{--                        </li>--}}
 
                         <!-- Pages -->
                         @if(UserCan('view_price_group','admin'))
@@ -571,7 +571,18 @@
                                 </a>
                             </li>
                         @endif
-
+                        @if(UserCan('view_customer','admin'))
+                            <li class="navbar-vertical-aside-has-menu {{Request::is('admin/customer*')?'active':''}}">
+                                <a class="js-navbar-vertical-aside-menu-link nav-link"
+                                   href="{{route('admin.customer.list')}}"
+                                >
+                                    <i class="tio-poi-user nav-icon"></i>
+                                    <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                    {{trans('messages.customers')}}
+                                </span>
+                                </a>
+                            </li>
+                        @endif
                     <!-- Pages -->
                         {{--                        @if(UserCan('view_proPreview','admin'))--}}
                         {{--                        <li class="navbar-vertical-aside-has-menu {{Request::is('admin/reviews*')?'active':''}}">--}}
@@ -750,25 +761,14 @@
                         {{--                        </li>--}}
                     <!-- End Pages -->
 
-                        <li class="nav-item">
-                            <small class="nav-subtitle"
-                                   title="Documentation">{{trans('messages.customer')}} {{trans('messages.section')}}</small>
-                            <small class="tio-more-horizontal nav-subtitle-replacer"></small>
-                        </li>
+{{--                        <li class="nav-item">--}}
+{{--                            <small class="nav-subtitle"--}}
+{{--                                   title="Documentation">{{trans('messages.customer')}} {{trans('messages.section')}}</small>--}}
+{{--                            <small class="tio-more-horizontal nav-subtitle-replacer"></small>--}}
+{{--                        </li>--}}
 
                         <!-- Pages -->
-                        @if(UserCan('view_customer','admin'))
-                            <li class="navbar-vertical-aside-has-menu {{Request::is('admin/customer*')?'active':''}}">
-                                <a class="js-navbar-vertical-aside-menu-link nav-link"
-                                   href="{{route('admin.customer.list')}}"
-                                >
-                                    <i class="tio-poi-user nav-icon"></i>
-                                    <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
-                                    {{trans('messages.customer overview')}}
-                                </span>
-                                </a>
-                            </li>
-                        @endif
+
                     <!-- End Pages -->
 
                         <li class="nav-item">

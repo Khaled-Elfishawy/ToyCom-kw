@@ -89,7 +89,7 @@
                         @php($mov=\App\Model\BusinessSetting::where('key','minimum_order_value')->first()->value)
                         <div class="col-md-6 col-12">
                             <div class="form-group">
-                                <label class="input-label" for="exampleFormControlInput1">{{trans('messages.min')}} {{trans('messages.order')}} {{trans('messages.value')}} ( {{\App\CentralLogics\Helpers::currency_symbol()}} )</label>
+                                <label class="input-label" for="exampleFormControlInput1">{{trans('messages.lowest_value_order')}} ( {{\App\CentralLogics\Helpers::currency_symbol()}} )</label>
                                 <input type="number" min="1" value="{{$mov}}"
                                        name="minimum_order_value" class="form-control" placeholder=""
                                        required>
@@ -128,7 +128,7 @@
                         <div class="col-md-6 col-12">
                             @php($delivery=\App\Model\BusinessSetting::where('key','delivery_charge')->first()->value)
                             <div class="form-group">
-                                <label class="input-label" for="exampleFormControlInput1">{{trans('messages.delivery')}} {{trans('messages.charge')}}</label>
+                                <label class="input-label" for="exampleFormControlInput1">{{trans('messages.delivery_value')}}</label>
                                 <input type="number" min="1" max="10000" name="delivery_charge" value="{{$delivery}}"
                                        class="form-control" placeholder="100" required>
                             </div>
@@ -136,7 +136,7 @@
                         <div class="col-md-6 col-12">
                             @php($ev=\App\Model\BusinessSetting::where('key','email_verification')->first()->value)
                             <div class="form-group">
-                                <label>{{trans('messages.email')}} {{trans('messages.verification')}}</label><small style="color: red">*</small>
+                                <label>{{trans('messages.email_verification')}}</label><small style="color: red">*</small>
                                 <div class="input-group input-group-md-down-break">
                                     <!-- Custom Radio -->
                                     <div class="form-control">

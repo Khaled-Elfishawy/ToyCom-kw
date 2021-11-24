@@ -13,7 +13,7 @@ class CardColorsController extends Controller
     use OfferTrait;
     public function index()
     {
-        $data = CardColor::all();
+        $data = CardColor::where('deleted','0')->get();
         return view('admin-views.card_colors.index', compact('data'));
     }
     public function create()
@@ -40,7 +40,7 @@ class CardColorsController extends Controller
         $cardColor = CardColor::find($id);
         $cardColor->name_ar = $request->name_ar;
         $cardColor->name_en = $request->name_en;
-        $cardColor->color_code = $request->price;
+        $cardColor->color_code = $request->color_code;
         $cardColor->save();
         return redirect()->route('admin.card_colors.list');
     }
@@ -51,6 +51,6 @@ class CardColorsController extends Controller
         $wraping = CardColor::find($id);
         $wraping->deleted = '1';
         $wraping->save();
-        return \redirect()->route('admin.wraping.list');
+        return \redirect()->route('admin.card_colors.list');
     }
 }

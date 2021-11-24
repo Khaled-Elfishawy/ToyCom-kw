@@ -15,8 +15,8 @@
                 <th>{{trans('messages.#')}} </th>
                 <th>{{trans('messages.order')}}</th>
                 <th>{{trans('messages.date')}}</th>
-                <th>{{trans('messages.qty')}}</th>
-                <th style="width: 10%">{{trans('messages.amount')}}</th>
+                <th>{{trans('messages.amount')}}</th>
+                <th style="width: 10%">{{trans('messages.price')}}</th>
             </tr>
             </thead>
             <tbody>

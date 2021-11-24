@@ -4,6 +4,13 @@
 
 return [
     //NEW
+    'email_verification' => 'تحقق البريد الإلكتروني',
+    'delivery_value' => 'قيمة التوصيل',
+    'lowest_value_order' => 'اقل قيمة للطلب',
+    'actives' => 'مفعل',
+    'not_active' => 'غير مفعل',
+    'qty' => 'الكمية',
+    'approve' => 'التفعيل',
     'work over view' => 'نظره عامه علي العمل',
     'reports over view' => 'نظره عامه علي التقارير',
     'pepole admiration in items' => 'اعجاب المستخدمين علي العناصر',
@@ -215,7 +222,7 @@ return [
     'sub' => 'فرعي',
     'km' => 'كيلو متر',
     'conversation' => 'محادثه',
-    'customers' => 'عميل',
+    'customers' => 'العملاء',
     'reply' => 'رد',
     'rating' => 'تقييم',
     'id' => 'هويه شخصيه',
@@ -290,7 +297,7 @@ return [
     'week' => 'الاسبوع',
     'weekly' => 'اسبوعي',
     'column' => 'عمود',
-    'self_pickup' => 'استعاده النفس',
+    'self_pickup' => 'نسخة احتياطية اتوماتك',
     'unit' => 'وحده',
     'kg' => 'كيلو جرام',
     'gm' => 'GM',

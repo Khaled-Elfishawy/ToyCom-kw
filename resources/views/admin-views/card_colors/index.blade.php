@@ -14,7 +14,7 @@
             <div class="col-sm-12 col-lg-12 mb-3 mb-lg-2">
 
                 <div class="col-sm mb-2 mb-sm-0">
-                    <h1 class="page-header-title"><i class="tio-filter-list"></i> {{trans('messages.wraping')}} {{trans('messages.list')}}</h1>
+                    <h1 class="page-header-title"><i class="tio-filter-list"></i> {{trans('messages.card_colors')}}</h1>
                 </div>
 
                 <div class="card">
