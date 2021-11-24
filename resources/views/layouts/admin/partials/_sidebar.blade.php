@@ -475,18 +475,18 @@
                     <!-- End Pages -->
                         @if(UserCan('view_category','admin'))
                             <li class="navbar-vertical-aside-has-menu {{Request::is('admin/category*')?'active':''}}">
-                            {{--                            <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:"--}}
-                            {{--                            >--}}
-                            {{--                                <i class="tio-category nav-icon"></i>--}}
-                            {{--                                <span--}}
-                            {{--                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{trans('messages.category')}}</span>--}}
-                            {{--                            </a>--}}
-                            {{--                            <ul class="js-navbar-vertical-aside-submenu nav nav-sub"--}}
-                            {{--                                style="display: {{Request::is('admin/category*')?'block':'none'}}">--}}
+{{--                                                        <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:"--}}
+{{--                                                        >--}}
+{{--                                                            <i class="tio-category nav-icon"></i>--}}
+{{--                                                            <span--}}
+{{--                                                                class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{trans('messages.category')}}</span>--}}
+{{--                                                        </a>--}}
+{{--                                                        <ul class="js-navbar-vertical-aside-submenu nav nav-sub"--}}
+{{--                                                            style="display: {{Request::is('admin/category*')?'block':'none'}}">--}}
                             <li class="nav-item {{Request::is('admin/category/add')?'active':''}}">
                                 <a class="nav-link " href="{{route('admin.category.add')}}"
                                    title="add new category">
-                                    <span class="tio-circle nav-indicator-icon"></span>
+                                    <i class="tio-category nav-icon"></i>
                                     <span class="text-truncate">{{trans('messages.categories')}}</span>
                                 </a>
                             </li>
@@ -645,7 +645,7 @@
                                         >
                                             <span class="tio-circle nav-indicator-icon"></span>
                                             <span
-                                                class="text-truncate">{{trans('messages.restaurant')}} {{trans('messages.setup')}}</span>
+                                                class="text-truncate">{{trans('messages.restaurant_setup')}}</span>
                                         </a>
                                     </li>
                                     <li class="nav-item {{Request::is('admin/business-settings/location-setup')?'active':''}}">
@@ -653,7 +653,7 @@
                                         >
                                             <span class="tio-circle nav-indicator-icon"></span>
                                             <span
-                                                class="text-truncate">{{trans('messages.location')}} {{trans('messages.setup')}}</span>
+                                                class="text-truncate">{{trans('messages.location_setup')}}</span>
                                         </a>
                                     </li>
                                     <li class="nav-item {{Request::is('admin/business-settings/mail-config')?'active':''}}">
@@ -661,7 +661,7 @@
                                         >
                                             <span class="tio-circle nav-indicator-icon"></span>
                                             <span
-                                                class="text-truncate">{{trans('messages.mail')}} {{trans('messages.config')}}</span>
+                                                class="text-truncate">{{trans('messages.mail_make')}}</span>
                                         </a>
                                     </li>
                                     {{--<li class="nav-item {{Request::is('admin/business-settings/currency-add')?'active':''}}">
@@ -676,7 +676,7 @@
                                         >
                                             <span class="tio-circle nav-indicator-icon"></span>
                                             <span
-                                                class="text-truncate">{{trans('messages.payment')}} {{trans('messages.methods')}}</span>
+                                                class="text-truncate">{{trans('messages.payment_methods')}}</span>
                                         </a>
                                     </li>
 
@@ -685,7 +685,7 @@
                                            title="">
                                             <span class="tio-circle nav-indicator-icon"></span>
                                             <span
-                                                class="text-truncate">{{trans('messages.push')}} {{trans('messages.notification')}}</span>
+                                                class="text-truncate">{{trans('messages.notification_settings')}}</span>
                                         </a>
                                     </li>
 
@@ -798,7 +798,7 @@
                                         >
                                             <span class="tio-circle nav-indicator-icon"></span>
                                             <span
-                                                class="text-truncate">{{trans('messages.earning')}} {{trans('messages.report')}}</span>
+                                                class="text-truncate">{{trans('messages.profit_report')}}</span>
                                         </a>
                                     </li>
                                     <li class="nav-item {{Request::is('admin/report/order')?'active':''}}">
@@ -806,7 +806,7 @@
                                         >
                                             <span class="tio-circle nav-indicator-icon"></span>
                                             <span
-                                                class="text-truncate">{{trans('messages.order')}} {{trans('messages.report')}}</span>
+                                                class="text-truncate">{{trans('messages.order_report')}}</span>
                                         </a>
                                     </li>
                                     <li class="nav-item {{Request::is('admin/report/driver-report')?'active':''}}">
@@ -814,7 +814,7 @@
                                         >
                                             <span class="tio-circle nav-indicator-icon"></span>
                                             <span
-                                                class="text-truncate">{{trans('messages.driver')}} {{trans('messages.report')}}</span>
+                                                class="text-truncate">{{trans('messages.driver_report')}}</span>
                                         </a>
                                     </li>
                                     <li class="nav-item {{Request::is('admin/report/product-report')?'active':''}}">
@@ -822,13 +822,13 @@
                                         >
                                             <span class="tio-circle nav-indicator-icon"></span>
                                             <span
-                                                class="text-truncate">{{trans('messages.product')}} {{trans('messages.report')}}</span>
+                                                class="text-truncate">{{trans('messages.product_report')}}</span>
                                         </a>
                                     </li>
                                     <li class="nav-item {{Request::is('admin/report/sale-report')?'active':''}}">
                                         <a class="nav-link " href="{{route('admin.report.sale-report')}}">
                                             <span class="tio-circle nav-indicator-icon"></span>
-                                            <span class="text-truncate">{{trans('messages.sale')}} {{trans('messages.report')}}</span>
+                                            <span class="text-truncate">{{trans('messages.report_sale')}}</span>
                                         </a>
                                     </li>
                                 </ul>

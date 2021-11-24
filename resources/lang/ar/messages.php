@@ -4,6 +4,16 @@
 
 return [
     //NEW
+    'restaurant_setup' => 'اعدادات المتجر',
+    'location_setup' => 'اعدادات الموقع',
+    'mail_make' => 'تهيئة البريد',
+    'payment_methods' => 'طرق الدفع',
+    'notification_settings' => 'اعدادات الاشعارات',
+    'product_report' => 'تقرير المنتجات',
+    'driver_report' => 'تقرير الموصل',
+    'profit_report' => 'تقرير الربح',
+    'order_report' => 'تقرير الطلبات',
+    'report_sale' => 'تقرير البيع',
     'email_verification' => 'تحقق البريد الإلكتروني',
     'delivery_value' => 'قيمة التوصيل',
     'lowest_value_order' => 'اقل قيمة للطلب',
@@ -97,7 +107,7 @@ return [
     'canceled' => 'تم الاغاء',
     'failed' => 'فشل',
     'product' => 'منتج',
-    'banner' => 'لافته',
+    'banner' => 'اللافتات',
     'add' => 'اضافه',
     'new' => ' ',
     'list' => 'عرض',
