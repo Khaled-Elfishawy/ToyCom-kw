@@ -4,7 +4,7 @@
         <td>
                                         <span class="d-block font-size-sm text-body">
                                              <a href="{{route('admin.product.view',[$product['id']])}}">
-                                               {{$product['name']}}
+                                               @if(app()->getLocale() == 'ar') {{$product['name_ar']}} @else {{$product['name']}} @endif
                                              </a>
                                         </span>
         </td>
