@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Order;
 use App\Model\PriceGroup;
 use App\User;
+use App\Model\Role;
 use App\Model\Admin;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
@@ -95,9 +96,35 @@ class CustomerController extends Controller
         return view('admin-views.admins.list', compact('admins'));
     }
 
-    public function admin_add() // for admin
+    public function admin_add()
     {
-        return 'hello';
+        $Roles = Role::get();
+        return view('admin-views.admins.add', compact('Roles'));
+    }
+
+    public function admin_store(Request $request)
+    {
+
+        $data = $this->validate(\request(),
+            [
+                'f_name' => 'required|max:255',
+                'l_name' => 'required|max:255',
+                'email' => 'required|unique:admins|email',
+                'phone' => 'required|unique:admins',
+                'password' => 'required|min:6|confirmed',
+                'password_confirmation' => 'required|min:6',
+                'role_id' => 'required|numeric',
+            ]);
+        if ($request['password'] != null && $request['password_confirmation'] != null) {
+            $data['password'] = bcrypt(request('password'));
+        }
+            unset($data['password_confirmation']);
+            unset($data['_token']);
+            $admin = Admin::create($data);
+            $admin->assignRole($request->input('role_id'));
+
+        Toastr::success('admin created!');
+        return redirect()->route('admin.dashboard');
 
     }
 

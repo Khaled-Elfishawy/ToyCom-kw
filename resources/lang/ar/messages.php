@@ -93,6 +93,7 @@ return [
     'branch' => 'الفروع',
     'email' => 'البريد الالكتروني',
     'password' => 'كلمه السر',
+    'confirmed password' => 'تاكيد كلمه السر',
     'remember' => 'تذكرني',
     'me' => 'انا',
     'dashboard' => 'لوحه التحكم',
@@ -337,6 +338,8 @@ return [
     'merchantEmail' => 'البريد الاكتروني ميرشيل',
     'merchant' => 'ميرشانت',
     'daily_needs' => 'الطلبات اليوميه',
+    'f_name' => 'الاسم الاول',
+    's_name' => 'الاسم الثاني',
 
 ];
 
