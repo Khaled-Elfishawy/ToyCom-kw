@@ -1,4 +1,3 @@
-
 <div id="sidebarMain" class="d-none">
     <aside
         class="js-navbar-vertical-aside navbar navbar-vertical-aside navbar-vertical navbar-vertical-fixed navbar-expand-xl navbar-bordered  ">
@@ -77,32 +76,32 @@
                         <!-- end Roles -->
 
                         <!-- permissions -->
-{{--                        <li class="navbar-vertical-aside-has-menu {{Request::is('admin/permission*')?'active':''}}">--}}
-{{--                            <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:"--}}
-{{--                            >--}}
-{{--                                <i class="tio-image nav-icon"></i>--}}
-{{--                                <span--}}
-{{--                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{trans('messages.permission')}}</span>--}}
-{{--                            </a>--}}
-{{--                            <ul class="js-navbar-vertical-aside-submenu nav nav-sub"--}}
-{{--                                style="display: {{Request::is('admin/permission*')?'block':'none'}}">--}}
-{{--                                <li class="nav-item {{Request::is('admin/permission/add-new')?'active':''}}">--}}
-{{--                                    <a class="nav-link " href="{{route('admin.permission.add-new')}}">--}}
-{{--                                        <span class="tio-circle nav-indicator-icon"></span>--}}
-{{--                                        <span--}}
-{{--                                            class="text-truncate">{{trans('messages.add')}} {{trans('messages.new')}}</span>--}}
-{{--                                    </a>--}}
-{{--                                </li>--}}
-{{--                                <li class="nav-item {{Request::is('admin/permission/list')?'active':''}}">--}}
-{{--                                    <a class="nav-link " href="{{route('admin.permission.list')}}">--}}
-{{--                                        <span class="tio-circle nav-indicator-icon"></span>--}}
-{{--                                        <span class="text-truncate">{{trans('messages.list')}}</span>--}}
-{{--                                    </a>--}}
-{{--                                </li>--}}
-{{--                            </ul>--}}
-{{--                        </li>--}}
+                    {{--                        <li class="navbar-vertical-aside-has-menu {{Request::is('admin/permission*')?'active':''}}">--}}
+                    {{--                            <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:"--}}
+                    {{--                            >--}}
+                    {{--                                <i class="tio-image nav-icon"></i>--}}
+                    {{--                                <span--}}
+                    {{--                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{trans('messages.permission')}}</span>--}}
+                    {{--                            </a>--}}
+                    {{--                            <ul class="js-navbar-vertical-aside-submenu nav nav-sub"--}}
+                    {{--                                style="display: {{Request::is('admin/permission*')?'block':'none'}}">--}}
+                    {{--                                <li class="nav-item {{Request::is('admin/permission/add-new')?'active':''}}">--}}
+                    {{--                                    <a class="nav-link " href="{{route('admin.permission.add-new')}}">--}}
+                    {{--                                        <span class="tio-circle nav-indicator-icon"></span>--}}
+                    {{--                                        <span--}}
+                    {{--                                            class="text-truncate">{{trans('messages.add')}} {{trans('messages.new')}}</span>--}}
+                    {{--                                    </a>--}}
+                    {{--                                </li>--}}
+                    {{--                                <li class="nav-item {{Request::is('admin/permission/list')?'active':''}}">--}}
+                    {{--                                    <a class="nav-link " href="{{route('admin.permission.list')}}">--}}
+                    {{--                                        <span class="tio-circle nav-indicator-icon"></span>--}}
+                    {{--                                        <span class="text-truncate">{{trans('messages.list')}}</span>--}}
+                    {{--                                    </a>--}}
+                    {{--                                </li>--}}
+                    {{--                            </ul>--}}
+                    {{--                        </li>--}}
 
-                        <!-- end permissions -->
+                    <!-- end permissions -->
 
                         <!-- Role Has Permission -->
 
@@ -118,41 +117,43 @@
                         </li>
                         <!-- End Pages -->
                         <!-- permissions -->
-                        <li class="navbar-vertical-aside-has-menu {{Request::is('admin/admins*')?'active':''}}">
-                            <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:"
-                            >
-                                <i class="tio-image nav-icon"></i>
-                                <span
-                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{trans('messages.admins')}}</span>
-                            </a>
-                            <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
-                                style="display: {{Request::is('admin/admins*')?'block':'none'}}">
-                                <li class="nav-item {{Request::is('admin/admins/add-new')?'active':''}}">
-                                    <a class="nav-link " href="{{route('admin.admins.add-new')}}">
-                                        <span class="tio-circle nav-indicator-icon"></span>
-                                        <span
-                                            class="text-truncate">{{trans('messages.add')}} {{trans('messages.new')}}</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item {{Request::is('admin/admins/list')?'active':''}}">
-                                    <a class="nav-link " href="{{route('admin.admins.list')}}">
-                                        <span class="tio-circle nav-indicator-icon"></span>
-                                        <span class="text-truncate">{{trans('messages.list')}}</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                        @if(UserCan('view_role','admin'))
+                            <li class="navbar-vertical-aside-has-menu {{Request::is('admin/admins*')?'active':''}}">
+                                <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle"
+                                   href="javascript:"
+                                >
+                                    <i class="tio-image nav-icon"></i>
+                                    <span
+                                        class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{trans('messages.admins')}}</span>
+                                </a>
+                                <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
+                                    style="display: {{Request::is('admin/admins*')?'block':'none'}}">
+                                    <li class="nav-item {{Request::is('admin/admins/add-new')?'active':''}}">
+                                        <a class="nav-link " href="{{route('admin.admins.add-new')}}">
+                                            <span class="tio-circle nav-indicator-icon"></span>
+                                            <span
+                                                class="text-truncate">{{trans('messages.add')}} {{trans('messages.new')}}</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item {{Request::is('admin/admins/list')?'active':''}}">
+                                        <a class="nav-link " href="{{route('admin.admins.list')}}">
+                                            <span class="tio-circle nav-indicator-icon"></span>
+                                            <span class="text-truncate">{{trans('messages.list')}}</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endif
+                    <!-- end permissions -->
 
-                        <!-- end permissions -->
 
+                        {{--                        <li class="nav-item">--}}
+                        {{--                            <small--}}
+                        {{--                                class="nav-subtitle">{{trans('messages.product')}} {{trans('messages.section')}}</small>--}}
+                        {{--                            <small class="tio-more-horizontal nav-subtitle-replacer"></small>--}}
+                        {{--                        </li>--}}
 
-{{--                        <li class="nav-item">--}}
-{{--                            <small--}}
-{{--                                class="nav-subtitle">{{trans('messages.product')}} {{trans('messages.section')}}</small>--}}
-{{--                            <small class="tio-more-horizontal nav-subtitle-replacer"></small>--}}
-{{--                        </li>--}}
-
-                        <!-- orders -->
+                    <!-- orders -->
                         @if(UserCan('view_order','admin'))
                             <li class="navbar-vertical-aside-has-menu {{Request::is('admin/orders*')?'active':''}}">
                                 <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle"
@@ -426,7 +427,7 @@
                         </li>
 
 
-                    <!-- End Pages -->
+                        <!-- End Pages -->
 
 
                         <!-- Pages -->
@@ -477,14 +478,14 @@
                     <!-- End Pages -->
                         @if(UserCan('view_category','admin'))
                             <li class="navbar-vertical-aside-has-menu {{Request::is('admin/category*')?'active':''}}">
-{{--                                                        <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:"--}}
-{{--                                                        >--}}
-{{--                                                            <i class="tio-category nav-icon"></i>--}}
-{{--                                                            <span--}}
-{{--                                                                class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{trans('messages.category')}}</span>--}}
-{{--                                                        </a>--}}
-{{--                                                        <ul class="js-navbar-vertical-aside-submenu nav nav-sub"--}}
-{{--                                                            style="display: {{Request::is('admin/category*')?'block':'none'}}">--}}
+                            {{--                                                        <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:"--}}
+                            {{--                                                        >--}}
+                            {{--                                                            <i class="tio-category nav-icon"></i>--}}
+                            {{--                                                            <span--}}
+                            {{--                                                                class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{trans('messages.category')}}</span>--}}
+                            {{--                                                        </a>--}}
+                            {{--                                                        <ul class="js-navbar-vertical-aside-submenu nav nav-sub"--}}
+                            {{--                                                            style="display: {{Request::is('admin/category*')?'block':'none'}}">--}}
                             <li class="nav-item {{Request::is('admin/category/add')?'active':''}}">
                                 <a class="nav-link " href="{{route('admin.category.add')}}"
                                    title="add new category">
@@ -511,13 +512,13 @@
                             {{--                            </ul>--}}
                             {{--                        </li>--}}
                         @endif
-{{--                        <li class="nav-item">--}}
-{{--                            <small class="nav-subtitle"--}}
-{{--                                   title="Layouts">{{trans('messages.business')}} {{trans('messages.section')}}</small>--}}
-{{--                            <small class="tio-more-horizontal nav-subtitle-replacer"></small>--}}
-{{--                        </li>--}}
+                        {{--                        <li class="nav-item">--}}
+                        {{--                            <small class="nav-subtitle"--}}
+                        {{--                                   title="Layouts">{{trans('messages.business')}} {{trans('messages.section')}}</small>--}}
+                        {{--                            <small class="tio-more-horizontal nav-subtitle-replacer"></small>--}}
+                        {{--                        </li>--}}
 
-                        <!-- Pages -->
+                    <!-- Pages -->
                         @if(UserCan('view_price_group','admin'))
                             <li class="navbar-vertical-aside-has-menu {{Request::is('admin/price-group*')?'active':''}}">
                                 <a class="js-navbar-vertical-aside-menu-link nav-link"
@@ -763,15 +764,15 @@
                         {{--                        </li>--}}
                     <!-- End Pages -->
 
-{{--                        <li class="nav-item">--}}
-{{--                            <small class="nav-subtitle"--}}
-{{--                                   title="Documentation">{{trans('messages.customer')}} {{trans('messages.section')}}</small>--}}
-{{--                            <small class="tio-more-horizontal nav-subtitle-replacer"></small>--}}
-{{--                        </li>--}}
+                        {{--                        <li class="nav-item">--}}
+                        {{--                            <small class="nav-subtitle"--}}
+                        {{--                                   title="Documentation">{{trans('messages.customer')}} {{trans('messages.section')}}</small>--}}
+                        {{--                            <small class="tio-more-horizontal nav-subtitle-replacer"></small>--}}
+                        {{--                        </li>--}}
 
-                        <!-- Pages -->
+                    <!-- Pages -->
 
-                    <!-- End Pages -->
+                        <!-- End Pages -->
 
                         <li class="nav-item">
                             <div class="nav-divider"></div>
