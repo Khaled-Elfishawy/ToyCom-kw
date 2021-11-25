@@ -84,6 +84,7 @@ return [
     'permission'=> 'الاذن',
     'role-per'=> 'اذن الوظيفه',
     'admin' => 'المدير',
+    'admin create' => 'اضافه المدير',
     'sign_in' => 'تسجيل الدخول',
     'want' => 'تريد',
 
