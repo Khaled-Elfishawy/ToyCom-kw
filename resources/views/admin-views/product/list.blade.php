@@ -97,7 +97,7 @@
 
                             <tbody id="set-rows">
                             @foreach($products as $key=>$product)
-                                <tr>
+                                <tr @if($product['total_stock'] == 0) style="background: #ffe8e8;border: 3px solid red;" @endif>
                                     <td>{{$key+1}}</td>
                                     <td>
                                         @if(UserCan('view_product','admin'))
