@@ -46,6 +46,7 @@ class PermissionController extends Controller
 
     public function update(Request $request, $id)
     {
+
         $per = Permission::find($id);
 
         $request->validate([

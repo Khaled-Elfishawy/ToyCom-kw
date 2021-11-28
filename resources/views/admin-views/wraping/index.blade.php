@@ -81,14 +81,21 @@
                                                 @if(1)
 {{--                                                    @endif--}}
 {{--                                                        @if(UserCan('delete_branch','admin'))--}}
+                                                    @if(UserCan('edit_wrapping','admin'))
                                                         <a class="dropdown-item" href="javascript:"
                                                        onclick="form_alert('brand-{{$row['id']}}','Want to delete this branch ?')">{{trans('messages.delete')}}</a>
+                                                    @endif
+
+
 {{--                                                    @endif--}}
+                                                    @if(UserCan('delete_cardColors','admin'))
                                                         <form action="{{route('admin.wraping.delete', $row->id)}}"
                                                           method="post" id="brand-{{$row['id']}}">
                                                         @csrf
                                                         @method('delete')
                                                     </form>
+                                                    @endif
+
                                                 @endif
                                             </div>
                                         </div>

@@ -45,12 +45,14 @@ class RolePermissionController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         if($role = Role::findOrFail($id)) {
             // admin role has everything
             if($role->name === 'Super Admin') {
                 $role->syncPermissions(Permission::all());
                 return redirect()->route('admin.rolePer.add-new');
             }
+
 
             $permissions = $request->get('permissions', []);
 

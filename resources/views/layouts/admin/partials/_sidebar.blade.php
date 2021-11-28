@@ -379,6 +379,7 @@
                                 </li>
                             </ul>
                         </li>
+                        @if(UserCan('view_wrapping','admin'))
                         <li class="navbar-vertical-aside-has-menu {{Request::is('admin/wraping*')?'active':''}}">
                             <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:">
                                 <i class="tio-image nav-icon"></i>
@@ -387,21 +388,26 @@
                             </a>
                             <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
                                 style="display: {{Request::is('admin/wraping*')?'block':'none'}}">
-                                <li class="nav-item {{Request::is('admin/wraping/add-new')?'active':''}}">
-                                    <a class="nav-link " href="{{route('admin.wraping.add-new')}}">
-                                        <span class="tio-circle nav-indicator-icon"></span>
-                                        <span
-                                            class="text-truncate">{{trans('messages.add')}} {{trans('messages.new')}}</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item {{Request::is('admin/wraping/list')?'active':''}}">
-                                    <a class="nav-link " href="{{route('admin.wraping.list')}}">
-                                        <span class="tio-circle nav-indicator-icon"></span>
-                                        <span class="text-truncate">{{trans('messages.list')}}</span>
-                                    </a>
-                                </li>
+                                @if(UserCan('add_cardColors','admin'))
+                                    <li class="nav-item {{Request::is('admin/wraping/add-new')?'active':''}}">
+                                        <a class="nav-link " href="{{route('admin.wraping.add-new')}}">
+                                            <span class="tio-circle nav-indicator-icon"></span>
+                                            <span
+                                                class="text-truncate">{{trans('messages.add')}} {{trans('messages.new')}}</span>
+                                        </a>
+                                    </li>
+                                @endif
+
+                                    <li class="nav-item {{Request::is('admin/wraping/list')?'active':''}}">
+                                        <a class="nav-link " href="{{route('admin.wraping.list')}}">
+                                            <span class="tio-circle nav-indicator-icon"></span>
+                                            <span class="text-truncate">{{trans('messages.list')}}</span>
+                                        </a>
+                                    </li>
                             </ul>
                         </li>
+                        @endif
+
                         <li class="navbar-vertical-aside-has-menu {{Request::is('admin/card_colors*')?'active':''}}">
                             <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:">
                                 <i class="tio-image nav-icon"></i>
@@ -534,7 +540,8 @@
                     <!-- End Pages -->
 
                         <!-- Pages -->
-                        @if(UserCan('view_branch','admin'))
+{{--                        @if(UserCan('view_branch','admin'))--}}
+                            @can('view_branch')
                             <li class="navbar-vertical-aside-has-menu {{Request::is('admin/branch*')?'active':''}}">
                                 <a class="js-navbar-vertical-aside-menu-link nav-link"
                                    href="{{route('admin.branch.add-new')}}"
@@ -545,7 +552,7 @@
                                 </span>
                                 </a>
                             </li>
-                        @endif
+                        @endcan
                     <!-- End Pages -->
 
                         <!-- Pages -->
