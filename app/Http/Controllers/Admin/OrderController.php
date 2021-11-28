@@ -121,7 +121,7 @@ class OrderController extends Controller
     public function status(Request $request)
     {
         $order = Order::find($request->id);
-
+        dd($order);
         if ($order['delivery_man_id'] == null && $request->order_status == 'out_for_delivery') {
             Toastr::warning('Please assign delivery man first!');
             return back();
