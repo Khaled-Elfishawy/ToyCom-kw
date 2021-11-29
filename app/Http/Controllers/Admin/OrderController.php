@@ -8,11 +8,13 @@ use App\Model\Order;
 use App\Model\OrderDetail;
 use App\Model\Product;
 use App\Model\TimeSlot;
+use App\Model\BusinessSetting;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Intervention\Image\ImageManagerStatic as Image;
 use ArPHP\I18N\Arabic;
+use App\User;
 
 class OrderController extends Controller
 {
@@ -121,12 +123,12 @@ class OrderController extends Controller
     public function status(Request $request)
     {
         $order = Order::find($request->id);
-        dd($order);
         if ($order['delivery_man_id'] == null && $request->order_status == 'out_for_delivery') {
             Toastr::warning('Please assign delivery man first!');
             return back();
         }
 
+        
         if ($request->order_status == 'returned' || $request->order_status == 'failed' || $request->order_status == 'canceled') {
             foreach ($order->details as $detail) {
                 if ($detail['is_stock_decreased'] == 1) {
@@ -149,6 +151,7 @@ class OrderController extends Controller
                 }
             }
         } else {
+
             foreach ($order->details as $detail) {
                 if ($detail['is_stock_decreased'] == 0) {
                     $product = Product::find($detail['product_id']);
@@ -201,7 +204,13 @@ class OrderController extends Controller
         } catch (\Exception $e) {
             Toastr::warning('Push notification failed!');
         }
-
+        if ($order->order_status != $request->order_status) {
+            $user         = User::find($order->user_id);
+            $dinar_points = BusinessSetting::where('key', 'dinar_points')->first()->value;
+            $user->my_points = $user->my_points + intval(round($order->order_amount*$dinar_points));  //ex.  700 - 700 = 0 points
+            $user->save();    
+            Toastr::success('User Points updated!');
+        }
         Toastr::success('Order status updated!');
         return back();
     }
