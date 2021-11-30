@@ -1,6 +1,6 @@
 @extends('layouts.admin.app')
 
-@section('title','wraping list')
+@section('title','card color list')
 
 @push('css_or_js')
 
@@ -11,96 +11,102 @@
         <!-- Page Header -->
 
 
-            <div class="col-sm-12 col-lg-12 mb-3 mb-lg-2">
+        <div class="col-sm-12 col-lg-12 mb-3 mb-lg-2">
 
-                <div class="col-sm mb-2 mb-sm-0">
-                    <h1 class="page-header-title"><i class="tio-filter-list"></i> {{trans('messages.card_colors')}}</h1>
+            <div class="col-sm mb-2 mb-sm-0">
+                <h1 class="page-header-title"><i class="tio-filter-list"></i> {{trans('messages.card_colors')}}</h1>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-header-title"></h5>
                 </div>
-
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="card-header-title"></h5>
-                    </div>
-                    <!-- Table -->
-                    <div class="table-responsive datatable-custom">
-                        <table id="columnSearchDatatable"
-                               class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table"
-                               data-hs-datatables-options='{
+                <!-- Table -->
+                <div class="table-responsive datatable-custom">
+                    <table id="columnSearchDatatable"
+                           class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table"
+                           data-hs-datatables-options='{
                                  "order": [],
                                  "orderCellsTop": true
                                }'>
-                            <thead class="thead-light">
-                            <tr>
-                                <th>{{trans('messages.#')}}</th>
-                                <th style="width: 50%">{{trans('messages.name_ar')}}</th>
-                                <th style="width: 50%">{{trans('messages.name_en')}}</th>
-                                <th style="width: 50%">{{trans('messages.color')}}</th>
-                                <th style="width: 10%">{{trans('messages.action')}}</th>
-                            </tr>
-                            <tr>
-                                <th></th>
-                                <th>
-                                    <input type="text" id="column1_search" class="form-control form-control-sm"
-                                           placeholder="Search branch">
-                                </th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                            </thead>
+                        <thead class="thead-light">
+                        <tr>
+                            <th>{{trans('messages.#')}}</th>
+                            <th style="width: 50%">{{trans('messages.name_ar')}}</th>
+                            <th style="width: 50%">{{trans('messages.name_en')}}</th>
+                            <th style="width: 50%">{{trans('messages.color')}}</th>
+                            <th style="width: 10%">{{trans('messages.action')}}</th>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <th>
+                                <input type="text" id="column1_search" class="form-control form-control-sm"
+                                       placeholder="Search branch">
+                            </th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        </thead>
 
-                            <tbody>
-                                @php
-                                    $i = 1;
-                                @endphp
-                            @foreach($data as $row)
-                                <tr>
-                                    <td>{{$i++}}</td>
-                                    <td><span class="d-block font-size-sm text-body">{{$row->name_ar}}</span></td>
-                                    <td>{{$row->name_en}}</td>
-                                    <td style="cursor:pointer;background-color:{{$row->color_code}}" onclick="clickColor(&quot;#ff0000&quot;)"></td>
-                                    <td>
-                                        <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button"
-                                                    id="dropdownMenuButton" data-toggle="dropdown"
-                                                    aria-haspopup="true"
-                                                    aria-expanded="false">
-                                                <i class="tio-settings"></i>
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-{{--                                                @if(UserCan('edit_branch','admin'))--}}
-                                                <a class="dropdown-item"
-                                                   href="{{route('admin.card_colors.edit', $row->id)}}">{{trans('messages.edit')}}</a>
-                                                @if(1)
-{{--                                                    @endif--}}
-{{--                                                        @if(UserCan('delete_branch','admin'))--}}
-                                                        <a class="dropdown-item" href="javascript:"
+                        <tbody>
+                        @php
+                            $i = 1;
+                        @endphp
+                        @foreach($data as $row)
+                            <tr>
+                                <td>{{$i++}}</td>
+                                <td><span class="d-block font-size-sm text-body">{{$row->name_ar}}</span></td>
+                                <td>{{$row->name_en}}</td>
+                                <td style="cursor:pointer;background-color:{{$row->color_code}}"
+                                    onclick="clickColor(&quot;#ff0000&quot;)"></td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button"
+                                                id="dropdownMenuButton" data-toggle="dropdown"
+                                                aria-haspopup="true"
+                                                aria-expanded="false">
+                                            <i class="tio-settings"></i>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            {{--                                                @if(UserCan('edit_branch','admin'))--}}
+                                            <a class="dropdown-item"
+                                               href="{{route('admin.card_colors.edit', $row->id)}}">{{trans('messages.edit')}}</a>
+                                            @if(1)
+                                                {{--                                                    @endif--}}
+                                                {{--                                                        @if(UserCan('delete_branch','admin'))--}}
+
+                                                @if(UserCan('edit_cardColors','admin'))
+                                                    <a class="dropdown-item" href="javascript:"
                                                        onclick="form_alert('brand-{{$row['id']}}','Want to delete this branch ?')">{{trans('messages.delete')}}</a>
-{{--                                                    @endif--}}
-                                                        <form action="{{route('admin.card_colors.delete', $row->id)}}"
+                                                @endif
+                                                {{--                                                    @endif--}}
+                                                @if(UserCan('delete_cardColors','admin'))
+                                                    <form action="{{route('admin.card_colors.delete', $row->id)}}"
                                                           method="post" id="brand-{{$row['id']}}">
                                                         @csrf
                                                         @method('delete')
                                                     </form>
                                                 @endif
-                                            </div>
+                                            @endif
                                         </div>
-                                        <!-- End Dropdown -->
-                                    </td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                        <hr>
-                        <table>
-                            <tfoot>
-                            {{-- {!! $branches->links() !!} --}}
-                            </tfoot>
-                        </table>
-                    </div>
+                                    </div>
+                                    <!-- End Dropdown -->
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                    <hr>
+                    <table>
+                        <tfoot>
+                        {{-- {!! $branches->links() !!} --}}
+                        </tfoot>
+                    </table>
                 </div>
             </div>
-            <!-- End Table -->
         </div>
+        <!-- End Table -->
+    </div>
     </div>
 
 @endsection

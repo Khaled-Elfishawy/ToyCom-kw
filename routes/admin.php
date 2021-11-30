@@ -66,30 +66,30 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.'], function () {
             Route::delete('delete/{id}', 'brandController@destroy')->name('delete');
         });
         Route::group(['prefix' => 'wraping', 'as' => 'wraping.'], function () {
-            Route::get('list', 'WrapingController@index')->name('list');
-            Route::get('add-new', 'WrapingController@create')->name('add-new');
-            Route::post('store', 'WrapingController@store')->name('store');
-            Route::get('edit/{id}', 'WrapingController@edit')->name('edit');
-            Route::put('update/{id}', 'WrapingController@update')->name('update');
-            Route::delete('delete/{id}', 'WrapingController@destroy')->name('delete');
+            Route::get('list', 'WrapingController@index')->name('list')->middleware('permission:view_wrapping');
+            Route::get('add-new', 'WrapingController@create')->name('add-new')->middleware('permission:add_wrapping');
+            Route::post('store', 'WrapingController@store')->name('store')->middleware('permission:add_wrapping');
+            Route::get('edit/{id}', 'WrapingController@edit')->name('edit')->middleware('permission:edit_wrapping');
+            Route::put('update/{id}', 'WrapingController@update')->name('update')->middleware('permission:edit_wrapping');
+            Route::delete('delete/{id}', 'WrapingController@destroy')->name('delete')->middleware('permission:delete_wrapping');
         });
         Route::group(['prefix' => 'card_colors', 'as' => 'card_colors.'], function () {
-            Route::get('list', 'CardColorsController@index')->name('list');
-            Route::get('add-new', 'CardColorsController@create')->name('add-new');
-            Route::post('store', 'CardColorsController@store')->name('store');
-            Route::get('edit/{id}', 'CardColorsController@edit')->name('edit');
-            Route::post('update/{id}', 'CardColorsController@update')->name('update');
-            Route::delete('delete/{id}', 'CardColorsController@destroy')->name('delete');
+            Route::get('list', 'CardColorsController@index')->name('list')->middleware('permission:view_cardColors');
+            Route::get('add-new', 'CardColorsController@create')->name('add-new')->middleware('permission:add_cardColors');
+            Route::post('store', 'CardColorsController@store')->name('store')->middleware('permission:add_cardColors');
+            Route::get('edit/{id}', 'CardColorsController@edit')->name('edit')->middleware('permission:edit_cardColors');
+            Route::post('update/{id}', 'CardColorsController@update')->name('update')->middleware('permission:edit_cardColors');
+            Route::delete('delete/{id}', 'CardColorsController@destroy')->name('delete')->middleware('permission:delete_cardColors');
         });
 
         Route::group(['prefix' => 'Age', 'as' => 'Age.'], function () {
 
-            Route::get('list', 'AgeController@index')->name('list');
-            Route::get('add-new', 'AgeController@create')->name('add-new');
-            Route::post('store', 'AgeController@store')->name('store');
-            Route::get('edit/{id}', 'AgeController@edit')->name('edit');
-            Route::put('update/{id}', 'AgeController@update')->name('update');
-            Route::delete('delete/{id}', 'AgeController@destroy')->name('delete');
+            Route::get('list', 'AgeController@index')->name('list')->middleware('permission:view_age');;
+            Route::get('add-new', 'AgeController@create')->name('add-new')->middleware('permission:add_age');;
+            Route::post('store', 'AgeController@store')->name('store')->middleware('permission:add_age');;
+            Route::get('edit/{id}', 'AgeController@edit')->name('edit')->middleware('permission:edit_age');;
+            Route::put('update/{id}', 'AgeController@update')->name('update')->middleware('permission:edit_age');;
+            Route::delete('delete/{id}', 'AgeController@destroy')->name('delete')->middleware('permission:delete_age');;
 
 
         });
