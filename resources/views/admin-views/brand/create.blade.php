@@ -24,17 +24,24 @@
                 <form action="{{route('admin.brand.store')}}" method="post"  enctype="multipart/form-data">
                     @csrf
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-4">
                             <div class="form-group">
                                 <label class="input-label" for="exampleFormControlInput1">{{trans('messages.name_ar')}}</label>
                                 <input type="text" name="name_ar" value="{{old('name_ar')}}" class="form-control" required>
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-4">
                             <div class="form-group">
                                 <label class="input-label" for="exampleFormControlInput1">{{trans('messages.name_en')}}</label>
                                 <input type="text" name="name_en" value="{{old('name_en')}}" class="form-control"
                                         required>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label class="input-label" for="exampleFormControlInput1">{{trans('messages.arrange')}}</label>
+                                <input type="number" min="1" name="order_num" value="{{old('order_num')}}" class="form-control"
+                                       required>
                             </div>
                         </div>
                     </div>

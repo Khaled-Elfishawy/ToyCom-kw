@@ -23,7 +23,7 @@ class brandController extends Controller
      */
     public function index()
     {
-        $brands = Brand::all();
+        $brands = Brand::orderBy('order_num','asc')->get();
         return view('admin-views.brand.index', compact('brands'));
     }
 
@@ -70,6 +70,7 @@ class brandController extends Controller
         }
         $brand->name_ar = $request->name_ar;
         $brand->name_en = $request->name_en;
+        $brand->order_num = $request->order_num;
         $brand->save();
         return redirect()->route('admin.brand.list');
     }
