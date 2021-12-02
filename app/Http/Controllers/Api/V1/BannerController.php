@@ -56,9 +56,9 @@ class BannerController extends Controller
                 "created_at" => "2021-08-22 15:50:38",
                 "updated_at" => "2021-09-06 10:18:15",
             ];
-            $barnds = Brand::all();
-            $barnds->prepend($defualt);
-            return response()->json($barnds->orderBy('order_num','asc'), 200);
+            $brands = Brand::all();
+            $brands->prepend($defualt);
+            return response()->json($brands->sortBy('order_num'), 200);
         } catch (\Exception $e) {
             return response()->json([], 200);
         }
