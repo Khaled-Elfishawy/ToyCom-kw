@@ -13,7 +13,7 @@
             <div class="row align-items-center mb-3">
                 <div class="col-sm">
                     <h1 class="page-header-title">{{trans('messages.admins')}}
-                        <span class="badge badge-soft-dark ml-2">{{\App\User::count()}}</span>
+                        <span class="badge badge-soft-dark ml-2">{{\App\Admin::count()}}</span>
                     </h1>
                 </div>
             </div>
