@@ -469,7 +469,7 @@
                     <!-- End Pages -->
 
                         <!-- Pages -->
-                        @if(UserCan('view_product','admin'))
+                            @if(UserCan('view_product','admin'))
                             <li class="navbar-vertical-aside-has-menu {{Request::is('admin/product*')?'active':''}}">
                                 <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle"
                                    href="javascript:"

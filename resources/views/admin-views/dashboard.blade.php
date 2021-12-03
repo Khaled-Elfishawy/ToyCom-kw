@@ -21,12 +21,13 @@
                     <h1 class="page-header-title">{{trans('messages.welcome')}}, {{auth('admin')->user()->f_name}}.</h1>
                     <p class="page-header-text">{{trans('messages.welcome_message')}}</p>
                 </div>
-
-                <div class="col-sm-auto">
-                    <a class="btn btn-primary" href="{{route('admin.product.list')}}">
-                        <i class="tio-premium-outlined mr-1"></i> {{trans('messages.products')}}
-                    </a>
-                </div>
+                @if(UserCan('view_product','admin'))
+                    <div class="col-sm-auto">
+                        <a class="btn btn-primary" href="{{route('admin.product.list')}}">
+                            <i class="tio-premium-outlined mr-1"></i> {{trans('messages.products')}}
+                        </a>
+                    </div>
+                @endif
             </div>
         </div>
         <!-- End Page Header -->
@@ -35,10 +36,12 @@
         <div class="card card-body mb-3 mb-lg-5">
             <div class="row gx-lg-4">
                 <div class="col-sm-6 col-lg-3">
-                    <div class="media" style="cursor: pointer" onclick="location.href='{{route('admin.orders.list',['pending'])}}'">
+                    <div class="media" style="cursor: pointer"
+                         onclick="location.href='{{route('admin.orders.list',['pending'])}}'">
                         <div class="media-body">
                             <h6 class="card-subtitle">{{trans('messages.pending')}}</h6>
-                            <span class="card-title h3">{{\App\Model\Order::where(['order_status'=>'pending'])->count()}}</span>
+                            <span
+                                class="card-title h3">{{\App\Model\Order::where(['order_status'=>'pending'])->count()}}</span>
                         </div>
                         <span class="icon icon-sm icon-soft-secondary icon-circle ml-3">
                           <i class="tio-airdrop"></i>
@@ -50,10 +53,12 @@
                 </div>
 
                 <div class="col-sm-6 col-lg-3 column-divider-sm">
-                    <div class="media" style="cursor: pointer" onclick="location.href='{{route('admin.orders.list',['confirmed'])}}'">
+                    <div class="media" style="cursor: pointer"
+                         onclick="location.href='{{route('admin.orders.list',['confirmed'])}}'">
                         <div class="media-body">
                             <h6 class="card-subtitle">{{trans('messages.confirmed')}}</h6>
-                            <span class="card-title h3">{{\App\Model\Order::where(['order_status'=>'confirmed'])->count()}}</span>
+                            <span
+                                class="card-title h3">{{\App\Model\Order::where(['order_status'=>'confirmed'])->count()}}</span>
                         </div>
                         <span class="icon icon-sm icon-soft-secondary icon-circle ml-3">
                           <i class="tio-checkmark-circle"></i>
@@ -65,10 +70,12 @@
                 </div>
 
                 <div class="col-sm-6 col-lg-3 column-divider-lg">
-                    <div class="media" style="cursor: pointer" onclick="location.href='{{route('admin.orders.list',['processing'])}}'">
+                    <div class="media" style="cursor: pointer"
+                         onclick="location.href='{{route('admin.orders.list',['processing'])}}'">
                         <div class="media-body">
                             <h6 class="card-subtitle">{{trans('messages.processing')}}</h6>
-                            <span class="card-title h3">{{\App\Model\Order::where(['order_status'=>'processing'])->count()}}</span>
+                            <span
+                                class="card-title h3">{{\App\Model\Order::where(['order_status'=>'processing'])->count()}}</span>
                         </div>
                         <span class="icon icon-sm icon-soft-secondary icon-circle ml-3">
                           <i class="tio-running"></i>
@@ -80,10 +87,12 @@
                 </div>
 
                 <div class="col-sm-6 col-lg-3 column-divider-sm">
-                    <div class="media" style="cursor: pointer" onclick="location.href='{{route('admin.orders.list',['out_for_delivery'])}}'">
+                    <div class="media" style="cursor: pointer"
+                         onclick="location.href='{{route('admin.orders.list',['out_for_delivery'])}}'">
                         <div class="media-body">
                             <h6 class="card-subtitle">{{trans('messages.out_for_delivery')}}</h6>
-                            <span class="card-title h3">{{\App\Model\Order::where(['order_status'=>'out_for_delivery'])->count()}}</span>
+                            <span
+                                class="card-title h3">{{\App\Model\Order::where(['order_status'=>'out_for_delivery'])->count()}}</span>
                         </div>
                         <span class="icon icon-sm icon-soft-secondary icon-circle ml-3">
                           <i class="tio-bike"></i>
@@ -509,7 +518,8 @@
                     <!-- Header -->
                     <div class="card-header">
                         <h5 class="card-header-title">{{trans('messages.work over view')}}
-                            ( {{date('M').'-'.date('M',strtotime('first day of +1 month'))}} ) {{trans('messages.in')}} % </h5>
+                            ( {{date('M').'-'.date('M',strtotime('first day of +1 month'))}} ) {{trans('messages.in')}}
+                            % </h5>
 
                         <!-- Daterangepicker -->
                     {{--<button id="js-daterangepicker-predefined"
@@ -606,7 +616,8 @@
 
                             <div class="col-auto" onclick="location.href='{{route('admin.orders.list',['all'])}}'"
                                  style="cursor: pointer">
-                                <span class="legend-indicator" style="background-color: #7000f2;"></span> {{trans('messages.orders')}}
+                                <span class="legend-indicator"
+                                      style="background-color: #7000f2;"></span> {{trans('messages.orders')}}
                                 ( {{$orders}} )
                             </div>
 
@@ -647,7 +658,8 @@
                     <!-- Body -->
                     <div class="card-body">
                         @php($items=\App\Model\Wishlist::select('product_id', DB::raw('COUNT(product_id) as count'))->groupBy('product_id')->orderBy('count','DESC')->get())
-                        <span class="h1 d-block mb-4">{{$items->count()}} {{trans('messages.pepole admiration in items')}}</span>
+                        <span
+                            class="h1 d-block mb-4">{{$items->count()}} {{trans('messages.pepole admiration in items')}}</span>
                         <!-- Progress -->
                     {{--<div class="progress rounded-pill mb-2">
                         @php($total=\App\Model\Wishlist::count())
@@ -666,7 +678,8 @@
                     </div>--}}
                     <!-- End Progress -->
 
-                        <small>{{trans('messages.top')}} 4 {{trans('messages.products')}} {{trans('messages.here')}}.</small>
+                        <small>{{trans('messages.top')}} 4 {{trans('messages.products')}} {{trans('messages.here')}}
+                            .</small>
                         <!-- Table -->
                         <div class="table-responsive">
                             <table class="table table-lg table-nowrap card-table mb-0">

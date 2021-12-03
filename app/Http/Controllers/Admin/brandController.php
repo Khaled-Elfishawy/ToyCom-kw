@@ -88,4 +88,5 @@ class brandController extends Controller
             return \redirect()->route('admin.brand.list');
         }
     }
+
 }

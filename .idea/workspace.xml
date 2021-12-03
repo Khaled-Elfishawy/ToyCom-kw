@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="49d8da5f-792b-4cb5-9b49-ea12543555b9" name="Changes" comment="">
+    <list default="true" id="49d8da5f-792b-4cb5-9b49-ea12543555b9" name="Changes" comment="k">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin-views/age/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin-views/age/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin-views/card_colors/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin-views/card_colors/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/brandController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/brandController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin-views/dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin-views/dashboard.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin/partials/_sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin/partials/_sidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,7 +197,8 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
+    <property name="settings.editor.selected.configurable" value="preferences.editor" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager">
@@ -218,11 +218,25 @@
       <workItem from="1637840570187" duration="3180000" />
       <workItem from="1638029989451" duration="1254000" />
       <workItem from="1638099360298" duration="6332000" />
-      <workItem from="1638260185455" duration="3070000" />
+      <workItem from="1638260185455" duration="7119000" />
+      <workItem from="1638349657551" duration="688000" />
+      <workItem from="1638529238153" duration="290000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
