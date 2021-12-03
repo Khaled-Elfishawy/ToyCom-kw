@@ -45,25 +45,17 @@ class RolePermissionController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-        if($role = Role::findOrFail($id)) {
-            // admin role has everything
+        if($role = Role::find($id)) {
             if($role->name === 'Super Admin') {
                 $role->syncPermissions(Permission::all());
                 return redirect()->route('admin.rolePer.add-new');
             }
-
-
             $permissions = $request->get('permissions', []);
-
             $role->syncPermissions($permissions);
-
             Toastr::success('permissions has been updated!');
-
         } else {
-            Toastr::success('permissions has been updated!');
+            Toastr::success('No permission selected!');
         }
-
         return redirect()->route('admin.rolePer.add-new');
     }
 
