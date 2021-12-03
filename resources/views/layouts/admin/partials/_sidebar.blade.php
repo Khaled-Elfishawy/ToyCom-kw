@@ -41,13 +41,6 @@
                             </a>
                         </li>
                         <!-- End Dashboards -->
-
-                    {{--                        <li class="nav-item">--}}
-                    {{--                            <small--}}
-                    {{--                                class="nav-subtitle">{{trans('messages.order')}} {{trans('messages.section')}}</small>--}}
-                    {{--                            <small class="tio-more-horizontal nav-subtitle-replacer"></small>--}}
-                    {{--                        </li>--}}
-                    <!-- roles -->
                         <li class="navbar-vertical-aside-has-menu {{Request::is('admin/role*')?'active':''}}">
                             <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:"
                             >
@@ -72,39 +65,6 @@
                                 </li>
                             </ul>
                         </li>
-
-                        <!-- end Roles -->
-
-                        <!-- permissions -->
-                    {{--                        <li class="navbar-vertical-aside-has-menu {{Request::is('admin/permission*')?'active':''}}">--}}
-                    {{--                            <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:"--}}
-                    {{--                            >--}}
-                    {{--                                <i class="tio-image nav-icon"></i>--}}
-                    {{--                                <span--}}
-                    {{--                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{trans('messages.permission')}}</span>--}}
-                    {{--                            </a>--}}
-                    {{--                            <ul class="js-navbar-vertical-aside-submenu nav nav-sub"--}}
-                    {{--                                style="display: {{Request::is('admin/permission*')?'block':'none'}}">--}}
-                    {{--                                <li class="nav-item {{Request::is('admin/permission/add-new')?'active':''}}">--}}
-                    {{--                                    <a class="nav-link " href="{{route('admin.permission.add-new')}}">--}}
-                    {{--                                        <span class="tio-circle nav-indicator-icon"></span>--}}
-                    {{--                                        <span--}}
-                    {{--                                            class="text-truncate">{{trans('messages.add')}} {{trans('messages.new')}}</span>--}}
-                    {{--                                    </a>--}}
-                    {{--                                </li>--}}
-                    {{--                                <li class="nav-item {{Request::is('admin/permission/list')?'active':''}}">--}}
-                    {{--                                    <a class="nav-link " href="{{route('admin.permission.list')}}">--}}
-                    {{--                                        <span class="tio-circle nav-indicator-icon"></span>--}}
-                    {{--                                        <span class="text-truncate">{{trans('messages.list')}}</span>--}}
-                    {{--                                    </a>--}}
-                    {{--                                </li>--}}
-                    {{--                            </ul>--}}
-                    {{--                        </li>--}}
-
-                    <!-- end permissions -->
-
-                        <!-- Role Has Permission -->
-
                         <li class="navbar-vertical-aside-has-menu {{Request::is('admin/role-per*')?'active':''}}">
                             <a class="js-navbar-vertical-aside-menu-link nav-link"
                                href="{{route('admin.rolePer.add-new')}}"

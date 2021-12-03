@@ -239,9 +239,7 @@
                                 {{$key+1}}
                             </td>
                             <td class="table-column-pl-0">
-                                <a href="{{route('admin.customer.view',[$customer['id']])}}">
-                                    {{$customer['f_name']." ".$customer['l_name']}}
-                                </a>
+                                {{$customer['f_name']." ".$customer['l_name']}}
                             </td>
                             <td>
                                 {{$customer['email']}}
@@ -254,9 +252,9 @@
                                         <i class="tio-settings"></i>
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        @if(UserCan('edit_customer','admin'))
+                                        @if(UserCan('edit_admin','admin'))
                                             <a class="dropdown-item"
-                                               href="{{route('admin.customer.edit', [$customer['id']])}}">{{trans('messages.edit')}}</a>
+                                               href="{{route('admin.admins.edit', [$customer['id']])}}">{{trans('messages.edit')}}</a>
                                         @endif
                                         {{--<a class="dropdown-item" target="" href="">
                                             <i class="tio-download"></i> Suspend

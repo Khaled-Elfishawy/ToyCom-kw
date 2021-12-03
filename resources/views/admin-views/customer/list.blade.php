@@ -311,11 +311,11 @@
                                         <a class="dropdown-item"
                                            href="{{route('admin.customer.edit', [$customer['id']])}}">{{trans('messages.edit')}}</a>
                                         @endif
-                                        @if(UserCan('edit_customer','admin'))
-                                        <a class="dropdown-item" href="{{route('admin.customer.view',[$customer['id']])}}">
-                                            <i class="tio-visible"></i> {{trans('messages.add_price_group')}}
-                                        </a>
-                                        @endif
+{{--                                        @if(UserCan('edit_customer','admin'))--}}
+{{--                                        <a class="dropdown-item" href="{{route('admin.customer.view',[$customer['id']])}}">--}}
+{{--                                            <i class="tio-visible"></i> {{trans('messages.add_price_group')}}--}}
+{{--                                        </a>--}}
+{{--                                        @endif--}}
                                         {{--<a class="dropdown-item" target="" href="">
                                             <i class="tio-download"></i> Suspend
                                         </a>--}}

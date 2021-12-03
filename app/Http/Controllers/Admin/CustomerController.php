@@ -55,7 +55,12 @@ class CustomerController extends Controller
         $price_groups = PriceGroup::all();
         $orders = Order::latest()->where(['user_id' => $id])->paginate(10);
         return view('admin-views.customer.edit', compact('customer', 'orders', 'price_groups'));
+    }
 
+    public function admin_edit($id)
+    {
+        $customer = User::find($id);
+        return view('admin-views.admins.edit', compact('customer'));
     }
 
     public function update(Request $request, $id)
@@ -75,7 +80,19 @@ class CustomerController extends Controller
                 $customer->pending_price_group = $request->price_group_id,
             ]);
         }
-        Toastr::success('Customer status updated!');
+        Toastr::success('Customer data updated!');
+        return back();
+    }
+    public function admin_update(Request $request, $id)
+    {
+        $customer = User::find($id);
+        $customer->f_name = $request->f_name;
+        $customer->l_name = $request->l_name;
+        $customer->email = $request->email;
+        $customer->phone = $request->phone;
+        $customer->password = ($request->password) ? Hash::make($request['password']) : $customer->password;
+        $customer->save();
+        Toastr::success('admin data updated!');
         return back();
     }
 
