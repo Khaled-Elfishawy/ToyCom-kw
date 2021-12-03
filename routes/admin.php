@@ -303,7 +303,7 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.'], function () {
 
         Route::group(['prefix' => 'admins', 'as' => 'admins.'], function () {
             Route::get('list', 'CustomerController@admin_list')->name('list')->middleware('permission:view_customer');
-            Route::get('edit', 'CustomerController@admin_edit')->name('edit')->middleware('permission:view_customer');
+            Route::get('edit/{id}', 'CustomerController@admin_edit')->name('edit')->middleware('permission:view_customer');
             Route::put('update/{id}', 'CustomerController@admin_update')->name('update')->middleware('permission:view_customer');
             Route::get('add-new', 'CustomerController@admin_add')->name('add-new')->middleware('permission:view_customer');
             Route::post('admiin-store', 'CustomerController@admin_store')->name('admin_store')->middleware('permission:view_customer');
