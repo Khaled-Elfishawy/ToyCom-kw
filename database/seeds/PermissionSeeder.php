@@ -13,8 +13,21 @@ class PermissionSeeder extends Seeder
     public function run()
     {
 
+
         Permission::create([
-            'name' => 'view_all_reports',
+            'name' => 'add_brand',
+            'guard_name' => 'admin',
+        ]);
+        Permission::create([
+            'name' => 'edit_brand',
+            'guard_name' => 'admin',
+        ]);
+        Permission::create([
+            'name' => 'delete_brand',
+            'guard_name' => 'admin',
+        ]);
+        Permission::create([
+            'name' => 'view_brand',
             'guard_name' => 'admin',
         ]);
     }
