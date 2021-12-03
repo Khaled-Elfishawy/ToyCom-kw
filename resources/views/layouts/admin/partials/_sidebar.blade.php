@@ -573,7 +573,7 @@
                             <small class="tio-more-horizontal nav-subtitle-replacer"></small>
                         </li>
                         <!-- Pages -->
-                        @if(UserCan('view_reports','admin'))
+                        @if(UserCan('view_all_reports','admin'))
                             <li class="navbar-vertical-aside-has-menu {{Request::is('admin/report*')?'active':''}}">
                                 <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle"
                                    href="javascript:">

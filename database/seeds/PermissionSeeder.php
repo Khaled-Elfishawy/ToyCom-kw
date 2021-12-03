@@ -12,9 +12,9 @@ class PermissionSeeder extends Seeder
      */
     public function run()
     {
-   
+
         Permission::create([
-            'name' => 'view_reports',
+            'name' => 'view_all_reports',
             'guard_name' => 'admin',
         ]);
     }
