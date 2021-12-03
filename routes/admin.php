@@ -20,7 +20,7 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.'], function () {
 
 
         Route::group(['prefix' => 'role', 'as' => 'role.'], function () {
-            Route::get('add-new', 'RoleController@index')->name('add-new')->middleware('permission:view_role');
+            Route::get('add-new', 'RoleController@index')->name('add-new')->middleware('permission:add_roles');
             Route::post('store', 'RoleController@store')->name('store')->middleware('permission:add_role');
             Route::get('edit/{id}', 'RoleController@edit')->name('edit')->middleware('permission:edit_role');
             Route::put('update/{id}', 'RoleController@update')->name('update')->middleware('permission:edit_role');
@@ -38,7 +38,7 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.'], function () {
         });
 
         Route::group(['prefix' => 'rolePer', 'as' => 'rolePer.'], function () {
-            Route::get('add-new', 'RolePermissionController@index')->name('add-new')->middleware('permission:view_rolePer');
+            Route::get('add-new', 'RolePermissionController@index')->name('add-new')->middleware('permission:add_rolePer');
             Route::post('store', 'RolePermissionController@store')->name('store')->middleware('permission:add_rolePer');
             Route::get('edit/{id}', 'RolePermissionController@edit')->name('edit')->middleware('permission:edit_rolePer');
             Route::put('update/{id}', 'RolePermissionController@update')->name('update')->middleware('permission:edit_rolePer');

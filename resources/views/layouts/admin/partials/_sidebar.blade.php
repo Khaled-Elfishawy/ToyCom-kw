@@ -4,8 +4,6 @@
         <div class="navbar-vertical-container text-capitalize">
             <div class="navbar-vertical-footer-offset">
                 <div class="navbar-brand-wrapper justify-content-between">
-                    <!-- Logo -->
-
                     @php($restaurant_logo=\App\Model\BusinessSetting::where(['key'=>'logo'])->first()->value)
                     <a class="navbar-brand" href="{{route('admin.dashboard')}}" aria-label="Front">
                         <img class="navbar-brand-logo"
@@ -16,18 +14,11 @@
                              onerror="this.src='{{asset('public/assets/admin/img/160x160/img2.jpg')}}'"
                              src="{{asset('storage/app/public/restaurant/'.$restaurant_logo)}}" alt="Logo">
                     </a>
-
-                    <!-- End Logo -->
-
-                    <!-- Navbar Vertical Toggle -->
                     <button type="button"
                             class="js-navbar-vertical-aside-toggle-invoker navbar-vertical-aside-toggle btn btn-icon btn-xs btn-ghost-dark">
                         <i class="tio-clear tio-lg"></i>
                     </button>
-                    <!-- End Navbar Vertical Toggle -->
                 </div>
-
-                <!-- Content -->
                 <div class="navbar-vertical-content">
                     <ul class="navbar-nav navbar-nav-lg nav-tabs">
                         <!-- Dashboards -->
@@ -41,7 +32,7 @@
                             </a>
                         </li>
                         <!-- End Dashboards -->
-                        @if(UserCan('view_roles','admin'))
+                        @if(UserCan('view_role','admin'))
                             <li class="navbar-vertical-aside-has-menu {{Request::is('admin/role*')?'active':''}}">
                                 <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle"
                                    href="javascript:"
@@ -52,7 +43,7 @@
                                 </a>
                                 <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
                                     style="display: {{Request::is('admin/seller*')?'block':'none'}}">
-                                    @if(UserCan('add_roles','admin'))
+                                    @if(UserCan('add_role','admin'))
                                         <li class="nav-item {{Request::is('admin/role/add-new')?'active':''}}">
                                             <a class="nav-link " href="{{route('admin.role.add-new')}}">
                                                 <span class="tio-circle nav-indicator-icon"></span>
@@ -61,7 +52,7 @@
                                             </a>
                                         </li>
                                     @endif
-                                    @if(UserCan('view_roles','admin'))
+                                    @if(UserCan('view_role','admin'))
                                         <li class="nav-item {{Request::is('admin/role/list')?'active':''}}">
                                             <a class="nav-link " href="{{route('admin.role.list')}}">
                                                 <span class="tio-circle nav-indicator-icon"></span>
@@ -72,18 +63,17 @@
                                 </ul>
                             </li>
                         @endif
-
+                        @if(UserCan('add_rolePer','admin'))
                             <li class="navbar-vertical-aside-has-menu {{Request::is('admin/role-per*')?'active':''}}">
                                 <a class="js-navbar-vertical-aside-menu-link nav-link"
-                                   href="{{route('admin.rolePer.add-new')}}"
-                                >
+                                   href="{{route('admin.rolePer.add-new')}}">
                                     <i class="tio-star nav-icon"></i>
                                     <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
                                          {{trans('messages.role-per')}}
                                     </span>
                                 </a>
                             </li>
-
+                        @endif
                     <!-- End Pages -->
                         <!-- permissions -->
                         @if(UserCan('view_admin','admin'))
@@ -115,16 +105,6 @@
                                 </ul>
                             </li>
                         @endif
-                    <!-- end permissions -->
-
-
-                        {{--                        <li class="nav-item">--}}
-                        {{--                            <small--}}
-                        {{--                                class="nav-subtitle">{{trans('messages.product')}} {{trans('messages.section')}}</small>--}}
-                        {{--                            <small class="tio-more-horizontal nav-subtitle-replacer"></small>--}}
-                        {{--                        </li>--}}
-
-                    <!-- orders -->
                         @if(UserCan('view_order','admin'))
                             <li class="navbar-vertical-aside-has-menu {{Request::is('admin/orders*')?'active':''}}">
                                 <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle"

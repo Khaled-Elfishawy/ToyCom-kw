@@ -78,17 +78,5 @@ class PermissionSeeder extends Seeder
             'name' => 'view_admin',
             'guard_name' => 'admin',
         ]);
-        Permission::create([
-            'name' => 'view_permissions',
-            'guard_name' => 'admin',
-        ]);
-        Permission::create([
-            'name' => 'view_roles',
-            'guard_name' => 'admin',
-        ]);
-        Permission::create([
-            'name' => 'add_roles',
-            'guard_name' => 'admin',
-        ]);
     }
 }
