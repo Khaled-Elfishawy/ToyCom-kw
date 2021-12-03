@@ -78,5 +78,9 @@ class PermissionSeeder extends Seeder
             'name' => 'view_admin',
             'guard_name' => 'admin',
         ]);
+        Permission::create([
+            'name' => 'view_reports',
+            'guard_name' => 'admin',
+        ]);
     }
 }

@@ -348,7 +348,7 @@
                                 </a>
                                 <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
                                     style="display: {{Request::is('admin/wraping*')?'block':'none'}}">
-                                    @if(UserCan('add_cardColors','admin'))
+                                    @if(UserCan('add_wrapping','admin'))
                                         <li class="nav-item {{Request::is('admin/wraping/add-new')?'active':''}}">
                                             <a class="nav-link " href="{{route('admin.wraping.add-new')}}">
                                                 <span class="tio-circle nav-indicator-icon"></span>
@@ -357,13 +357,14 @@
                                             </a>
                                         </li>
                                     @endif
-
-                                    <li class="nav-item {{Request::is('admin/wraping/list')?'active':''}}">
-                                        <a class="nav-link " href="{{route('admin.wraping.list')}}">
-                                            <span class="tio-circle nav-indicator-icon"></span>
-                                            <span class="text-truncate">{{trans('messages.list')}}</span>
-                                        </a>
-                                    </li>
+                                    @if(UserCan('view_wrapping','admin'))
+                                        <li class="nav-item {{Request::is('admin/wraping/list')?'active':''}}">
+                                            <a class="nav-link " href="{{route('admin.wraping.list')}}">
+                                                <span class="tio-circle nav-indicator-icon"></span>
+                                                <span class="text-truncate">{{trans('messages.list')}}</span>
+                                            </a>
+                                        </li>
+                                    @endif
                                 </ul>
                             </li>
                         @endif
@@ -377,7 +378,6 @@
                                 </a>
                                 <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
                                     style="display: {{Request::is('admin/wraping*')?'block':'none'}}">
-
                                     @if(UserCan('add_cardColors','admin'))
                                         <li class="nav-item {{Request::is('admin/card_colors/add-new')?'active':''}}">
                                             <a class="nav-link " href="{{route('admin.card_colors.add-new')}}">
@@ -396,30 +396,8 @@
                                         </li>
                                     @endif
                                 </ul>
-
                             </li>
                         @endif
-
-
-                    <!-- End Pages -->
-
-
-                        <!-- Pages -->
-                        {{--                        @if(UserCan('view_attribute','admin'))--}}
-                        {{--                        <li class="navbar-vertical-aside-has-menu {{Request::is('admin/attribute*')?'active':''}}">--}}
-                        {{--                            <a class="js-navbar-vertical-aside-menu-link nav-link"--}}
-                        {{--                               href="{{route('admin.attribute.add-new')}}"--}}
-                        {{--                            >--}}
-                        {{--                                <i class="tio-apps nav-icon"></i>--}}
-                        {{--                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">--}}
-                        {{--                                    {{trans('messages.attribute')}}--}}
-                        {{--                                </span>--}}
-                        {{--                            </a>--}}
-                        {{--                        </li>--}}
-                        {{--                    @endif--}}
-                    <!-- End Pages -->
-
-                        <!-- Pages -->
                         @if(UserCan('view_product','admin'))
                             <li class="navbar-vertical-aside-has-menu {{Request::is('admin/product*')?'active':''}}">
                                 <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle"
@@ -431,35 +409,30 @@
                                 </a>
                                 <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
                                     style="display: {{Request::is('admin/product*')?'block':'none'}}">
-                                    <li class="nav-item {{Request::is('admin/product/add-new')?'active':''}}">
-                                        <a class="nav-link " href="{{route('admin.product.add-new')}}"
-                                           title="add new product">
-                                            <span class="tio-circle nav-indicator-icon"></span>
-                                            <span
-                                                class="text-truncate">{{trans('messages.add')}} {{trans('messages.new')}}</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item {{Request::is('admin/product/list')?'active':''}}">
-                                        <a class="nav-link " href="{{route('admin.product.list')}}"
-                                           title="product list">
-                                            <span class="tio-circle nav-indicator-icon"></span>
-                                            <span class="text-truncate">{{trans('messages.list')}}</span>
-                                        </a>
-                                    </li>
+                                    @if(UserCan('add_product','admin'))
+                                        <li class="nav-item {{Request::is('admin/product/add-new')?'active':''}}">
+                                            <a class="nav-link " href="{{route('admin.product.add-new')}}"
+                                               title="add new product">
+                                                <span class="tio-circle nav-indicator-icon"></span>
+                                                <span
+                                                    class="text-truncate">{{trans('messages.add')}} {{trans('messages.new')}}</span>
+                                            </a>
+                                        </li>
+                                    @endif
+                                    @if(UserCan('view_product','admin'))
+                                        <li class="nav-item {{Request::is('admin/product/list')?'active':''}}">
+                                            <a class="nav-link " href="{{route('admin.product.list')}}"
+                                               title="product list">
+                                                <span class="tio-circle nav-indicator-icon"></span>
+                                                <span class="text-truncate">{{trans('messages.list')}}</span>
+                                            </a>
+                                        </li>
+                                    @endif
                                 </ul>
                             </li>
                         @endif
-                    <!-- End Pages -->
                         @if(UserCan('view_category','admin'))
                             <li class="navbar-vertical-aside-has-menu {{Request::is('admin/category*')?'active':''}}">
-                            {{--                                                        <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:"--}}
-                            {{--                                                        >--}}
-                            {{--                                                            <i class="tio-category nav-icon"></i>--}}
-                            {{--                                                            <span--}}
-                            {{--                                                                class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{trans('messages.category')}}</span>--}}
-                            {{--                                                        </a>--}}
-                            {{--                                                        <ul class="js-navbar-vertical-aside-submenu nav nav-sub"--}}
-                            {{--                                                            style="display: {{Request::is('admin/category*')?'block':'none'}}">--}}
                             <li class="nav-item {{Request::is('admin/category/add')?'active':''}}">
                                 <a class="nav-link " href="{{route('admin.category.add')}}"
                                    title="add new category">
@@ -467,32 +440,7 @@
                                     <span class="text-truncate">{{trans('messages.categories')}}</span>
                                 </a>
                             </li>
-
-                            {{--                                <li class="nav-item {{Request::is('admin/category/add-sub-category')?'active':''}}">--}}
-                            {{--                                    <a class="nav-link " href="{{route('admin.category.add-sub-category')}}"--}}
-                            {{--                                       title="add new sub category">--}}
-                            {{--                                        <span class="tio-circle nav-indicator-icon"></span>--}}
-                            {{--                                        <span class="text-truncate">{{trans('messages.sub_category')}}</span>--}}
-                            {{--                                    </a>--}}
-                            {{--                                </li>--}}
-
-                            {{--<li class="nav-item {{Request::is('admin/category/add-sub-sub-category')?'active':''}}">
-                                <a class="nav-link " href="{{route('admin.category.add-sub-sub-category')}}"
-                                   title="add new sub sub category">
-                                    <span class="tio-circle nav-indicator-icon"></span>
-                                    <span class="text-truncate">Sub-Sub-Category</span>
-                                </a>
-                            </li>--}}
-                            {{--                            </ul>--}}
-                            {{--                        </li>--}}
                         @endif
-                        {{--                        <li class="nav-item">--}}
-                        {{--                            <small class="nav-subtitle"--}}
-                        {{--                                   title="Layouts">{{trans('messages.business')}} {{trans('messages.section')}}</small>--}}
-                        {{--                            <small class="tio-more-horizontal nav-subtitle-replacer"></small>--}}
-                        {{--                        </li>--}}
-
-                    <!-- Pages -->
                         @if(UserCan('view_price_group','admin'))
                             <li class="navbar-vertical-aside-has-menu {{Request::is('admin/price-group*')?'active':''}}">
                                 <a class="js-navbar-vertical-aside-menu-link nav-link"
@@ -505,10 +453,6 @@
                                 </a>
                             </li>
                         @endif
-                    <!-- End Pages -->
-
-                        <!-- Pages -->
-                        {{--                        @if(UserCan('view_branch','admin'))--}}
                         @can('view_branch')
                             <li class="navbar-vertical-aside-has-menu {{Request::is('admin/branch*')?'active':''}}">
                                 <a class="js-navbar-vertical-aside-menu-link nav-link"
@@ -521,23 +465,6 @@
                                 </a>
                             </li>
                         @endcan
-                    <!-- End Pages -->
-
-                        <!-- Pages -->
-                        {{--                        @if(UserCan('view_message','admin'))--}}
-                        {{--                        <li class="navbar-vertical-aside-has-menu {{Request::is('admin/message*')?'active':''}}">--}}
-                        {{--                            <a class="js-navbar-vertical-aside-menu-link nav-link"--}}
-                        {{--                               href="{{route('admin.message.list')}}"--}}
-                        {{--                            >--}}
-                        {{--                                <i class="tio-messages nav-icon"></i>--}}
-                        {{--                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">--}}
-                        {{--                                    {{trans('messages.messages')}}--}}
-                        {{--                                </span>--}}
-                        {{--                            </a>--}}
-                        {{--                        </li>--}}
-                        {{--                    @endif--}}
-                    <!-- End Pages -->
-
                         @if(UserCan('view_setTime','admin'))
                             <li class="navbar-vertical-aside-has-menu {{Request::is('admin/timeSlot*')?'active':''}}">
                                 <a class="js-navbar-vertical-aside-menu-link nav-link"
@@ -561,52 +488,6 @@
                                 </a>
                             </li>
                         @endif
-                    <!-- Pages -->
-                        {{--                        @if(UserCan('view_proPreview','admin'))--}}
-                        {{--                        <li class="navbar-vertical-aside-has-menu {{Request::is('admin/reviews*')?'active':''}}">--}}
-                        {{--                            <a class="js-navbar-vertical-aside-menu-link nav-link"--}}
-                        {{--                               href="{{route('admin.reviews.list')}}"--}}
-                        {{--                            >--}}
-                        {{--                                <i class="tio-star nav-icon"></i>--}}
-                        {{--                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">--}}
-                        {{--                                    {{trans('messages.product')}} {{trans('messages.reviews')}}--}}
-                        {{--                                </span>--}}
-                        {{--                            </a>--}}
-                        {{--                        </li>--}}
-                        {{--                    @endif--}}
-                    <!-- End Pages -->
-
-
-                        <!-- Pages -->
-                        {{--                        @if(UserCan('view_notification','admin'))--}}
-                        {{--                        <li class="navbar-vertical-aside-has-menu {{Request::is('admin/notification*')?'active':''}}">--}}
-                        {{--                            <a class="js-navbar-vertical-aside-menu-link nav-link"--}}
-                        {{--                               href="{{route('admin.notification.add-new')}}"--}}
-                        {{--                            >--}}
-                        {{--                                <i class="tio-notifications nav-icon"></i>--}}
-                        {{--                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">--}}
-                        {{--                                    {{trans('messages.send')}} {{trans('messages.notification')}}--}}
-                        {{--                                </span>--}}
-                        {{--                            </a>--}}
-                        {{--                        </li>--}}
-                        {{--                    @endif--}}
-                    <!-- End Pages -->
-
-                        <!-- Pages -->
-                        {{--                        @if(UserCan('view_coupon','admin'))--}}
-                        {{--                        <li class="navbar-vertical-aside-has-menu {{Request::is('admin/coupon*')?'active':''}}">--}}
-                        {{--                            <a class="js-navbar-vertical-aside-menu-link nav-link"--}}
-                        {{--                               href="{{route('admin.coupon.add-new')}}"--}}
-                        {{--                            >--}}
-                        {{--                                <i class="tio-gift nav-icon"></i>--}}
-                        {{--                                <span--}}
-                        {{--                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{trans('messages.coupon')}}</span>--}}
-                        {{--                            </a>--}}
-                        {{--                        </li>--}}
-                        {{--                    @endif--}}
-                    <!-- End Pages -->
-
-                        <!-- Pages -->
                         @if(UserCan('view_settings','admin'))
                             <li class="navbar-vertical-aside-has-menu {{Request::is('admin/business-settings*')?'active':''}}">
                                 <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle"
@@ -642,13 +523,6 @@
                                                 class="text-truncate">{{trans('messages.mail_make')}}</span>
                                         </a>
                                     </li>
-                                    {{--<li class="nav-item {{Request::is('admin/business-settings/currency-add')?'active':''}}">
-                                        <a class="nav-link " href="{{route('admin.business-settings.currency-add')}}"
-                                           >
-                                            <span class="tio-circle nav-indicator-icon"></span>
-                                            <span class="text-truncate">Add Currency</span>
-                                        </a>
-                                    </li>--}}
                                     <li class="nav-item {{Request::is('admin/business-settings/payment-method')?'active':''}}">
                                         <a class="nav-link " href="{{route('admin.business-settings.payment-method')}}"
                                         >
@@ -657,7 +531,6 @@
                                                 class="text-truncate">{{trans('messages.payment_methods')}}</span>
                                         </a>
                                     </li>
-
                                     <li class="nav-item {{Request::is('admin/business-settings/fcm-index')?'active':''}}">
                                         <a class="nav-link " href="{{route('admin.business-settings.fcm-index')}}"
                                            title="">
@@ -666,7 +539,6 @@
                                                 class="text-truncate">{{trans('messages.notification_settings')}}</span>
                                         </a>
                                     </li>
-
                                     <li class="nav-item {{Request::is('admin/business-settings/terms-and-conditions')?'active':''}}">
                                         <a class="nav-link "
                                            href="{{route('admin.business-settings.terms-and-conditions')}}"
@@ -675,7 +547,6 @@
                                             <span class="text-truncate">{{trans('messages.terms_and_condition')}}</span>
                                         </a>
                                     </li>
-
                                     <li class="nav-item {{Request::is('admin/business-settings/privacy-policy')?'active':''}}">
                                         <a class="nav-link "
                                            href="{{route('admin.business-settings.privacy-policy')}}">
@@ -683,7 +554,6 @@
                                             <span class="text-truncate">{{trans('messages.privacy_policy')}}</span>
                                         </a>
                                     </li>
-
                                     <li class="nav-item {{Request::is('admin/business-settings/about-us')?'active':''}}">
                                         <a class="nav-link "
                                            href="{{route('admin.business-settings.about-us')}}">
@@ -694,77 +564,19 @@
                                 </ul>
                             </li>
                         @endif
-                    <!-- End Pages -->
-
-                        {{--                        <li class="nav-item">--}}
-                        {{--                            <small class="nav-subtitle"--}}
-                        {{--                                   title="Layouts">{{trans('messages.deliveryman')}} {{trans('messages.section')}}</small>--}}
-                        {{--                            <small class="tio-more-horizontal nav-subtitle-replacer"></small>--}}
-                        {{--                        </li>--}}
-
-                    <!-- Pages -->
-                        {{--                        <li class="navbar-vertical-aside-has-menu {{Request::is('admin/delivery-man/add')?'active':''}}">--}}
-                        {{--                            <a class="js-navbar-vertical-aside-menu-link nav-link"--}}
-                        {{--                               href="{{route('admin.delivery-man.add')}}"--}}
-                        {{--                            >--}}
-                        {{--                                <i class="tio-running nav-icon"></i>--}}
-                        {{--                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">--}}
-                        {{--                                    {{trans('messages.register')}}--}}
-                        {{--                                </span>--}}
-                        {{--                            </a>--}}
-                        {{--                        </li>--}}
-                    <!-- End Pages -->
-
-                        <!-- Pages -->
-                        {{--                        <li class="navbar-vertical-aside-has-menu {{Request::is('admin/delivery-man/list')?'active':''}}">--}}
-                        {{--                            <a class="js-navbar-vertical-aside-menu-link nav-link"--}}
-                        {{--                               href="{{route('admin.delivery-man.list')}}"--}}
-                        {{--                            >--}}
-                        {{--                                <i class="tio-filter-list nav-icon"></i>--}}
-                        {{--                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">--}}
-                        {{--                                    {{trans('messages.list')}}--}}
-                        {{--                                </span>--}}
-                        {{--                            </a>--}}
-                        {{--                        </li>--}}
-
-                        {{--                        <li class="navbar-vertical-aside-has-menu {{Request::is('admin/delivery-man/reviews/list')?'active':''}}">--}}
-                        {{--                            <a class="js-navbar-vertical-aside-menu-link nav-link"--}}
-                        {{--                               href="{{route('admin.delivery-man.reviews.list')}}"--}}
-                        {{--                            >--}}
-                        {{--                                <i class="tio-star-outlined nav-icon"></i>--}}
-                        {{--                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">--}}
-                        {{--                                    {{trans('messages.reviews')}}--}}
-                        {{--                                </span>--}}
-                        {{--                            </a>--}}
-                        {{--                        </li>--}}
-                    <!-- End Pages -->
-
-                        {{--                        <li class="nav-item">--}}
-                        {{--                            <small class="nav-subtitle"--}}
-                        {{--                                   title="Documentation">{{trans('messages.customer')}} {{trans('messages.section')}}</small>--}}
-                        {{--                            <small class="tio-more-horizontal nav-subtitle-replacer"></small>--}}
-                        {{--                        </li>--}}
-
-                    <!-- Pages -->
-
-                        <!-- End Pages -->
-
                         <li class="nav-item">
                             <div class="nav-divider"></div>
                         </li>
-
                         <li class="nav-item">
                             <small class="nav-subtitle"
                                    title="Documentation">{{trans('messages.report_and_analytics')}}</small>
                             <small class="tio-more-horizontal nav-subtitle-replacer"></small>
                         </li>
-
                         <!-- Pages -->
-                        @if(UserCan('view_customer','admin'))
+                        @if(UserCan('view_reports','admin'))
                             <li class="navbar-vertical-aside-has-menu {{Request::is('admin/report*')?'active':''}}">
                                 <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle"
-                                   href="javascript:"
-                                >
+                                   href="javascript:">
                                     <i class="tio-report-outlined nav-icon"></i>
                                     <span
                                         class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{trans('messages.reports')}}</span>
@@ -796,11 +608,9 @@
                                         </a>
                                     </li>
                                     <li class="nav-item {{Request::is('admin/report/product-report')?'active':''}}">
-                                        <a class="nav-link " href="{{route('admin.report.product-report')}}"
-                                        >
+                                        <a class="nav-link " href="{{route('admin.report.product-report')}}">
                                             <span class="tio-circle nav-indicator-icon"></span>
-                                            <span
-                                                class="text-truncate">{{trans('messages.product_report')}}</span>
+                                            <span class="text-truncate">{{trans('messages.product_report')}}</span>
                                         </a>
                                     </li>
                                     <li class="nav-item {{Request::is('admin/report/sale-report')?'active':''}}">
@@ -811,29 +621,15 @@
                                     </li>
                                 </ul>
                             </li>
-                    @endif
-                    <!-- End Pages -->
-
+                        @endif
                         <li class="nav-item" style="padding-top: 100px">
                             <div class="nav-divider"></div>
                         </li>
                     </ul>
                 </div>
-                <!-- End Content -->
             </div>
         </div>
     </aside>
 </div>
-
 <div id="sidebarCompact" class="d-none">
-
 </div>
-
-
-{{--<script>
-    $(document).ready(function () {
-        $('.navbar-vertical-content').animate({
-            scrollTop: $('#scroll-here').offset().top
-        }, 'slow');
-    });
-</script>--}}
