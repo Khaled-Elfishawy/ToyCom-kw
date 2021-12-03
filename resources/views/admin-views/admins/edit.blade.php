@@ -61,6 +61,17 @@
                                        >
                             </div>
                         </div>
+                        <div class="col-md-4 col-12">
+                            <div class="form-group">
+                                <label class="input-label"
+                                       for="exampleFormControlSelect1">{{trans('messages.role-per')}}</label>
+                                <select name="role_id" class="form-control js-select2-custom">
+                                    @foreach($Roles as $Role)
+                                        <option value="{{$Role->id}}" @if($customer['role_id'] == $Role->id) selected @endif >{{$Role->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-primary">{{trans('messages.edit')}}</button>
                 </form>

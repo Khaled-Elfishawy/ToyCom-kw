@@ -10,6 +10,7 @@ use App\Model\Role;
 use App\Model\Admin;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class CustomerController extends Controller
@@ -59,8 +60,7 @@ class CustomerController extends Controller
 
     public function admin_edit($id)
     {
-        dd($id);
-        $customer = User::find($id);
+        $customer = Admin::find($id);
         return view('admin-views.admins.edit', compact('customer'));
     }
 
@@ -91,8 +91,10 @@ class CustomerController extends Controller
         $customer->l_name = $request->l_name;
         $customer->email = $request->email;
         $customer->phone = $request->phone;
+        $customer->role_id = $request->role_id;
         $customer->password = ($request->password) ? Hash::make($request['password']) : $customer->password;
         $customer->save();
+        DB::table('model_has_roles')->where('model_id',$id)->update(['role_id' => $request['role_id']]);
         Toastr::success('admin data updated!');
         return back();
     }
