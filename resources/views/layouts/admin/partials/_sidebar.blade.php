@@ -284,6 +284,7 @@
                                 </ul>
                             </li>
                         @endif
+                        @if(UserCan('view_brand','admin'))
                         <li class="navbar-vertical-aside-has-menu {{Request::is('admin/brand*')?'active':''}}">
                             <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:">
                                 <i class="tio-image nav-icon"></i>
@@ -292,6 +293,7 @@
                             </a>
                             <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
                                 style="display: {{Request::is('admin/brand*')?'block':'none'}}">
+                                @if(UserCan('add_brand','admin'))
                                 <li class="nav-item {{Request::is('admin/brand/add-new')?'active':''}}">
                                     <a class="nav-link " href="{{route('admin.brand.add-new')}}">
                                         <span class="tio-circle nav-indicator-icon"></span>
@@ -299,14 +301,18 @@
                                             class="text-truncate">{{trans('messages.add')}} {{trans('messages.new')}}</span>
                                     </a>
                                 </li>
+                                @endif
+                                @if(UserCan('view_brand','admin'))
                                 <li class="nav-item {{Request::is('admin/brand/list')?'active':''}}">
                                     <a class="nav-link " href="{{route('admin.brand.list')}}">
                                         <span class="tio-circle nav-indicator-icon"></span>
                                         <span class="text-truncate">{{trans('messages.list')}}</span>
                                     </a>
                                 </li>
+                                @endif
                             </ul>
                         </li>
+                        @endif
                         @if(UserCan('view_age','admin'))
                             <li class="navbar-vertical-aside-has-menu {{Request::is('admin/Age*')?'active':''}}">
                                 <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle"

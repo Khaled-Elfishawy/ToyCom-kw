@@ -73,12 +73,12 @@
                                                 <i class="tio-settings"></i>
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                @if(UserCan('edit_branch','admin'))
+                                                @if(UserCan('edit_brand','admin'))
                                                 <a class="dropdown-item"
                                                    href="{{route('admin.brand.edit', $brand->id)}}">{{trans('messages.edit')}}</a>
                                                 @if(1)
                                                     @endif
-                                                        @if(UserCan('delete_branch','admin'))
+                                                        @if(UserCan('delete_brand','admin'))
                                                         <a class="dropdown-item" href="javascript:"
                                                        onclick="form_alert('brand-{{$brand['id']}}','Want to delete this branch ?')">{{trans('messages.delete')}}</a>
                                                     @endif
