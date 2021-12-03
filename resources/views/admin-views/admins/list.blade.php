@@ -255,9 +255,8 @@
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         @if(UserCan('edit_customer','admin'))
-                                        <a class="dropdown-item" href="{{route('admin.customer.view',[$customer['id']])}}">
-                                            <i class="tio-visible"></i> {{trans('messages.add price_group')}}
-                                        </a>
+                                            <a class="dropdown-item"
+                                               href="{{route('admin.customer.edit', [$customer['id']])}}">{{trans('messages.edit')}}</a>
                                         @endif
                                         {{--<a class="dropdown-item" target="" href="">
                                             <i class="tio-download"></i> Suspend

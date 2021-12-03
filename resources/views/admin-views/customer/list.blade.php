@@ -147,7 +147,7 @@
                                     <div class="card card-sm">
                                         <div class="card-body">
                                             <div class="d-flex justify-content-between align-items-center mb-3">
-                                                <span class="mr-2">{{trans('messages.name')}}</span>
+                                                 <span class="mr-2">{{trans('messages.name')}}</span>
 
                                                 <!-- Checkbox Switch -->
                                                 <label class="toggle-switch toggle-switch-sm" for="toggleColumn_name">
@@ -307,8 +307,10 @@
                                         <i class="tio-settings"></i>
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        @if(UserCan('edit_customer','admin'))
                                         <a class="dropdown-item"
                                            href="{{route('admin.customer.edit', [$customer['id']])}}">{{trans('messages.edit')}}</a>
+                                        @endif
                                         @if(UserCan('edit_customer','admin'))
                                         <a class="dropdown-item" href="{{route('admin.customer.view',[$customer['id']])}}">
                                             <i class="tio-visible"></i> {{trans('messages.add_price_group')}}
