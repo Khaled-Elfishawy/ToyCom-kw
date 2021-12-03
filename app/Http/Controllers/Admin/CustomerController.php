@@ -61,6 +61,7 @@ class CustomerController extends Controller
     public function update(Request $request, $id)
     {
         $customer = User::find($id);
+        $customer->name = $request->name;
         $customer->email = $request->email;
         $customer->phone = $request->phone;
         $customer->my_points = $request->my_points;
@@ -68,13 +69,11 @@ class CustomerController extends Controller
         $customer->first_approve = 1;
         $customer->password = ($request->password) ? Hash::make($request['password']) : $customer->password;
         $customer->save();
-
         if ($customer->is_company == 1) {
             $customer->update([
                 $customer->pending_price_group = $request->price_group_id,
             ]);
         }
-
         Toastr::success('Customer status updated!');
         return back();
     }

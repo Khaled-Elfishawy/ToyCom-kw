@@ -15,7 +15,7 @@
             <div class="row align-items-center">
                 <div class="col-sm mb-2 mb-sm-0">
                     <h1 class="page-header-title"><i
-                            class="tio-edit"></i> {{trans('messages.customers')}} {{trans('messages.price_group')}}</h1>
+                            class="tio-edit"></i>{{trans('messages.customer_edit')}}</h1>
                 </div>
             </div>
         </div>

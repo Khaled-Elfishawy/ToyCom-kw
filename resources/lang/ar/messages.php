@@ -4,6 +4,7 @@
 
 return [
     //NEW
+    'customer_edit' => 'تعديل بيانات العميل',
     'arrange' => 'الترتيب',
     'restaurant_setup' => 'اعدادات المتجر',
     'location_setup' => 'اعدادات الموقع',

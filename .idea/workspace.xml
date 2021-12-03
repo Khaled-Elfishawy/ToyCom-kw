@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="49d8da5f-792b-4cb5-9b49-ea12543555b9" name="Changes" comment="k">
+    <list default="true" id="49d8da5f-792b-4cb5-9b49-ea12543555b9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/brandController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/brandController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin-views/dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin-views/dashboard.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin/partials/_sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin/partials/_sidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Model/Brand.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/Brand.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/CustomerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/CustomerController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/ar/messages.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/ar/messages.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin-views/customer/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin-views/customer/edit.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
