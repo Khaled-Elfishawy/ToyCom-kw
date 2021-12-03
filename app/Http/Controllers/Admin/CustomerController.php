@@ -61,7 +61,8 @@ class CustomerController extends Controller
     public function admin_edit($id)
     {
         $customer = Admin::find($id);
-        return view('admin-views.admins.edit', compact('customer'));
+        $Roles = Role::get();
+        return view('admin-views.admins.edit', compact('customer','Roles'));
     }
 
     public function update(Request $request, $id)
