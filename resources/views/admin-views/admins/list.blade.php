@@ -228,6 +228,7 @@
                         </th>
                         <th class="table-column-pl-0">{{trans('messages.name')}}</th>
                         <th>{{trans('messages.email')}}</th>
+                        <th>{{trans('messages.role-per')}}</th>
                         <th>{{trans('messages.actions')}}</th>
                     </tr>
                     </thead>
@@ -243,6 +244,9 @@
                             </td>
                             <td>
                                 {{$customer['email']}}
+                            </td>
+                            <td>
+                                {{$customer->Role->name}}
                             </td>
                             <td>
                                 @if(UserCan('edit_admin','admin'))
