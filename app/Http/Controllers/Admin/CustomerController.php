@@ -59,8 +59,8 @@ class CustomerController extends Controller
 
     public function admin_edit($id)
     {
+        dd($id);
         $customer = User::find($id);
-        dd($customer);
         return view('admin-views.admins.edit', compact('customer'));
     }
 
