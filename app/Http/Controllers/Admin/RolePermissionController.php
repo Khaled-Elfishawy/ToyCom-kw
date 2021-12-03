@@ -51,7 +51,7 @@ class RolePermissionController extends Controller
                 return redirect()->route('admin.rolePer.add-new');
             }
             $permissions = $request->get('permissions', []);
-            $role->syncPermissions($permissions);
+            $role->syncPermissions($request->input('permissions'));
             Toastr::success('permissions has been updated!');
         } else {
             Toastr::success('No permission selected!');
