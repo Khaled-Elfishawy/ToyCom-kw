@@ -4,6 +4,7 @@
 
 return [
     //NEW
+    'arrange' => 'الترتيب',
     'restaurant_setup' => 'اعدادات المتجر',
     'location_setup' => 'اعدادات الموقع',
     'mail_make' => 'تهيئة البريد',

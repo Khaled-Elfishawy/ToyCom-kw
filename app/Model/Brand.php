@@ -15,10 +15,11 @@ class Brand extends Model
 //        }
 //        return 'default_brand_img.png';
 //    }
-
+protected $hidden=['order_num'];
     protected $fillable = [
         'name_ar' ,
         'name_en',
+        'order_num',
         'image'
     ];
 
