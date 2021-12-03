@@ -61,7 +61,8 @@ class CustomerController extends Controller
     public function update(Request $request, $id)
     {
         $customer = User::find($id);
-        $customer->name = $request->name;
+        $customer->f_name = $request->f_name;
+        $customer->l_name = $request->l_name;
         $customer->email = $request->email;
         $customer->phone = $request->phone;
         $customer->my_points = $request->my_points;

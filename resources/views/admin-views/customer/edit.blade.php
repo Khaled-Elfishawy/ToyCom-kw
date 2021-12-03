@@ -26,10 +26,17 @@
                       enctype="multipart/form-data">
                     @csrf @method('put')
                     <div class="row">
-                        <div class="col-md-4 col-12">
+                        <div class="col-md-2 col-12">
                             <div class="form-group">
-                                <label class="input-label" for="exampleFormControlInput1"> {{trans('messages.name')}}</label>
-                                <input type="text" name="name" value="{{$customer['name']}}" class="form-control" placeholder="{{trans('messages.name')}}"
+                                <label class="input-label" for="exampleFormControlInput1"> {{trans('messages.f_name')}}</label>
+                                <input type="text" name="f_name" value="{{$customer['f_name']}}" class="form-control" placeholder="{{trans('messages.f_name')}}"
+                                       required>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-12">
+                            <div class="form-group">
+                                <label class="input-label" for="exampleFormControlInput1"> {{trans('messages.l_name')}}</label>
+                                <input type="text" name="l_name" value="{{$customer['l_name']}}" class="form-control" placeholder="{{trans('messages.l_name')}}"
                                        required>
                             </div>
                         </div>

@@ -4,6 +4,8 @@
 
 return [
     //NEW
+    'f_name' => 'الاسم الاول',
+    'l_name' => 'الاسم الاخير',
     'customer_edit' => 'تعديل بيانات العميل',
     'arrange' => 'الترتيب',
     'restaurant_setup' => 'اعدادات المتجر',
