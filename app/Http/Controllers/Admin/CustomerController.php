@@ -87,7 +87,7 @@ class CustomerController extends Controller
     }
     public function admin_update(Request $request, $id)
     {
-        $customer = User::find($id);
+        $customer = Admin::find($id);
         $customer->f_name = $request->f_name;
         $customer->l_name = $request->l_name;
         $customer->email = $request->email;
