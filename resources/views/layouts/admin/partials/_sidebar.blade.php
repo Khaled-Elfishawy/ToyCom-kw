@@ -41,43 +41,52 @@
                             </a>
                         </li>
                         <!-- End Dashboards -->
-                        <li class="navbar-vertical-aside-has-menu {{Request::is('admin/role*')?'active':''}}">
-                            <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:"
-                            >
-                                <i class="tio-image nav-icon"></i>
-                                <span
-                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{trans('messages.role')}}</span>
-                            </a>
-                            <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
-                                style="display: {{Request::is('admin/seller*')?'block':'none'}}">
-                                <li class="nav-item {{Request::is('admin/role/add-new')?'active':''}}">
-                                    <a class="nav-link " href="{{route('admin.role.add-new')}}">
-                                        <span class="tio-circle nav-indicator-icon"></span>
-                                        <span
-                                            class="text-truncate">{{trans('messages.add')}} {{trans('messages.new')}}</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item {{Request::is('admin/role/list')?'active':''}}">
-                                    <a class="nav-link " href="{{route('admin.role.list')}}">
-                                        <span class="tio-circle nav-indicator-icon"></span>
-                                        <span class="text-truncate">{{trans('messages.list')}}</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="navbar-vertical-aside-has-menu {{Request::is('admin/role-per*')?'active':''}}">
-                            <a class="js-navbar-vertical-aside-menu-link nav-link"
-                               href="{{route('admin.rolePer.add-new')}}"
-                            >
-                                <i class="tio-star nav-icon"></i>
-                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
-                                     {{trans('messages.role-per')}}
-                                </span>
-                            </a>
-                        </li>
-                        <!-- End Pages -->
+                        @if(UserCan('view_roles','admin'))
+                            <li class="navbar-vertical-aside-has-menu {{Request::is('admin/role*')?'active':''}}">
+                                <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle"
+                                   href="javascript:"
+                                >
+                                    <i class="tio-image nav-icon"></i>
+                                    <span
+                                        class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{trans('messages.role')}}</span>
+                                </a>
+                                <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
+                                    style="display: {{Request::is('admin/seller*')?'block':'none'}}">
+                                    @if(UserCan('add_roles','admin'))
+                                        <li class="nav-item {{Request::is('admin/role/add-new')?'active':''}}">
+                                            <a class="nav-link " href="{{route('admin.role.add-new')}}">
+                                                <span class="tio-circle nav-indicator-icon"></span>
+                                                <span
+                                                    class="text-truncate">{{trans('messages.add')}} {{trans('messages.new')}}</span>
+                                            </a>
+                                        </li>
+                                    @endif
+                                    @if(UserCan('view_roles','admin'))
+                                        <li class="nav-item {{Request::is('admin/role/list')?'active':''}}">
+                                            <a class="nav-link " href="{{route('admin.role.list')}}">
+                                                <span class="tio-circle nav-indicator-icon"></span>
+                                                <span class="text-truncate">{{trans('messages.list')}}</span>
+                                            </a>
+                                        </li>
+                                    @endif
+                                </ul>
+                            </li>
+                        @endif
+                        @if(UserCan('view_permissions','admin'))
+                            <li class="navbar-vertical-aside-has-menu {{Request::is('admin/role-per*')?'active':''}}">
+                                <a class="js-navbar-vertical-aside-menu-link nav-link"
+                                   href="{{route('admin.rolePer.add-new')}}"
+                                >
+                                    <i class="tio-star nav-icon"></i>
+                                    <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                         {{trans('messages.role-per')}}
+                                    </span>
+                                </a>
+                            </li>
+                        @endif
+                    <!-- End Pages -->
                         <!-- permissions -->
-                        @if(UserCan('view_role','admin'))
+                        @if(UserCan('view_admin','admin'))
                             <li class="navbar-vertical-aside-has-menu {{Request::is('admin/admins*')?'active':''}}">
                                 <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle"
                                    href="javascript:"
@@ -88,13 +97,15 @@
                                 </a>
                                 <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
                                     style="display: {{Request::is('admin/admins*')?'block':'none'}}">
-                                    <li class="nav-item {{Request::is('admin/admins/add-new')?'active':''}}">
-                                        <a class="nav-link " href="{{route('admin.admins.add-new')}}">
-                                            <span class="tio-circle nav-indicator-icon"></span>
-                                            <span
-                                                class="text-truncate">{{trans('messages.add')}} {{trans('messages.new')}}</span>
-                                        </a>
-                                    </li>
+                                    @if(UserCan('add_admin','admin'))
+                                        <li class="nav-item {{Request::is('admin/admins/add-new')?'active':''}}">
+                                            <a class="nav-link " href="{{route('admin.admins.add-new')}}">
+                                                <span class="tio-circle nav-indicator-icon"></span>
+                                                <span
+                                                    class="text-truncate">{{trans('messages.add')}} {{trans('messages.new')}}</span>
+                                            </a>
+                                        </li>
+                                    @endif
                                     <li class="nav-item {{Request::is('admin/admins/list')?'active':''}}">
                                         <a class="nav-link " href="{{route('admin.admins.list')}}">
                                             <span class="tio-circle nav-indicator-icon"></span>
@@ -429,7 +440,7 @@
                     <!-- End Pages -->
 
                         <!-- Pages -->
-                            @if(UserCan('view_product','admin'))
+                        @if(UserCan('view_product','admin'))
                             <li class="navbar-vertical-aside-has-menu {{Request::is('admin/product*')?'active':''}}">
                                 <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle"
                                    href="javascript:"
