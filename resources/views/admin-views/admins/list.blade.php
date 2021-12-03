@@ -245,6 +245,7 @@
                                 {{$customer['email']}}
                             </td>
                             <td>
+                                @if(UserCan('edit_admin','admin'))
                                 <div class="dropdown">
                                     <button class="btn btn-outline-secondary dropdown-toggle" type="button"
                                             id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
@@ -261,6 +262,7 @@
                                         </a>--}}
                                     </div>
                                 </div>
+                                @endif
                             </td>
                         </tr>
                     @endforeach

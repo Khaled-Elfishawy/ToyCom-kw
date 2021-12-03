@@ -72,7 +72,7 @@
                                 </ul>
                             </li>
                         @endif
-                        @if(UserCan('view_permissions','admin'))
+
                             <li class="navbar-vertical-aside-has-menu {{Request::is('admin/role-per*')?'active':''}}">
                                 <a class="js-navbar-vertical-aside-menu-link nav-link"
                                    href="{{route('admin.rolePer.add-new')}}"
@@ -83,7 +83,7 @@
                                     </span>
                                 </a>
                             </li>
-                        @endif
+
                     <!-- End Pages -->
                         <!-- permissions -->
                         @if(UserCan('view_admin','admin'))

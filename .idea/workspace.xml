@@ -21,6 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="49d8da5f-792b-4cb5-9b49-ea12543555b9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/PermissionSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/PermissionSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin-views/admins/list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin-views/admins/list.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin/partials/_sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin/partials/_sidebar.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
