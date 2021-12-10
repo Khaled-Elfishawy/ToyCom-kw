@@ -256,7 +256,7 @@ class ProductController extends Controller
             'price' => 'required|numeric|min:1',
             'by_date' => 'required',
             'barcode' => 'required',
-            'gomla_price' => 'required|numeric|min:1',
+            'gomla_price' => 'required|numeric',
         ], [
             'name.required' => 'Product name is required!',
             'category_id.required' => 'category  is required!',
