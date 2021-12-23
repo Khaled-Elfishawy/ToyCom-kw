@@ -23,7 +23,7 @@ class  AgeController extends Controller
      */
     public function index()
     {
-        $ages = Age::all();
+        $ages = Age::orderBy('order_num','asc')->get();
         return view('admin-views.age.index', compact('ages'));
     }
 
@@ -69,16 +69,14 @@ class  AgeController extends Controller
     public function update(Request $request, $id)
     {
         $age = Age::find($id);
-
-
         $age->name_ar = $request->name_ar;
         $age->name_en = $request->name_en;
+        $age->order_num = $request->order_num;
         if (!empty($request->file('image'))) {
             $image_data = Helpers::upload('ages/', 'png', $request->image);
             $age->image = $image_data;
         }
         $age->save();
-
         return redirect()->route('admin.Age.list');
     }
 

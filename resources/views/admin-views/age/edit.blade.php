@@ -25,18 +25,25 @@
                     @csrf @method('put')
 
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-4">
                             <div class="form-group">
                                 <label class="input-label" for="exampleFormControlInput1">{{trans('messages.name_ar')}}</label>
                                 <input type="text" name="name_ar" value="{{$age->name_ar}}" class="form-control"
                                        placeholder="New age" required>
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-4">
                             <div class="form-group">
                                 <label class="input-label" for="exampleFormControlInput1">{{trans('messages.name_en')}}</label>
                                 <input type="text" name="name_en" value="{{$age->name_en}}" class="form-control"
                                        placeholder="New age" required>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label class="input-label" for="exampleFormControlInput1">{{trans('messages.arrange')}}</label>
+                                <input type="number" min="1" name="order_num" value="{{$age->order_num}}" class="form-control"
+                                       required>
                             </div>
                         </div>
                     </div>

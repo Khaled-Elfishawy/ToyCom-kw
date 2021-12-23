@@ -88,7 +88,7 @@ class BannerController extends Controller
             ];
             $ages = Age::all();
             $ages->prepend($defualt);
-            return response()->json($ages->sortBy('id'), 200);
+            return response()->json($ages->sortBy('order_num'), 200);
         } catch (\Exception $e) {
             return response()->json([], 200);
         }
