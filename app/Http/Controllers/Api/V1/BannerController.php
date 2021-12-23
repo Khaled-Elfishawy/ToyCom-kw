@@ -86,9 +86,9 @@ class BannerController extends Controller
                 "created_at" => "2021-08-22 15:50:38",
                 "updated_at" => "2021-09-06 10:18:15",
             ];
-            $ages = Age::all();
+            $ages = Age::orderBy('order_num','asc')->get();
             $ages->prepend($defualt);
-            return response()->json($ages->sortBy('order_num'), 200);
+            return response()->json($ages, 200);
         } catch (\Exception $e) {
             return response()->json([], 200);
         }
