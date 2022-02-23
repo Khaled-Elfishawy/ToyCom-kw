@@ -54,9 +54,17 @@ Route::post('/ipn', 'SslCommerzPaymentController@ipn');
 /*paypal*/
 /*paypal*/
 /*Route::get('/paypal', function (){return view('paypal-test');})->name('paypal');*/
+
+//Moyasar
 Route::post('pay-paypal', 'MoyasarController@paywith')->name('pay-paypal');
 Route::get('paypal-status', 'MoyasarController@getPaymentStatus')->name('paypal-status');
 Route::post('moyasar-oncomplate/{order}', 'MoyasarController@oncomplate')->name('moyasar-oncomplate');
+
+//myfatoorah
+Route::post('pay-myfatoorah', 'MyfatoorahController@paywith')->name('pay-myfatoorah');
+Route::get('myfatoorah-status', 'MyfatoorahController@getPaymentStatus')->name('myfatoorah-status');
+Route::get('myfatoorah-oncomplate', 'MyfatoorahController@oncomplate')->name('myfatoorah-oncomplate');
+
 /*paypal*/
 Route::post('pay-wallet', 'WalletController@pay')->name('pay-wallet');
 Route::get('wallet-exchange', 'WalletController@exchange')->name('wallet-exchange');

@@ -20,15 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="49d8da5f-792b-4cb5-9b49-ea12543555b9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/MyfatoorahController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/AgeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/AgeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/V1/BannerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/V1/BannerController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Model/Age.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/Age.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin-views/age/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin-views/age/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin-views/age/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin-views/age/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/ClassLoader.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/ClassLoader.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/payment-view.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/payment-view.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -218,7 +213,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Http/Controllers" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="settings.editor.selected.configurable" value="preferences.editor" />
@@ -226,6 +221,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\dashboard\ToyCom-kw\app\Http\Controllers" />
+      <recent name="C:\xampp\htdocs\dashboard\ToyCom-kw" />
       <recent name="C:\xampp\htdocs\dashboard\ToyCom-kw\database\seeds" />
       <recent name="C:\xampp\htdocs\dashboard\ToyCom-kw\resources\views\admin-views\admins" />
     </key>
@@ -266,6 +263,7 @@
       <workItem from="1638972460004" duration="976000" />
       <workItem from="1639149304541" duration="2273000" />
       <workItem from="1640273312739" duration="1901000" />
+      <workItem from="1645633472099" duration="3765000" />
     </task>
     <servers />
   </component>

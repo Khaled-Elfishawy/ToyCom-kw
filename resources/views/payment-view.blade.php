@@ -58,7 +58,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <form class="needs-validation" method="POST" id="payment-form"
-                                          action="{{route('pay-paypal')}}">
+                                          action="{{route('pay-myfatoorah')}}">
                                         {{ csrf_field() }}
                                         <button class="btn btn-block" type="submit">
                                             <img width="100"
@@ -82,7 +82,7 @@
                                 </form>
                             </div>
                         </div>
-                    </div>                    
+                    </div>
                 </div>
             </div>
         </section>
