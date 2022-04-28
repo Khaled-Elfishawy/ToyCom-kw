@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
+    protected $appends = ['wrapping_cost'];
     protected $casts = [
         'order_amount'           => 'float',
         'checked'                => 'integer',
@@ -25,6 +26,11 @@ class Order extends Model
     public function details()
     {
         return $this->hasMany(OrderDetail::class);
+    }
+
+    public function getWrappingCostAttribute()
+    {
+        return $this->hasMany(OrderDetail::class)->sum('wraping_price');
     }
 
     public function delivery_man()

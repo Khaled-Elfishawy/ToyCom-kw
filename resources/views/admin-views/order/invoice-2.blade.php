@@ -174,6 +174,9 @@
                                     <dt class="col-sm-6">Subtotal:</dt>
                                     <dd class="col-sm-6">
                                         {{$sub_total+$total_tax." ".\App\CentralLogics\Helpers::currency_symbol()}}</dd>
+                                    <dt class="col-sm-6">Total packaging:</dt>
+                                    <dd class="col-sm-6">
+                                        {{$order->wrapping_cost." ".\App\CentralLogics\Helpers::currency_symbol()}}</dd>
                                     <dt class="col-sm-6">Coupon Discount:</dt>
                                     <dd class="col-sm-6">
                                         - {{$order['coupon_discount_amount']." ".\App\CentralLogics\Helpers::currency_symbol()}}</dd>
@@ -189,7 +192,7 @@
                                     </dd>
 
                                     <dt class="col-sm-6">Total:</dt>
-                                    <dd class="col-sm-6">{{$sub_total+$del_c+$total_tax-$order['coupon_discount_amount']." ".\App\CentralLogics\Helpers::currency_symbol()}}</dd>
+                                    <dd class="col-sm-6">{{$sub_total+$order->wrapping_cost+$del_c+$total_tax-$order['coupon_discount_amount']." ".\App\CentralLogics\Helpers::currency_symbol()}}</dd>
                                 </dl>
                                 <!-- End Row -->
                             </div>

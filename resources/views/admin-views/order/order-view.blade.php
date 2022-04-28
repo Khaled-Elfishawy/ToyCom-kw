@@ -341,7 +341,7 @@
                                             @endif
                                             @if($detail['wraping_id'] != 0)
                                                 <div class="col col-md-2 align-self-center">
-                                                    <a data-price="{{$detail->Warpping->price}}"
+                                                    <a data-price="{{$detail->wraping_price}}"
                                                        @if(app()->getLocale() == 'ar')
                                                        data-name="{{$detail->Warpping->name_ar}}"
                                                        @else
@@ -476,6 +476,9 @@
                                     <dt class="col-sm-6">{{trans('messages.subtotal')}}:</dt>
                                     <dd class="col-sm-6">
                                         {{$sub_total+$total_tax." ".\App\CentralLogics\Helpers::currency_symbol()}}</dd>
+                                    <dt class="col-sm-6">مجموع التغليف :</dt>
+                                    <dd class="col-sm-6">
+                                        {{$order->wrapping_cost." ".\App\CentralLogics\Helpers::currency_symbol()}}</dd>
                                     <dt class="col-sm-6">{{trans('messages.coupon')}} {{trans('messages.discount')}}:
                                     </dt>
                                     <dd class="col-sm-6">
@@ -492,7 +495,7 @@
                                     </dd>
 
                                     <dt class="col-sm-6">{{trans('messages.total')}}:</dt>
-                                    <dd class="col-sm-6">{{$sub_total+$del_c+$total_tax-$order['coupon_discount_amount']." ".\App\CentralLogics\Helpers::currency_symbol()}}</dd>
+                                    <dd class="col-sm-6">{{$sub_total+$order->wrapping_cost+$del_c+$total_tax-$order['coupon_discount_amount']." ".\App\CentralLogics\Helpers::currency_symbol()}}</dd>
                                 </dl>
                                 <!-- End Row -->
                             </div>

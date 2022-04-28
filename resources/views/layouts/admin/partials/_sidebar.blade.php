@@ -383,7 +383,7 @@
                                         class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{trans('messages.card_colors')}}</span>
                                 </a>
                                 <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
-                                    style="display: {{Request::is('admin/wraping*')?'block':'none'}}">
+                                    style="display: {{Request::is('admin/card_colors*')?'block':'none'}}">
                                     @if(UserCan('add_cardColors','admin'))
                                         <li class="nav-item {{Request::is('admin/card_colors/add-new')?'active':''}}">
                                             <a class="nav-link " href="{{route('admin.card_colors.add-new')}}">

@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\CentralLogics\Helpers;
 use App\Model\Gift_warping;
+use App\Model\OrderDetail;
 use Illuminate\Http\Request;
-use App\Model\Brand;
-use App\Model\Product;
+use Brian2694\Toastr\Facades\Toastr;
 use App\Traits\OfferTrait;
 
 class WrapingController extends Controller
@@ -79,7 +79,14 @@ class WrapingController extends Controller
     public function destroy($id)
     {
         $wraping = Gift_warping::find($id);
-        $wraping->delete();
-        return \redirect()->route('admin.wraping.list');
+        $exists_order = OrderDetail::where('wraping_id',$id)->first();
+        if($exists_order){
+            Toastr::warning('لا يمكن الحذف - لوجود التغليف في احد الطلبات !');
+            return \redirect()->back();
+        }else{
+            $wraping->delete();
+            return \redirect()->route('admin.wraping.list');
+        }
+
     }
 }
